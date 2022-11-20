@@ -1,0 +1,58 @@
+{
+  "name": "laftel-clone",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/**/*.{ts,tsx,js,jsx}",
+    "lint:fix": "eslint --fix src/**/*.{ts,tsx,js,jsx}",
+    "prettier": "prettier --write --config ./.prettierrc src/**/*.{ts,tsx}"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-eslint": "^9.0.1",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "@vitejs/plugin-react": "^2.1.0",
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0",
+    "vite-tsconfig-paths": "^3.5.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "prettier --write --config ./.prettierrc"
+    ]
+  },
+  "main": "index.js",
+  "repository": "https://github.com/ubububububub/react-boilerplate",
+  "author": "ub <kimub1204@naver.com>",
+  "license": "MIT"
+}
