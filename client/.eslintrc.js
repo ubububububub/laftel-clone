@@ -109,5 +109,8 @@ module.exports = {
     ],
     "import/prefer-default-export": "off",
     "import/export": "off",
+    "react/no-array-index-key": "off",
+    "consistent-return": "off",
+    "no-unused-expressions": "off",
   },
 };
