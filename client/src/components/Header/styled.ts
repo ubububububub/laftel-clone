@@ -17,14 +17,15 @@ export const HeaderNotScroll = css`
   }
 `;
 
-export const Header = styled.header<{ scroll: boolean }>`
+export const Header = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
   font-size: 1.4rem;
   transition: all 0.3s linear;
 
-  ${({ scroll }) => (scroll ? HeaderScroll : HeaderNotScroll)}
+  ${({ scroll }: { scroll: boolean }) =>
+    scroll ? HeaderScroll : HeaderNotScroll}
 `;
 
 export const Nav = styled.nav`
@@ -48,10 +49,6 @@ export const NavRightList = styled.ul`
   display: flex;
   align-items: center;
   font-weight: 800;
-`;
-
-export const NavLeftIconItem = styled.li`
-  /* flex: 1; */
 `;
 
 export const Login = styled.li`
