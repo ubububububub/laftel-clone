@@ -5,6 +5,9 @@ declare module "styled-components" {
     colors: {
       white: string;
       black: string;
+      footer: string;
+      notfound: string;
+      notfoundStrong: string;
     };
   }
 }
