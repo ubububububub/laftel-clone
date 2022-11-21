@@ -1,19 +1,21 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-
-export const MyComponent = styled.div`
-  color: ${props => props.theme.colors.main};
-`;
 
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
-  * {
-    box-sizing: border-box;
+  html {
     font-size: 62.5%;
   }
-  
+
   body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+    box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  a {
+    text-decoration: none;
   }
 `;
