@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import * as S from "@/components/Header/styled";
 import { Logo } from "@/components/svgs";
 
-const navTexts = [
+const texts = [
   { name: "태그검색", src: "/finder" },
   { name: "요일별 신작", src: "/daily" },
   { name: "테마추천", src: "/themes" },
   { name: "멤버십", src: "/membership" },
 ];
 
-const mapedNavTexts = navTexts.map((text, index) => (
+const mapedTexts = texts.map((text, index) => (
   <li key={index}>
     <Link to={text.src}>{text.name}</Link>
   </li>
@@ -34,9 +34,11 @@ export function Header() {
       <S.Nav>
         <S.NavLeftList>
           <li>
-            <Link to='/'>{scroll ? <Logo color='black' /> : <Logo />}</Link>
+            <Link to='/'>
+              <h1>{scroll ? <Logo color='black' /> : <Logo />}</h1>
+            </Link>
           </li>
-          {mapedNavTexts}
+          {mapedTexts}
         </S.NavLeftList>
         <S.NavRightList>
           <li>
