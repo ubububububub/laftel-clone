@@ -1,19 +1,9 @@
-import { useEffect } from "react";
-
-import notFound from "@/../public/assets/imgs/not-found.webp";
+import notFound from "@/../public/assets/imgs/notfound.webp";
 import { useFooterToggle } from "@/hooks/useFooterToggle";
 import * as S from "@/pages/NotFound/styled";
 
 export function NotFound() {
-  const { setIsToggle } = useFooterToggle();
-
-  useEffect(() => {
-    setIsToggle(false);
-
-    return () => {
-      setIsToggle(true);
-    };
-  }, []);
+  useFooterToggle();
 
   return (
     <S.Container>

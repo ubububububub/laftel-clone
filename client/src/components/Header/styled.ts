@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const HeaderScroll = css`
+const HeaderScroll = css`
   background-color: ${({ theme: { colors } }) => colors.white};
 
   & a {
@@ -8,7 +8,7 @@ export const HeaderScroll = css`
   }
 `;
 
-export const HeaderNotScroll = css`
+const HeaderNotScroll = css`
   /* background-color: transparent; */
   background-color: black;
 
@@ -21,6 +21,7 @@ export const Header = styled.header`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 999999999999999;
   font-size: 1.4rem;
   transition: all 0.3s linear;
 

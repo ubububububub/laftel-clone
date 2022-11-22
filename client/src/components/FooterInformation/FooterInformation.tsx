@@ -11,7 +11,7 @@ export default function FooterInformation() {
   };
 
   return (
-    <S.Information>
+    <S.Container>
       <S.Entrepreneur onClick={handleClick}>
         (주)라프텔 사업자 정보{" "}
         {toggle ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
@@ -27,6 +27,6 @@ export default function FooterInformation() {
           <p>이메일 : contact@laftel.net / 대표전화 : 1644-0331</p>
         </S.Description>
       )}
-    </S.Information>
+    </S.Container>
   );
 }
