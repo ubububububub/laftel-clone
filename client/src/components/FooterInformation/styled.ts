@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Information = styled.div`
+export const Container = styled.section`
   color: ${({ theme: { colors } }) => colors.white};
 `;
 

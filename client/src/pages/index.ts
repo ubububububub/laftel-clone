@@ -4,7 +4,7 @@ import { Finder } from "@/pages/Finder";
 import { Home } from "@/pages/Home";
 import { Join } from "@/pages/Join";
 import { JoinAgreement } from "@/pages/JoinAgreement";
-import { Membership } from "@/pages/Membership";
+import { Membership } from "@/pages/Membership/Membership";
 import { NotFound } from "@/pages/NotFound/NotFound";
 import { Search } from "@/pages/Search";
 import { Themes } from "@/pages/Themes";

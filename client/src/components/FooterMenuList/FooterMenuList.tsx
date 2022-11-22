@@ -16,7 +16,7 @@ const texts = [
 
 const mapedTexts = texts.map((text, index) => (
   <li key={index}>
-    <S.MenuLink href={text.src} target='_blank' rel='noreferrer'>
+    <S.MenuLink href={text.src} target='_blank'>
       {text.name}
     </S.MenuLink>
   </li>

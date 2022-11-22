@@ -10,13 +10,13 @@ const Container = styled.div`
 `;
 
 function App() {
-  const [isToggle, setIsToggle] = useState(true);
+  const [isFooterToggle, setIsFooterToggle] = useState(true);
 
   return (
     <Container>
       <Header />
-      <Outlet context={{ setIsToggle }} />
-      {isToggle && <Footer />}
+      <Outlet context={{ setIsFooterToggle }} />
+      {isFooterToggle && <Footer />}
     </Container>
   );
 }

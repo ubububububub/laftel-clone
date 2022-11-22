@@ -2,11 +2,17 @@ import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
   colors: {
+    body: "#f7f7f7",
+    footer: "#32334a",
     white: "#fff",
     black: "#121212",
-    footer: "#32334a",
-    notfound: "#505050",
-    notfoundStrong: "#816bff",
+    lightBlack: "#191b2a",
+    gray: "#505050",
+    lightGray: "#8a8a8a",
+    purple: "#816bff",
+    lightPurple: "#f0edff",
+    hoverPurple: "#d9d3ff",
+    membership: "#e2e2e2",
   },
 };
 
