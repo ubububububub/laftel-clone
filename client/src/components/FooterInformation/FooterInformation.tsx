@@ -3,7 +3,7 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 import * as S from "@/components/FooterInformation/styled";
 
-export default function FooterInformation() {
+export function FooterInformation() {
   const [toggle, setToggle] = useState(false);
 
   const handleClick = () => {

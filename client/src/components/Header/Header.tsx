@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { NavLeftList, NavRightList } from "@/components";
 import * as S from "@/components/Header/styled";
-import { NavLeftList } from "@/components/NavLeftList";
-import { NavRightList } from "@/components/NavRightList";
 
 export function Header() {
   const [scroll, setScroll] = useState(false);

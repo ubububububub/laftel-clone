@@ -69,6 +69,6 @@ export const PaymentButton = styled.button`
   transition: all 0.08s ease-in 0s;
 
   &:hover {
-    background-color: ${({ theme: { colors } }) => colors.hoverPurple};
+    background-color: ${({ theme: { colors } }) => colors.hoverLightPurPle};
   }
 `;

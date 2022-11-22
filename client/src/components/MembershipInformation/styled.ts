@@ -1,8 +1,4 @@
-import styled, { css } from "styled-components";
-
-const TextBold = css`
-  font-weight: 700;
-`;
+import styled from "styled-components";
 
 export const Container = styled.section`
   margin-top: 2.4rem;
@@ -11,7 +7,7 @@ export const Container = styled.section`
   line-height: 1.95rem;
 
   & h4 {
-    ${TextBold}
+    font-weight: 700;
   }
 
   & li::before {
@@ -24,7 +20,7 @@ export const Container = styled.section`
 `;
 
 export const Title = styled.h3`
-  ${TextBold}
+  font-weight: 700;
   margin-bottom: 1.3rem;
   font-size: 1.3rem;
   line-height: 1.95rem;
@@ -32,7 +28,7 @@ export const Title = styled.h3`
 `;
 
 export const Strong = styled.strong`
-  ${TextBold}
+  font-weight: 700;
 `;
 
 export const HelpLink = styled.a`

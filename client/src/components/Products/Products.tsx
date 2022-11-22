@@ -1,5 +1,5 @@
-import { Product } from "@/components/Product";
 import * as S from "@/components/Products/styled";
+import { Product } from "@/components/ui";
 
 const Basic = [
   "광고 없이 감상",
