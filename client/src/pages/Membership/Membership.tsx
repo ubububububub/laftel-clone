@@ -1,6 +1,5 @@
 import membershipBackground from "@/../public/assets/imgs/membership-background.webp";
-import { MembershipInformation } from "@/components/MembershipInformation";
-import { Products } from "@/components/Products";
+import { MembershipInformation, Products } from "@/components";
 import { useFooterToggle } from "@/hooks/useFooterToggle";
 import * as S from "@/pages/Membership/styled";
 

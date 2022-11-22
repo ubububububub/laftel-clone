@@ -1,8 +1,9 @@
-import FooterInformation from "../FooterInformation/FooterInformation";
-
+import {
+  FooterIconList,
+  FooterMenuList,
+  FooterInformation,
+} from "@/components";
 import * as S from "@/components/Footer/styled";
-import { FooterIconList } from "@/components/FooterIconList";
-import { FooterMenuList } from "@/components/FooterMenuList";
 
 export function Footer() {
   return (

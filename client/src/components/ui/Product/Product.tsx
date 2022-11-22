@@ -1,5 +1,5 @@
 import check from "@/../public/assets/svgs/check.svg";
-import * as S from "@/components/Product/styled";
+import * as S from "@/components/ui/Product/styled";
 
 interface ProductProps {
   title: string;
