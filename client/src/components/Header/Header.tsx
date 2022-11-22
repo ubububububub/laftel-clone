@@ -1,22 +1,8 @@
 import { useState, useEffect } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
-import { Link } from "react-router-dom";
 
 import * as S from "@/components/Header/styled";
-import { Logo } from "@/components/svgs";
-
-const texts = [
-  { name: "태그검색", src: "/finder" },
-  { name: "요일별 신작", src: "/daily" },
-  { name: "테마추천", src: "/themes" },
-  { name: "멤버십", src: "/membership" },
-];
-
-const mapedTexts = texts.map((text, index) => (
-  <li key={index}>
-    <Link to={text.src}>{text.name}</Link>
-  </li>
-));
+import { NavLeftList } from "@/components/NavLeftList";
+import { NavRightList } from "@/components/NavRightList";
 
 export function Header() {
   const [scroll, setScroll] = useState(false);
@@ -27,31 +13,17 @@ export function Header() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <S.Header {...{ scroll }}>
       <S.Nav>
-        <S.NavLeftList>
-          <li>
-            <Link to='/'>
-              <h1>{scroll ? <Logo color='black' /> : <Logo />}</h1>
-            </Link>
-          </li>
-          {mapedTexts}
-        </S.NavLeftList>
-        <S.NavRightList>
-          <li>
-            {scroll ? (
-              <AiOutlineSearch size='24' color='#121212' />
-            ) : (
-              <AiOutlineSearch size='24' color='white' />
-            )}
-          </li>
-          <S.Login>
-            <Link to='/auth/login'>로그인/가입</Link>
-          </S.Login>
-        </S.NavRightList>
+        <NavLeftList {...{ scroll }} />
+        <NavRightList {...{ scroll }} />
       </S.Nav>
     </S.Header>
   );
