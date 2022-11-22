@@ -2,16 +2,19 @@ import { createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
 import {
+  AuthLogin,
+  AuthLoginRedirect,
   Daily,
   Finder,
   Home,
   Join,
   JoinAgreement,
-  EmailLogin,
   Membership,
   NotFound,
   Search,
   Themes,
+  Auth,
+  AuthSelect,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -20,16 +23,16 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        index: true,
+        element: <Home />,
+      },
+      {
         path: "daily",
         element: <Daily />,
       },
       {
         path: "finder",
         element: <Finder />,
-      },
-      {
-        index: true,
-        element: <Home />,
       },
       {
         path: "auth/process/email",
@@ -44,10 +47,6 @@ export const router = createBrowserRouter([
         element: <Membership />,
       },
       {
-        path: "auth/email",
-        element: <EmailLogin />,
-      },
-      {
         path: "search",
         element: <Search />,
       },
@@ -58,6 +57,24 @@ export const router = createBrowserRouter([
       {
         path: "*",
         element: <NotFound />,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <Auth />,
+    children: [
+      {
+        index: true,
+        element: <AuthLoginRedirect />,
+      },
+      {
+        path: "login",
+        element: <AuthLogin />,
+      },
+      {
+        path: "select",
+        element: <AuthSelect />,
       },
     ],
   },

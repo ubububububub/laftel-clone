@@ -10,8 +10,9 @@ const theme: DefaultTheme = {
     gray: "#505050",
     lightGray: "#8a8a8a",
     purple: "#816bff",
+    hoverPurPle: "#6e58ff",
     lightPurple: "#f0edff",
-    hoverPurple: "#d9d3ff",
+    hoverLightPurPle: "#d9d3ff",
     membership: "#e2e2e2",
   },
 };

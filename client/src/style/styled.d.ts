@@ -11,8 +11,9 @@ declare module "styled-components" {
       gray: string;
       lightGray: string;
       purple: string;
+      hoverPurPle: string;
       lightPurple: string;
-      hoverPurple: string;
+      hoverLightPurPle: string;
       membership: string;
     };
   }
