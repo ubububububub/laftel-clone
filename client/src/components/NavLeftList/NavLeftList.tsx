@@ -20,9 +20,7 @@ export function NavLeftList({ scroll }: { scroll: boolean }) {
   return (
     <S.NavList>
       <li>
-        <Link to='/'>
-          <h1>{scroll ? <Logo color='black' /> : <Logo />}</h1>
-        </Link>
+        <h1>{scroll ? <Logo color='black' /> : <Logo />}</h1>
       </li>
       {mapedTexts}
     </S.NavList>

@@ -1,3 +1,5 @@
+import { AgreementCheckItem } from "@/components/AgreementCheckItem/AgreementCheckItem";
+import { AuthForm } from "@/components/AuthForm/AuthForm";
 import { Footer } from "@/components/Footer/Footer";
 import { FooterIconList } from "@/components/FooterIconList/FooterIconList";
 import { FooterInformation } from "@/components/FooterInformation/FooterInformation";
@@ -9,6 +11,8 @@ import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
 
 export {
+  AgreementCheckItem,
+  AuthForm,
   Footer,
   FooterIconList,
   FooterMenuList,

@@ -1,9 +1,10 @@
 import membershipBackground from "@/../public/assets/imgs/membership-background.webp";
 import { MembershipInformation, Products } from "@/components";
-import { useFooterToggle } from "@/hooks/useFooterToggle";
+import { useFooterToggle, useNewTitle } from "@/hooks";
 import * as S from "@/pages/Membership/styled";
 
 export function Membership() {
+  useNewTitle("라프텔 - 애니 추천 · 애니 스트리밍 서비스");
   useFooterToggle();
 
   return (
