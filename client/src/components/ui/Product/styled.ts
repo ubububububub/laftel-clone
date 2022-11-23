@@ -10,6 +10,7 @@ export const Container = styled.section`
   width: 58rem;
   border-radius: 4px;
   background-color: ${({ theme: { colors } }) => colors.white};
+  border: 1px solid ${({ theme: { colors } }) => colors.cream};
 `;
 
 export const Badge = styled.div`
@@ -42,7 +43,7 @@ export const MembershipList = styled.ul`
   color: ${({ theme: { colors } }) => colors.gray};
 `;
 
-export const MembershipItem = styled.li`
+export const MembershipItem = styled.li<{ premium?: boolean }>`
   display: flex;
   align-items: center;
 
@@ -50,7 +51,7 @@ export const MembershipItem = styled.li`
     margin-top: 1.2rem;
   }
 
-  ${({ premium }: { premium?: boolean }) => premium && PremiumTextColor}
+  ${({ premium }) => premium && PremiumTextColor}
 `;
 
 export const Check = styled.img`

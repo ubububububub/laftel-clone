@@ -1,29 +1,31 @@
+import { Agreement } from "@/pages/Agreement/Agreement";
 import { Auth } from "@/pages/Auth/Auth";
 import { AuthLogin } from "@/pages/AuthLogin/AuthLogin";
-import { AuthLoginRedirect } from "@/pages/AuthLoginRedirect";
+import { AuthRedirect } from "@/pages/AuthRedirect";
 import { AuthSelect } from "@/pages/AuthSelect/AuthSelect";
 import { Daily } from "@/pages/Daily";
 import { Finder } from "@/pages/Finder";
 import { Home } from "@/pages/Home";
-import { Join } from "@/pages/Join";
-import { JoinAgreement } from "@/pages/JoinAgreement";
+import { Join } from "@/pages/Join/Join";
 import { Membership } from "@/pages/Membership/Membership";
 import { NotFound } from "@/pages/NotFound/NotFound";
+import { Process } from "@/pages/Process/Process";
 import { Search } from "@/pages/Search";
 import { Themes } from "@/pages/Themes";
 
 export {
+  Agreement,
   Auth,
   AuthLogin,
-  AuthLoginRedirect,
+  AuthRedirect,
   AuthSelect,
   Daily,
   Finder,
   Home,
   Join,
-  JoinAgreement,
   Membership,
   NotFound,
+  Process,
   Search,
   Themes,
 };

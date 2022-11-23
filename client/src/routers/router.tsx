@@ -3,18 +3,19 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "@/App";
 import {
   AuthLogin,
-  AuthLoginRedirect,
+  AuthRedirect,
   Daily,
   Finder,
   Home,
-  Join,
-  JoinAgreement,
   Membership,
   NotFound,
   Search,
   Themes,
   Auth,
   AuthSelect,
+  Process,
+  Agreement,
+  Join,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -33,14 +34,6 @@ export const router = createBrowserRouter([
       {
         path: "finder",
         element: <Finder />,
-      },
-      {
-        path: "auth/process/email",
-        element: <Join />,
-      },
-      {
-        path: "auth/process/agreement",
-        element: <JoinAgreement />,
       },
       {
         path: "membership",
@@ -66,7 +59,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <AuthLoginRedirect />,
+        element: <AuthRedirect />,
       },
       {
         path: "login",
@@ -75,6 +68,32 @@ export const router = createBrowserRouter([
       {
         path: "select",
         element: <AuthSelect />,
+      },
+      {
+        path: "*",
+        element: <AuthRedirect />,
+      },
+    ],
+  },
+  {
+    path: "/auth/process",
+    element: <Process />,
+    children: [
+      {
+        index: true,
+        element: <AuthRedirect />,
+      },
+      {
+        path: "agreement",
+        element: <Agreement />,
+      },
+      {
+        path: "join",
+        element: <Join />,
+      },
+      {
+        path: "*",
+        element: <AuthRedirect />,
       },
     ],
   },

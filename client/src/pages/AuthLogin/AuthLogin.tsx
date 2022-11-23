@@ -18,7 +18,7 @@ export function AuthLogin() {
       <S.Desc>
         신작부터 역대 인기작품까지
         <br />
-        애니메이션을 한 곳에서 편-안한게 즐기세요!
+        애니메이션을 한 곳에서 편-안하게 즐기세요!
       </S.Desc>
       <S.EmailLoginLink to='/auth/email'>
         <S.Letter src={letter} alt='이메일 아이콘' />

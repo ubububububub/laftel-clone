@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import * as S from "@/components/FooterMenuList/styled";
 import { Logo } from "@/components/svgs";
 
@@ -26,9 +24,7 @@ export function FooterMenuList() {
   return (
     <S.MenuList>
       <li>
-        <Link to='/'>
-          <Logo />
-        </Link>
+        <Logo />
       </li>
       {mapedTexts}
     </S.MenuList>
