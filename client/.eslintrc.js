@@ -112,5 +112,7 @@ module.exports = {
     "react/no-array-index-key": "off",
     "consistent-return": "off",
     "no-unused-expressions": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/jsx-no-useless-fragment": "off",
   },
 };
