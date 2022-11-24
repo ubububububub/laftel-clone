@@ -114,5 +114,6 @@ module.exports = {
     "no-unused-expressions": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-no-useless-fragment": "off",
+    "no-else-return": "off",
   },
 };

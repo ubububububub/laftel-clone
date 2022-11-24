@@ -15,6 +15,8 @@ const theme: DefaultTheme = {
     lightPurple: "#f0edff",
     hoverLightPurPle: "#d9d3ff",
     membership: "#e2e2e2",
+    inputCursor: "#d0d0d0",
+    invalid: "#f16361",
   },
 };
 

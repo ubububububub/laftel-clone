@@ -66,14 +66,8 @@ export function Agreement() {
   const handleAllCheckChange = () => {
     setIsAllChecked(current => !current);
 
-    if (!isAllChecked) {
-      return setChecked(current =>
-        current.map(check => ({ ...check, isChecked: true })),
-      );
-    }
-
     setChecked(current =>
-      current.map(check => ({ ...check, isChecked: false })),
+      current.map(check => ({ ...check, isChecked: !isAllChecked })),
     );
   };
 
