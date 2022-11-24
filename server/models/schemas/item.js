@@ -1,0 +1,33 @@
+import { Schema } from "mongoose";
+
+const itemSchema = new Schema(
+  {
+    image: { type: String, required: "item has image:String" },
+    title: { type: String, required: "item has title:String" },
+    story: { type: String, required: "item has story:String" },
+    genre: { type: [String], required: "item has genre:[String]" },
+    tags: { type: [String], required: "item has tags:[String]" },
+    releaseType: {
+      type: String,
+      required: false,
+      enum: ["TVA", "극장판", "OVA", "라이트애니"],
+    },
+    updateDay: {
+      type: String,
+      required: false,
+      enum: ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+    },
+    isOnly: Boolean,
+    isDubbing: Boolean,
+    isUncut: Boolean,
+    isAd: Boolean,
+    isAdult: Boolean,
+    stars: { type: Number, required: true, default: 0 },
+  },
+  {
+    collection: "items",
+    timestamps: true,
+  }
+);
+
+export default itemSchema;
