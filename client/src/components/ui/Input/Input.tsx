@@ -1,5 +1,5 @@
 import cancel from "@/../public/assets/svgs/cancel.svg";
-import * as S from "@/components/JoinInput/styled";
+import * as S from "@/components/ui/Input/styled";
 
 interface JoinAuth {
   [index: string]: string;
@@ -19,7 +19,7 @@ interface InputProps {
     title: string;
     type: string;
     name: string;
-    authObj: JoinAuth | LoginAuth;
+    authInfo: JoinAuth | LoginAuth;
     onClearClick: () => void;
     onInputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
@@ -33,7 +33,7 @@ export function Input({ inputArgs }: InputProps) {
     title,
     type,
     name,
-    authObj,
+    authInfo,
     onClearClick,
     onInputChange,
     placeholder,
@@ -48,10 +48,10 @@ export function Input({ inputArgs }: InputProps) {
         <input
           type={type}
           placeholder={placeholder}
-          value={authObj[name]}
+          value={authInfo[name]}
           onChange={onInputChange}
         />
-        {authObj[name] && (
+        {authInfo[name] && (
           <S.Clear src={cancel} alt='클리어 아이콘' onClick={onClearClick} />
         )}
       </S.InputContainer>
