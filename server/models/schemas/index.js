@@ -1,3 +1,6 @@
-import infoSchema from "./info";
+import itemSchema from "./item";
+import posterSchema from "./poster";
+import themeSchema from "./theme";
+import viewSchema from "./view";
 
-export { infoSchema };
+export { itemSchema, posterSchema, themeSchema, viewSchema };
