@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { JoinInput } from "@/components";
+import { AuthInput } from "@/components";
 import * as S from "@/pages/Join/styled";
 import { regexEmail, regexPassword } from "@/utils/regex";
+
+const inputStatus = {
+  READY: "ready",
+  CORRECT: "correct",
+  INCORRECT: "incorrect",
+};
 
 const inputs = [
   {
@@ -39,12 +45,18 @@ export function Join() {
     passwordConfirm: "",
   });
   const [validate, setValidate] = useState({
-    email: "ready",
-    password: "ready",
-    passwordConfirm: "ready",
+    email: inputStatus.READY,
+    password: inputStatus.READY,
+    passwordConfirm: inputStatus.READY,
   });
   const navigate = useNavigate();
   const { state } = useLocation();
+
+  useEffect(() => {
+    if (!state) {
+      return navigate("/auth/login", { replace: true });
+    }
+  }, []);
 
   const auths = {
     auth,
@@ -54,28 +66,29 @@ export function Join() {
   };
 
   const mapedInputs = inputs.map((input, index) => {
-    const joinInputArgs = { ...input };
-    return <JoinInput key={index} {...{ joinInputArgs }} {...{ auths }} />;
+    return <AuthInput key={index} authInputArgs={input} {...{ auths }} />;
   });
 
   // const { isLaftel, isInfo, isEvent } = state;
   //  isLaftel && isInfo && isEvent 일 경우 useQuery API 요청
 
-  useEffect(() => {
-    if (!state) {
-      return navigate("/auth/login", { replace: true });
-    }
-  }, []);
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleJoinSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+  };
+
+  const activeJoinLink = () => {
+    return (
+      validate.email === inputStatus.CORRECT &&
+      validate.password === inputStatus.CORRECT &&
+      validate.passwordConfirm === inputStatus.CORRECT
+    );
   };
 
   return (
     <S.Container>
       <S.Title>회원가입</S.Title>
-      <S.JoinForm onSubmit={handleSubmit}>{mapedInputs}</S.JoinForm>
-      <S.JoinLink disabled={false}>가입</S.JoinLink>
+      <S.JoinForm onSubmit={handleJoinSubmit}>{mapedInputs}</S.JoinForm>
+      <S.JoinLink disabled={!activeJoinLink()}>가입</S.JoinLink>
     </S.Container>
   );
 }

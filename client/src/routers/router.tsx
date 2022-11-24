@@ -16,6 +16,7 @@ import {
   Process,
   Agreement,
   Join,
+  Login,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
+    path: "/auth/email",
+    element: <Login />,
+  },
+  {
     path: "/auth",
     element: <Auth />,
     children: [
@@ -65,6 +70,7 @@ export const router = createBrowserRouter([
         path: "login",
         element: <AuthLogin />,
       },
+
       {
         path: "select",
         element: <AuthSelect />,
