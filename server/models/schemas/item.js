@@ -3,6 +3,7 @@ import { Schema } from "mongoose";
 const itemSchema = new Schema(
   {
     image: { type: String, required: "item has image:String" },
+    thumnail: { type: String, required: "item has thumnail:String" },
     title: { type: String, required: "item has title:String" },
     story: { type: String, required: "item has story:String" },
     genre: { type: [String], required: "item has genre:[String]" },
