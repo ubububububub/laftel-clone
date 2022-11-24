@@ -1,3 +1,6 @@
-import infoModel from "./info";
+import itemModel from "./item";
+import posterModel from "./poster";
+import themeModel from "./theme";
+import viewModel from "./view";
 
-export { infoModel };
+export { itemModel, posterModel, themeModel, viewModel };

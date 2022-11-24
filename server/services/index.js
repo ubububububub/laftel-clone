@@ -1,3 +1,5 @@
-import infoService from "./info";
+import itemService from "./item";
+import posterService from "./poster";
+import themeService from "./theme";
 
-export { infoService };
+export { itemService, posterService, themeService };
