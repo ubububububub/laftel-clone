@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Footer = styled.footer`
   padding: 4.8rem 5rem;
   min-height: 9.6rem;
-  max-height: 18.7rem;
+  max-height: 25.27rem;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme: { colors } }) => colors.footer};

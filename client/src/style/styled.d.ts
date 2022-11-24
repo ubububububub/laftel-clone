@@ -16,6 +16,8 @@ declare module "styled-components" {
       lightPurple: string;
       hoverLightPurPle: string;
       membership: string;
+      inputCursor: string;
+      invalid: string;
     };
   }
 }

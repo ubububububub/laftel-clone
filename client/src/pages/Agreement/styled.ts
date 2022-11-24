@@ -1,4 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
+import { ActiveButton, DisableButton } from "@/style/utils";
 
 export const Container = styled.main`
   margin-top: 3.7rem;
@@ -45,23 +47,7 @@ export const Bar = styled.div`
   background-color: ${({ theme: { colors } }) => colors.cream};
 `;
 
-export const ActiveButton = css`
-  cursor: pointer;
-  background-color: ${({ theme: { colors } }) => colors.purple};
-
-  &:hover {
-    background-color: ${({ theme: { colors } }) => colors.hoverPurPle};
-  }
-`;
-
 export const MoveLink = styled.button<{ disabled: boolean }>`
-  width: 100%;
-  height: 4.8rem;
-  font-size: 1.6rem;
-  font-weight: 600;
-  border-radius: 4px;
-  color: ${({ theme: { colors } }) => colors.white};
-  background-color: ${({ theme: { colors } }) => colors.cream};
-
+  ${DisableButton}
   ${({ disabled }) => !disabled && ActiveButton}
 `;
