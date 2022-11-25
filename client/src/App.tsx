@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+
+import { useAppSelector } from "./hooks/useApp";
 
 import { Footer, Header } from "@/components";
 
@@ -9,13 +10,15 @@ const Container = styled.div`
 `;
 
 function App() {
-  const [isFooterToggle, setIsFooterToggle] = useState(true);
+  const footer = useAppSelector(({ footer }) => ({
+    isFooterToggle: footer.isToggle,
+  }));
 
   return (
     <Container>
       <Header />
-      <Outlet context={{ setIsFooterToggle }} />
-      {isFooterToggle && <Footer />}
+      <Outlet />
+      {footer.isFooterToggle && <Footer />}
     </Container>
   );
 }
