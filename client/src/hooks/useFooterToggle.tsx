@@ -1,16 +1,18 @@
-import { useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useCallback, useEffect } from "react";
+
+import { useAppDispatch } from "@/hooks/useApp";
+import { show, hide } from "@/store/slices";
 
 export function useFooterToggle() {
-  const { setIsFooterToggle } = useOutletContext<{
-    setIsFooterToggle: React.Dispatch<React.SetStateAction<boolean>>;
-  }>();
+  const dispatch = useAppDispatch();
+  const onShow = useCallback(() => dispatch(show()), [dispatch]);
+  const onHide = useCallback(() => dispatch(hide()), [dispatch]);
 
   useEffect(() => {
-    setIsFooterToggle(false);
+    onHide();
 
     return () => {
-      setIsFooterToggle(true);
+      onShow();
     };
   }, []);
 }
