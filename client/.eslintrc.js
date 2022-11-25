@@ -115,5 +115,6 @@ module.exports = {
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-no-useless-fragment": "off",
     "no-else-return": "off",
+    "no-param-reassign": "off",
   },
 };
