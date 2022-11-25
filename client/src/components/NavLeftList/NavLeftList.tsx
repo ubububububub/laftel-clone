@@ -16,11 +16,11 @@ const mapedTexts = texts.map((text, index) => (
   </li>
 ));
 
-export function NavLeftList({ scroll }: { scroll: boolean }) {
+export function NavLeftList({ isScrollToggle }: { isScrollToggle: boolean }) {
   return (
     <S.NavList>
       <li>
-        <h1>{scroll ? <Logo color='black' /> : <Logo />}</h1>
+        <h1>{isScrollToggle ? <Logo color='black' /> : <Logo />}</h1>
       </li>
       {mapedTexts}
     </S.NavList>

@@ -1,0 +1,29 @@
+import { useEffect, useCallback } from "react";
+
+import { useAppSelector } from "./useApp";
+
+import { useAppDispatch } from "@/hooks/useApp";
+import { black, white } from "@/store/slices";
+
+export function useScroll() {
+  const { isScrollFix } = useAppSelector(({ scroll }) => ({
+    isScrollFix: scroll.isFix,
+  }));
+  const dispatch = useAppDispatch();
+  const onBlack = useCallback(() => dispatch(black()), [dispatch]);
+  const onWhite = useCallback(() => dispatch(white()), [dispatch]);
+
+  const handleScroll: EventListener = () => {
+    console.log(isScrollFix);
+    isScrollFix && onBlack();
+    !isScrollFix && document.documentElement.scrollTop ? onWhite() : onBlack();
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+}
