@@ -3,15 +3,14 @@ import { Link } from "react-router-dom";
 
 import * as S from "@/components/NavRightList/styled";
 
-export function NavRightList({ scroll }: { scroll: boolean }) {
+export function NavRightList({ isScrollToggle }: { isScrollToggle: boolean }) {
   return (
     <S.NavList>
       <li>
-        {scroll ? (
-          <AiOutlineSearch size='24' color='#121212' />
-        ) : (
-          <AiOutlineSearch size='24' color='white' />
-        )}
+        <AiOutlineSearch
+          size='24'
+          color={isScrollToggle ? "#121212" : "white"}
+        />
       </li>
       <S.Login>
         <Link to='/auth/login'>로그인/가입</Link>

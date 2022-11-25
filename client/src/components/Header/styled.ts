@@ -17,7 +17,7 @@ const HeaderNotScroll = css`
   }
 `;
 
-export const Header = styled.header<{ scroll: boolean }>`
+export const Header = styled.header<{ isScrollToggle: boolean }>`
   position: fixed;
   top: 0;
   width: 100%;
@@ -25,7 +25,7 @@ export const Header = styled.header<{ scroll: boolean }>`
   font-size: 1.4rem;
   transition: all 0.3s linear;
 
-  ${({ scroll }) => (scroll ? HeaderScroll : HeaderNotScroll)}
+  ${({ isScrollToggle }) => (isScrollToggle ? HeaderScroll : HeaderNotScroll)}
 `;
 
 export const Nav = styled.nav`

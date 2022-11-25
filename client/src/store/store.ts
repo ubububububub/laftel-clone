@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { footer } from "@/store/slices";
+import { footer, scroll } from "@/store/slices";
 
 export const store = configureStore({
   reducer: {
     footer,
+    scroll,
   },
 });
 

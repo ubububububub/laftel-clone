@@ -1,28 +1,19 @@
-import { useState, useEffect } from "react";
-
 import { NavLeftList, NavRightList } from "@/components";
 import * as S from "@/components/Header/styled";
+import { useAppSelector } from "@/hooks/useApp";
+import { useScroll } from "@/hooks/useScroll";
 
 export function Header() {
-  const [scroll, setScroll] = useState(false);
-
-  const handleScroll: EventListener = () => {
-    document.documentElement.scrollTop ? setScroll(true) : setScroll(false);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  useScroll();
+  const { isScrollToggle } = useAppSelector(({ scroll }) => ({
+    isScrollToggle: scroll.isScroll,
+  }));
 
   return (
-    <S.Header {...{ scroll }}>
+    <S.Header {...{ isScrollToggle }}>
       <S.Nav>
-        <NavLeftList {...{ scroll }} />
-        <NavRightList {...{ scroll }} />
+        <NavLeftList {...{ isScrollToggle }} />
+        <NavRightList {...{ isScrollToggle }} />
       </S.Nav>
     </S.Header>
   );
