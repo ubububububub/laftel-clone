@@ -7,8 +7,13 @@ class ViewModel {
   constructor(viewDB) {
     this.viewDB = viewDB;
   }
+
   async create(viewInfo) {
     await this.viewDB.create(viewInfo);
+  }
+  async findSome(condition, limit) {
+    const views = await this.viewDB.find({}).sort(condition).limit(limit);
+    return views;
   }
 }
 
