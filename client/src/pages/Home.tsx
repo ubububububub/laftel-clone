@@ -1,17 +1,8 @@
-import { useCallback, useEffect } from "react";
-
-import { useNewTitle } from "@/hooks";
-import { useAppDispatch } from "@/hooks/useApp";
-import { white } from "@/store/slices";
+import { useHeaderWhite, useNewTitle } from "@/hooks";
 
 export function Home() {
-  const dispatch = useAppDispatch();
-  const onWhite = useCallback(() => dispatch(white()), [dispatch]);
   useNewTitle("라프텔 - 애니 추천 · 애니 스트리밍 서비스");
-
-  useEffect(() => {
-    onWhite();
-  }, []);
+  useHeaderWhite();
 
   return (
     <div>
