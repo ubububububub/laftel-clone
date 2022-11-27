@@ -1,12 +1,20 @@
-import { useCallback, useEffect, useLayoutEffect } from "react";
+import { useCallback, useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import { black, white, fix, flex } from "@/store/slices";
+import { useAppDispatch } from "@/hooks/useApp";
+import { black, fix, flex } from "@/store/slices";
 
 export function useFixScroll() {
-  const { isScrollFix } = useAppSelector(({ scroll }) => ({
-    isScrollFix: scroll.isFix,
-  }));
   const dispatch = useAppDispatch();
+  const onBlack = useCallback(() => dispatch(black()), [dispatch]);
   const onFix = useCallback(() => dispatch(fix()), [dispatch]);
+  const onFlex = useCallback(() => dispatch(flex()), [dispatch]);
+
+  useEffect(() => {
+    onBlack();
+    onFix();
+
+    return () => {
+      onFlex();
+    };
+  }, []);
 }
