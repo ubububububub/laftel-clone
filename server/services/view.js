@@ -10,9 +10,13 @@ class ViewService {
   }
   async getHots() {
     const daily = await this.viewModel.findSome({ dailyView: -1 }, 12);
-    if (daily.length) await daily.populate("item");
+    for (let i = 0; i < daily.length; i++) {
+      await daily[i].populate("item");
+    }
     const total = await this.viewModel.findSome({ totalView: -1 }, 30);
-    if (total.length) await total.populate("item");
+    for (let i = 0; i < total.length; i++) {
+      await total[i].populate("item");
+    }
     return { daily, total };
   }
 }
