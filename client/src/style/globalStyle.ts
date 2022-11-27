@@ -12,12 +12,16 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 62.5%;
     height: 100%;
   }
+  
+  * {
+    box-sizing: border-box;
+  }
 
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
-    box-sizing: border-box;
     font-family: 'Noto Sans KR', sans-serif;
+    background-color: ${({ theme: { colors } }) => colors.body};
     color: ${({ theme: { colors } }) => colors.black};
     height: 100%;
   }

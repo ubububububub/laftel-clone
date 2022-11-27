@@ -2,16 +2,21 @@ import { createBrowserRouter } from "react-router-dom";
 
 import App from "@/App";
 import {
+  AuthLogin,
+  AuthRedirect,
   Daily,
   Finder,
   Home,
-  Join,
-  JoinAgreement,
-  EmailLogin,
   Membership,
   NotFound,
   Search,
   Themes,
+  Auth,
+  AuthSelect,
+  Process,
+  Agreement,
+  Join,
+  Login,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -19,6 +24,10 @@ export const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: "daily",
         element: <Daily />,
@@ -28,24 +37,8 @@ export const router = createBrowserRouter([
         element: <Finder />,
       },
       {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "auth/process/email",
-        element: <Join />,
-      },
-      {
-        path: "auth/process/agreement",
-        element: <JoinAgreement />,
-      },
-      {
         path: "membership",
         element: <Membership />,
-      },
-      {
-        path: "auth/email",
-        element: <EmailLogin />,
       },
       {
         path: "search",
@@ -58,6 +51,55 @@ export const router = createBrowserRouter([
       {
         path: "*",
         element: <NotFound />,
+      },
+    ],
+  },
+  {
+    path: "/auth/email",
+    element: <Login />,
+  },
+  {
+    path: "/auth",
+    element: <Auth />,
+    children: [
+      {
+        index: true,
+        element: <AuthRedirect />,
+      },
+      {
+        path: "login",
+        element: <AuthLogin />,
+      },
+
+      {
+        path: "select",
+        element: <AuthSelect />,
+      },
+      {
+        path: "*",
+        element: <AuthRedirect />,
+      },
+    ],
+  },
+  {
+    path: "/auth/process",
+    element: <Process />,
+    children: [
+      {
+        index: true,
+        element: <AuthRedirect />,
+      },
+      {
+        path: "agreement",
+        element: <Agreement />,
+      },
+      {
+        path: "join",
+        element: <Join />,
+      },
+      {
+        path: "*",
+        element: <AuthRedirect />,
       },
     ],
   },

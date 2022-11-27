@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Container = styled.main`
+export const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@ export const Container = styled.main`
   height: 100%;
 `;
 
-export const Content = styled.div`
+export const Content = styled.main`
   display: flex;
 `;
 
@@ -21,7 +21,7 @@ export const Character = styled.img`
 
 export const Warning = styled.div`
   margin-left: 7.2rem;
-  color: ${({ theme: { colors } }) => colors.notfound};
+  color: ${({ theme: { colors } }) => colors.gray};
 `;
 
 export const Title = styled.h2`
@@ -31,7 +31,7 @@ export const Title = styled.h2`
 `;
 
 export const Strong = styled.strong`
-  color: ${({ theme: { colors } }) => colors.notfoundStrong};
+  color: ${({ theme: { colors } }) => colors.purple};
 `;
 
 export const Description = styled.p`
@@ -42,7 +42,7 @@ export const Description = styled.p`
 
 export const FinderLink = styled(Link)`
   text-decoration: underline;
-  color: ${({ theme: { colors } }) => colors.notfound};
+  color: ${({ theme: { colors } }) => colors.gray};
 `;
 
 export const HomeLink = styled(Link)`
@@ -52,7 +52,7 @@ export const HomeLink = styled(Link)`
   justify-content: center;
   align-items: center;
   color: ${({ theme: { colors } }) => colors.white};
-  background-color: ${({ theme: { colors } }) => colors.notfoundStrong};
+  background-color: ${({ theme: { colors } }) => colors.purple};
   font-weight: 700;
   font-size: 1.8rem;
   border-radius: 4px;

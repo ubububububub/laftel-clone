@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const HeaderScroll = css`
+const HeaderScroll = css`
   background-color: ${({ theme: { colors } }) => colors.white};
 
   & a {
@@ -8,7 +8,7 @@ export const HeaderScroll = css`
   }
 `;
 
-export const HeaderNotScroll = css`
+const HeaderNotScroll = css`
   /* background-color: transparent; */
   background-color: black;
 
@@ -17,15 +17,15 @@ export const HeaderNotScroll = css`
   }
 `;
 
-export const Header = styled.header`
+export const Header = styled.header<{ isScrollToggle: boolean }>`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 999999999999999;
   font-size: 1.4rem;
   transition: all 0.3s linear;
 
-  ${({ scroll }: { scroll: boolean }) =>
-    scroll ? HeaderScroll : HeaderNotScroll}
+  ${({ isScrollToggle }) => (isScrollToggle ? HeaderScroll : HeaderNotScroll)}
 `;
 
 export const Nav = styled.nav`
@@ -33,24 +33,4 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-export const NavLeftList = styled.ul`
-  padding-left: 3.125rem;
-  gap: 2.4rem;
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-`;
-
-export const NavRightList = styled.ul`
-  padding-right: 3.125rem;
-  gap: 1rem;
-  display: flex;
-  align-items: center;
-  font-weight: 800;
-`;
-
-export const Login = styled.li`
-  padding: 0 1.4rem;
 `;
