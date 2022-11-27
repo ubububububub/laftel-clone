@@ -15,7 +15,7 @@ const itemSchema = new Schema(
     releaseType: {
       type: String,
       required: false,
-      enum: ["TVA", "극장판", "OVA", "라이트애니"],
+      enum: ["TVA", "극장판", "OVA", "라이트애니", "기타"],
     },
     updateDay: {
       type: String,
