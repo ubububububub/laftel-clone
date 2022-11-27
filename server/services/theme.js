@@ -10,7 +10,9 @@ class ThemeService {
   }
   async findAll() {
     const themes = await this.themeModel.findAll();
-    if (themes.length) await themes.populate("items");
+    for (let i = 0; i < themes.length; i++) {
+      await themes[i].populate("items");
+    }
     return themes;
   }
 }
