@@ -1,14 +1,20 @@
 import { Router } from "express";
-import { infoService } from "../services";
+import {
+  itemService,
+  posterService,
+  themeService,
+  viewService,
+} from "../services";
 
 const mainController = Router();
 
-mainController.get("/", (req, res, next) => {
+mainController.get("/", async (req, res, next) => {
   try {
-    // 대문
-    // 요일별
-    // 테마별
-    // 인기-조회수
+    const posters = await posterService.findAll();
+    const days = await itemService.findByDays();
+    const themes = await themeService.findAll();
+    const hots = await viewService.getHots();
+    res.status(200).json({ posters, days, themes, hots });
   } catch (err) {
     next(err);
   }

@@ -8,6 +8,10 @@ class PosterService {
   async create(body) {
     await this.posterModel.create(body);
   }
+  async findAll() {
+    const posters = await this.posterModel.findAll();
+    return posters;
+  }
 }
 
 const posterService = new PosterService(posterModel);

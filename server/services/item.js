@@ -1,17 +1,33 @@
-import { itemModel, viewModel } from "../models";
+import { itemModel } from "../models";
 
 class ItemService {
-  constructor(itemModel, viewModel) {
+  constructor(itemModel) {
     this.itemModel = itemModel;
-    this.viewModel = viewModel;
   }
 
   async create(body) {
     const item = await this.itemModel.create(body);
-    await this.viewModel.create({ item });
+    return item;
+  }
+  async findByDays() {
+    const items = await this.itemModel.findSome({
+      updateDay: { $exists: true },
+    });
+    if (items.length === 0) return {};
+    const days = {
+      mon: [],
+      tue: [],
+      wed: [],
+      thu: [],
+      fri: [],
+      sat: [],
+      sun: [],
+    };
+    items.forEach((item) => days[item.updateDay].push(item));
+    return days;
   }
 }
 
-const itemService = new ItemService(itemModel, viewModel);
+const itemService = new ItemService(itemModel);
 
 export default itemService;
