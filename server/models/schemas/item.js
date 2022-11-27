@@ -5,7 +5,11 @@ const itemSchema = new Schema(
     image: { type: String, required: "item has image:String" },
     thumnail: { type: String, required: "item has thumnail:String" },
     title: { type: String, required: "item has title:String" },
-    story: { type: String, required: "item has story:String" },
+    story: {
+      type: String,
+      required: "item has story:String",
+      default: "줄거리 정보가 없는 작품이에요.",
+    },
     genre: { type: [String], required: "item has genre:[String]" },
     tags: { type: [String], required: "item has tags:[String]" },
     releaseType: {
