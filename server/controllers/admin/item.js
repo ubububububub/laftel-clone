@@ -11,5 +11,13 @@ itemController.post("/", async (req, res, next) => {
     next(err);
   }
 });
+itemController.get("/", async (req, res, next) => {
+  try {
+    const items = await itemService.findAll();
+    res.status(200).json(items);
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default itemController;

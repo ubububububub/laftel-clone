@@ -10,6 +10,11 @@ class ItemService {
     const item = await this.itemModel.create(body);
     await this.viewModel.create({ item });
   }
+  async findAll() {
+    const items = await this.itemModel.findAll();
+    if (items.length === 0) throw new Error("has no items");
+    return items;
+  }
 }
 
 const itemService = new ItemService(itemModel, viewModel);

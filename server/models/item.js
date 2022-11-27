@@ -11,6 +11,10 @@ class ItemModel {
     const item = await this.itemDB.create(itemInfo);
     return item;
   }
+  async findAll() {
+    const items = await this.itemDB.find({});
+    return items;
+  }
 }
 
 const itemModel = new ItemModel(itemDB);
