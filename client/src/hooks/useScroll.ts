@@ -13,17 +13,23 @@ export function useScroll() {
   const onBlack = useCallback(() => dispatch(black()), [dispatch]);
   const onWhite = useCallback(() => dispatch(white()), [dispatch]);
 
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+  }, [isScrollFix]);
+
   const handleScroll: EventListener = () => {
-    console.log(isScrollFix);
-    isScrollFix && onBlack();
-    !isScrollFix && document.documentElement.scrollTop ? onWhite() : onBlack();
+    document.documentElement.scrollTop ? onBlack() : onWhite();
   };
 
   useEffect(() => {
+    if (isScrollFix) {
+      return;
+    }
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isScrollFix]);
 }
