@@ -38,12 +38,10 @@ type LoginValidateIndex = {
 interface Auths {
   auth: JoinAuthIndex | LoginAuthIndex;
   validate: JoinValidateIndex | LoginValidateIndex;
-  setAuth:
-    | React.Dispatch<React.SetStateAction<JoinAuth>>
-    | React.Dispatch<React.SetStateAction<LoginAuth>>;
-  setValidate:
-    | React.Dispatch<React.SetStateAction<JoinValidate>>
-    | React.Dispatch<React.SetStateAction<LoginValidate>>;
+  setAuth: React.Dispatch<React.SetStateAction<JoinAuth | LoginAuth>>;
+  setValidate: React.Dispatch<
+    React.SetStateAction<JoinValidate | LoginValidate>
+  >;
 }
 
 interface AuthInputArgs {

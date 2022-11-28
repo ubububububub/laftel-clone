@@ -10,7 +10,7 @@ const Container = styled.div`
 `;
 
 function App() {
-  const footer = useAppSelector(({ footer }) => ({
+  const { isFooterToggle } = useAppSelector(({ footer }) => ({
     isFooterToggle: footer.isToggle,
   }));
 
@@ -18,7 +18,7 @@ function App() {
     <Container>
       <Header />
       <Outlet />
-      {footer.isFooterToggle && <Footer />}
+      {isFooterToggle && <Footer />}
     </Container>
   );
 }
