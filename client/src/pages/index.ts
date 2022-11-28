@@ -3,7 +3,7 @@ import { Auth } from "@/pages/Auth/Auth";
 import { AuthLogin } from "@/pages/AuthLogin/AuthLogin";
 import { AuthRedirect } from "@/pages/AuthRedirect";
 import { AuthSelect } from "@/pages/AuthSelect/AuthSelect";
-import { Daily } from "@/pages/Daily";
+import { Daily } from "@/pages/Daily/Daily";
 import { Finder } from "@/pages/Finder";
 import { Home } from "@/pages/Home";
 import { Join } from "@/pages/Join/Join";
