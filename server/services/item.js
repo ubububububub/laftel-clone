@@ -26,6 +26,13 @@ class ItemService {
     items.forEach((item) => days[item.updateDay].push(item));
     return days;
   }
+  async findByTitle({ keyword }) {
+    const items = await this.itemModel.findSome({
+      title: new RegExp(`(${keyword})`),
+    });
+    if (items.length === 0) throw new Error("could not find");
+    return items;
+  }
 }
 
 const itemService = new ItemService(itemModel);
