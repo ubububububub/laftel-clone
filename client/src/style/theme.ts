@@ -17,6 +17,7 @@ const theme: DefaultTheme = {
     membership: "#e2e2e2",
     inputCursor: "#d0d0d0",
     invalid: "#f16361",
+    lightBlue: "#f0edff",
   },
 };
 

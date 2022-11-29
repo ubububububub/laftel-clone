@@ -1,6 +1,7 @@
 import { AgreementCheckItem } from "@/components/AgreementCheckItem/AgreementCheckItem";
 import { AuthForm } from "@/components/AuthForm/AuthForm";
 import { AuthInput } from "@/components/AuthInput/AuthInput";
+import { Day } from "@/components/Day/Day";
 import { Footer } from "@/components/Footer/Footer";
 import { FooterIconList } from "@/components/FooterIconList/FooterIconList";
 import { FooterInformation } from "@/components/FooterInformation/FooterInformation";
@@ -15,6 +16,7 @@ export {
   AgreementCheckItem,
   AuthForm,
   AuthInput,
+  Day,
   Footer,
   FooterIconList,
   FooterMenuList,

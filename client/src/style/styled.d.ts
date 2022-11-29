@@ -18,6 +18,7 @@ declare module "styled-components" {
       membership: string;
       inputCursor: string;
       invalid: string;
+      lightBlue: string;
     };
   }
 }
