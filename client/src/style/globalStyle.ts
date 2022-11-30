@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     font-size: 62.5%;
     height: 100%;
+    overflow-x: hidden;
   }
   
   * {
@@ -18,6 +19,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-size: 62.5%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
     font-family: 'Noto Sans KR', sans-serif;
