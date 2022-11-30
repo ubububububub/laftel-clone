@@ -26,5 +26,13 @@ mainController.get("/search", async (req, res, next) => {
     next(err);
   }
 });
+mainController.get("/finder", async (req, res, next) => {
+  try {
+    const items = await itemService.findByTag(req.headers);
+    res.status(200).json(items);
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default mainController;
