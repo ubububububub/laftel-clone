@@ -18,6 +18,14 @@ mainController.get("/", async (req, res, next) => {
     next(err);
   }
 });
+mainController.get("/days", async (req, res, next) => {
+  try {
+    const days = await itemService.findByDays();
+    res.status(200).json(days);
+  } catch (err) {
+    next(err);
+  }
+});
 mainController.get("/search", async (req, res, next) => {
   try {
     const items = await itemService.findByTitle(req.query);
