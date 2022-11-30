@@ -10,8 +10,7 @@ const HeaderScroll = css`
 `;
 
 const HeaderNotScroll = css`
-  /* background-color: transparent; */
-  background-color: black;
+  background-color: transparent;
 
   & a {
     color: ${({ theme: { colors } }) => colors.white};

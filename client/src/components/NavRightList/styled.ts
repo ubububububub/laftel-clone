@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NavList = styled.ul`
-  padding-right: 3.125rem;
+  padding-right: 5rem;
   gap: 1rem;
   display: flex;
   align-items: center;
