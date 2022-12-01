@@ -13,7 +13,7 @@ class ItemModel {
     return item;
   }
   async findSome(condition) {
-    const items = await this.itemDB.find(condition);
+    const items = await this.itemDB.find(condition).sort({ _id: -1 });
     return items;
   }
 }
