@@ -47,7 +47,7 @@ class ItemService {
         _id: { $lt: _id },
         ...condition,
       });
-      return items;
+      return items.slice(0, 19);
     } else {
       const items = await this.itemModel.findSome(condition);
       return { count: items.length, items: items.slice(0, 19) };
