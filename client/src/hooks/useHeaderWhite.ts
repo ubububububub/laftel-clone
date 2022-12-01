@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 
 import { useAppDispatch } from "@/hooks/useApp";
-import { white } from "@/store/slices";
+import { white } from "@/store/features";
 
 export function useHeaderWhite() {
   const dispatch = useAppDispatch();

@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 
 import { useAppDispatch } from "@/hooks/useApp";
-import { show, hide } from "@/store/slices";
+import { show, hide } from "@/store/features";
 
 export function useFooterToggle() {
   const dispatch = useAppDispatch();

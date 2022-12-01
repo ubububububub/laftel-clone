@@ -13,6 +13,7 @@ import { MembershipInformation } from "@/components/MembershipInformation/Member
 import { NavLeftList } from "@/components/NavLeftList/NavLeftList";
 import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
+import { SubCarousel } from "@/components/SubCarousel/SubCarousel";
 
 export {
   AgreementCheckItem,
@@ -30,4 +31,5 @@ export {
   NavLeftList,
   NavRightList,
   Products,
+  SubCarousel,
 };

@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 
 import { useAppDispatch } from "@/hooks/useApp";
-import { black, fix, flex } from "@/store/slices";
+import { black, fix, flex } from "@/store/features";
 
 export function useFixScroll() {
   const dispatch = useAppDispatch();

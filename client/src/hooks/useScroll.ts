@@ -3,7 +3,7 @@ import { useEffect, useCallback } from "react";
 import { useAppSelector } from "./useApp";
 
 import { useAppDispatch } from "@/hooks/useApp";
-import { black, white } from "@/store/slices";
+import { black, white } from "@/store/features";
 
 export function useScroll() {
   const { isScrollFix } = useAppSelector(({ scroll }) => ({

@@ -2,12 +2,10 @@ import styled, { css } from "styled-components";
 
 const PrevArrow = css`
   left: 0px;
-  padding-left: 0.5em;
 `;
 
 const NextArrow = css`
   right: 0px;
-  padding-right: 0.5em;
 `;
 
 export const Container = styled.div<{ prev?: boolean }>`
@@ -20,15 +18,21 @@ export const Container = styled.div<{ prev?: boolean }>`
   -webkit-box-align: center;
   align-items: center;
   cursor: pointer;
-  ${({ prev }) => (prev ? PrevArrow : NextArrow)}
+  width: 3.125em;
+  height: 10.375em;
+  justify-content: center;
+  transition: all 250ms;
+  border-radius: 0.25em;
 
-  &::before {
-    content: "";
+  &:hover {
+    background-color: ${({ theme: { colors } }) => colors.black};
   }
+
+  ${({ prev }) => (prev ? PrevArrow : NextArrow)}
 `;
 
 export const ArrowImg = styled.img`
-  width: 3.2em;
-  height: 3.2em;
+  width: 2em;
+  height: 2em;
   filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 0.25em);
 `;

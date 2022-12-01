@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import * as S from "@/components/MainCarousel/styled";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Arrow } from "@/components/ui";
+import { MainCarouselArrow } from "@/components/ui";
 import { Poster } from "@/types/main";
 
 const settings = {
@@ -15,8 +15,8 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 7000,
-  nextArrow: <Arrow />,
-  prevArrow: <Arrow prev />,
+  nextArrow: <MainCarouselArrow />,
+  prevArrow: <MainCarouselArrow prev />,
 };
 
 export function MainCarousel({ posters }: { posters: Poster[] }) {

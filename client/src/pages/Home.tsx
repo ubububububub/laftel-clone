@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { getMainAnimes } from "@/apis";
-import { MainCarousel } from "@/components";
+import { MainCarousel, SubCarousel } from "@/components";
 import { useHeaderWhite, useNewTitle } from "@/hooks";
 
 export function Home() {
@@ -18,8 +18,9 @@ export function Home() {
   }
 
   return (
-    <section>
+    <section style={{ fontSize: "21px" }}>
       <MainCarousel posters={data.posters} />
+      <SubCarousel />
     </section>
   );
 }

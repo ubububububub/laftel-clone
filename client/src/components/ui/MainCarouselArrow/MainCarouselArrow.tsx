@@ -1,15 +1,15 @@
 import nextarrow from "@/../public/assets/svgs/nextarrow.svg";
 import prevarrow from "@/../public/assets/svgs/prevarrow.svg";
-import * as S from "@/components/ui/Arrow/styled";
+import * as S from "@/components/ui/MainCarouselArrow/styled";
 
-interface ArrowProps {
+interface MainCarouselArrowProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   prev?: boolean;
 }
 
-export function Arrow({ onClick, prev }: ArrowProps) {
+export function MainCarouselArrow({ onClick, prev }: MainCarouselArrowProps) {
   return (
-    <S.Container onClick={onClick} {...{ prev }}>
+    <S.Container {...{ onClick }} {...{ prev }}>
       <S.ArrowImg src={prev ? prevarrow : nextarrow} alt='다음 캐러셀 버튼' />
     </S.Container>
   );
