@@ -1,11 +1,18 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { RouterProvider } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
 
-import App from "./App";
-import "./index.css";
+import { router } from "@/routers/router";
+import { store } from "@/store";
+import { GlobalStyle } from "@/style/globalStyle";
+import theme from "@/style/theme";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ThemeProvider {...{ theme }}>
+    <GlobalStyle />
+    <Provider {...{ store }}>
+      <RouterProvider {...{ router }} />
+    </Provider>
+  </ThemeProvider>,
 );
