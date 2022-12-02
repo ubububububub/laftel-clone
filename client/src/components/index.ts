@@ -1,3 +1,4 @@
+import { Ad } from "@/components/Ad/Ad";
 import { AgreementCheckItem } from "@/components/AgreementCheckItem/AgreementCheckItem";
 import { AuthForm } from "@/components/AuthForm/AuthForm";
 import { AuthInput } from "@/components/AuthInput/AuthInput";
@@ -9,13 +10,17 @@ import { FooterInformation } from "@/components/FooterInformation/FooterInformat
 import { FooterMenuList } from "@/components/FooterMenuList/FooterMenuList";
 import { Header } from "@/components/Header/Header";
 import { MainCarousel } from "@/components/MainCarousel/MainCarousel";
+import { MainTheme } from "@/components/MainTheme/MainTheme";
+import { MainThemeToggle } from "@/components/MainThemeToggle/MainThemeToggle";
 import { MembershipInformation } from "@/components/MembershipInformation/MembershipInformation";
 import { NavLeftList } from "@/components/NavLeftList/NavLeftList";
 import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
 import { SubCarousel } from "@/components/SubCarousel/SubCarousel";
+import { SubCarouselCells } from "@/components/SubCarouselCells/SubCarouselCells";
 
 export {
+  Ad,
   AgreementCheckItem,
   AuthForm,
   AuthInput,
@@ -27,9 +32,12 @@ export {
   FooterInformation,
   Header,
   MainCarousel,
+  MainTheme,
+  MainThemeToggle,
   MembershipInformation,
   NavLeftList,
   NavRightList,
   Products,
   SubCarousel,
+  SubCarouselCells,
 };

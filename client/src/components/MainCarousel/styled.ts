@@ -19,6 +19,10 @@ export const Container = styled.section`
   .slick-active button::before {
     color: ${({ theme: { colors } }) => colors.white} !important;
   }
+
+  .slick-slide.slick-active {
+    z-index: 999999999999999;
+  }
 `;
 
 export const CarouselContainer = styled.div``;
@@ -65,13 +69,25 @@ export const Desc = styled.strong`
 `;
 
 export const CarouselButton = styled.button`
-  margin-top: 1.5em;
-  padding: 0.75em 1.125em 0.75em 1.5em;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  background: ${({ theme: { colors } }) => colors.white};
   border-radius: 0.25em;
-  width: 30%;
+  padding: 0.75em 1.125em 0.75em 1.5em;
+  cursor: pointer;
+  margin-top: 1.5em;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+`;
+
+export const ButtonText = styled.span`
   font-weight: bold;
   font-size: 1.5em;
   line-height: 1.5em;
   letter-spacing: -0.0375em;
-  color: ${({ theme: { colors } }) => colors.black};
 `;

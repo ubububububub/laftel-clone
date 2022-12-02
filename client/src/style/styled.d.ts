@@ -19,6 +19,7 @@ declare module "styled-components" {
       inputCursor: "#d0d0d0";
       invalid: "#f16361";
       lightBlue: "#f0edff";
+      ad: "#323232";
     };
   }
 }

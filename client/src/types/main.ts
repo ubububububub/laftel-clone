@@ -1,4 +1,4 @@
-interface Anime {
+export interface Anime {
   _id: string;
   image: string;
   thumbnail: string;
@@ -18,6 +18,10 @@ interface Anime {
   __v: number;
 }
 
+export interface DailyIndex {
+  [index: string]: Anime[];
+}
+
 export interface Poster {
   _id: string;
   item: string;
@@ -30,7 +34,7 @@ export interface Poster {
   __v: number;
 }
 
-interface Daily {
+export interface Time {
   _id: string;
   item: Anime;
   dailyView: number;
@@ -40,15 +44,12 @@ interface Daily {
   _v: number;
 }
 
-type Total = Daily;
-
-interface Hots {
-  daily: Daily;
-  total: Total;
+export interface HotsIndex {
+  [index: string]: Time[];
 }
 
 export interface MainQuery {
   posters: Poster[];
   themes: [];
-  hots: Hots;
+  hots: HotsIndex;
 }

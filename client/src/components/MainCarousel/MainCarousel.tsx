@@ -25,7 +25,9 @@ export function MainCarousel({ posters }: { posters: Poster[] }) {
       <S.DescContainer>
         <S.LogoImg src={poster.logo} alt='로고' />
         <S.Desc>{poster.content}</S.Desc>
-        <S.CarouselButton type='button'>{poster.buttonText}</S.CarouselButton>
+        <S.CarouselButton type='button'>
+          <S.ButtonText>{poster.buttonText}</S.ButtonText>
+        </S.CarouselButton>
       </S.DescContainer>
       <S.CarosuselBackground src={poster.image} />
     </S.CarouselContainer>

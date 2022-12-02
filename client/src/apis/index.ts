@@ -4,7 +4,7 @@ import { DailyQuery } from "@/types/daily";
 import { MainQuery } from "@/types/main";
 
 export const getDailyAnimes = async (): Promise<DailyQuery> => {
-  const res = await axios.get(`${import.meta.env.VITE_BASE}/days`);
+  const res = await axios.get(`${import.meta.env.VITE_BASE}/main/days`);
   return res.data;
 };
 

@@ -1,49 +1,11 @@
-export interface Day {
-  _id: string;
-  image: string;
-  thumnail: string;
-  title: string;
-  story: string;
-  genre: string[];
-  tags: string[];
-  releaseType: string;
-  updateDay: string;
-  isOnly: boolean;
-  isDubbing: boolean;
-  isUncut: boolean;
-  isAdult: boolean;
-  stars: number;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
+import { Anime } from "@/types/main";
 
 export interface DailyQuery {
-  [index: string]: Day[];
-}
-
-interface DayProps {
-  _id: string;
-  image: string;
-  thumnail: string;
-  title: string;
-  story: string;
-  genre: string[];
-  tags: string[];
-  releaseType: string;
-  updateDay: string;
-  isOnly: boolean;
-  isDubbing: boolean;
-  isUncut: boolean;
-  isAdult: boolean;
-  stars: number;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
+  [index: string]: Anime[];
 }
 
 export interface DayArgs {
-  animes: DayProps[];
+  animes: Anime[];
   day: string;
   today: boolean;
 }

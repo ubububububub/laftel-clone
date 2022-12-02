@@ -5,7 +5,7 @@ import { AuthRedirect } from "@/pages/AuthRedirect";
 import { AuthSelect } from "@/pages/AuthSelect/AuthSelect";
 import { Daily } from "@/pages/Daily/Daily";
 import { Finder } from "@/pages/Finder";
-import { Home } from "@/pages/Home";
+import { Home } from "@/pages/Home/Home";
 import { Join } from "@/pages/Join/Join";
 import { Login } from "@/pages/Login/Login";
 import { Membership } from "@/pages/Membership/Membership";

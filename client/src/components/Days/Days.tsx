@@ -42,10 +42,10 @@ const days = [
 const today = new Date(Date.now()).getDay();
 
 export function Days() {
-  const { data, isError } = useDailyAnimes();
+  const { data } = useDailyAnimes();
 
-  if (!data || isError) {
-    return <div>오류발생</div>;
+  if (!data) {
+    return null;
   }
 
   const mapedDays = days.map(({ animes, day, id }) => (

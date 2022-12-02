@@ -13,9 +13,9 @@ export const Container = styled.div`
   -webkit-box-pack: center;
   justify-content: center;
   height: 7.5em;
-  background-color: rgb(240, 237, 255);
   border-radius: 0.4rem;
   cursor: pointer;
+  background-color: ${({ theme: { colors } }) => colors.lightPurple};
 `;
 
 export const Wrapper = styled.div`
@@ -34,7 +34,7 @@ export const SubTitle = styled.h4`
   font-weight: normal;
   line-height: 1.5em;
   letter-spacing: -0.000625em;
-  color: rgb(50, 50, 50);
+  color: ${({ theme: { colors } }) => colors.ad};
 `;
 
 export const MainTitle = styled.h3`
@@ -44,7 +44,7 @@ export const MainTitle = styled.h3`
   font-size: 1.5em;
   line-height: 1.5em;
   font-weight: bold;
-  color: rgb(50, 50, 50);
+  color: ${({ theme: { colors } }) => colors.ad};
 `;
 
 export const AdImg = styled.img`
