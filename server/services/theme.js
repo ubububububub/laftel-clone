@@ -5,8 +5,8 @@ class ThemeService {
     this.themeModel = themeModel;
   }
 
-  async create(body) {
-    await this.themeModel.create(body);
+  async create(themeInfo) {
+    await this.themeModel.create(themeInfo);
   }
   async findAll() {
     const themes = await this.themeModel.findAll();

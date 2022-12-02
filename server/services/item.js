@@ -5,8 +5,8 @@ class ItemService {
     this.itemModel = itemModel;
   }
 
-  async create(body) {
-    const item = await this.itemModel.create(body);
+  async create(itemInfo) {
+    const item = await this.itemModel.create(itemInfo);
     return item;
   }
   async findByDays() {
@@ -52,11 +52,6 @@ class ItemService {
       const items = await this.itemModel.findSome(condition);
       return { count: items.length, items: items.slice(0, 19) };
     }
-  }
-  async findAll() {
-    const items = await this.itemModel.findAll();
-    if (items.length === 0) throw new Error("has no items");
-    return items;
   }
 }
 

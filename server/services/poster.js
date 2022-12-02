@@ -5,8 +5,8 @@ class PosterService {
     this.posterModel = posterModel;
   }
 
-  async create(body) {
-    await this.posterModel.create(body);
+  async create(posterInfo) {
+    await this.posterModel.create(posterInfo);
   }
   async findAll() {
     const posters = await this.posterModel.findAll();
