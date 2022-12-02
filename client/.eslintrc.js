@@ -117,5 +117,6 @@ module.exports = {
     "no-else-return": "off",
     "no-param-reassign": "off",
     "array-callback-return": "off",
+    "no-unused-vars": "off",
   },
 };
