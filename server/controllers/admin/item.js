@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { itemService } from "../../services";
+import { itemService, viewService } from "../../services";
 
 const itemController = Router();
 
 itemController.post("/", async (req, res, next) => {
   try {
-    await itemService.create(req.body);
+    const item = await itemService.create(req.body);
+    await viewService.create(item);
     res.status(201).end();
   } catch (err) {
     next(err);

@@ -8,6 +8,13 @@ class ThemeService {
   async create(body) {
     await this.themeModel.create(body);
   }
+  async findAll() {
+    const themes = await this.themeModel.findAll();
+    for (let i = 0; i < themes.length; i++) {
+      await themes[i].populate("items");
+    }
+    return themes;
+  }
 }
 
 const themeService = new ThemeService(themeModel);

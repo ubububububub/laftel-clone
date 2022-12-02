@@ -7,12 +7,13 @@ class ItemModel {
   constructor(itemDB) {
     this.itemDB = itemDB;
   }
+
   async create(itemInfo) {
     const item = await this.itemDB.create(itemInfo);
     return item;
   }
-  async findAll() {
-    const items = await this.itemDB.find({});
+  async findSome(condition) {
+    const items = await this.itemDB.find(condition).sort({ _id: -1 });
     return items;
   }
 }

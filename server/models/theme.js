@@ -7,8 +7,13 @@ class ThemeModel {
   constructor(themeDB) {
     this.themeDB = themeDB;
   }
+
   async create(themeInfo) {
     await this.themeDB.create(themeInfo);
+  }
+  async findAll() {
+    const themes = await this.themeDB.find({});
+    return themes;
   }
 }
 
