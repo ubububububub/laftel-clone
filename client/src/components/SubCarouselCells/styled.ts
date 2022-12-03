@@ -26,10 +26,10 @@ export const CarouselDescContainer = styled.div`
   height: 5.1875em;
 `;
 
-export const TitleContainer = styled.div<{ isSearch?: boolean }>`
+export const TitleContainer = styled.div<{ isPopular?: boolean }>`
   flex: 1 1 0%;
 
-  ${({ isSearch }) => isSearch && SearchAnime}
+  ${({ isPopular }) => !isPopular && SearchAnime}
 `;
 
 export const CarouselTitle = styled.div`

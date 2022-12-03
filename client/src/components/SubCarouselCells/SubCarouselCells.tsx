@@ -5,7 +5,6 @@ export function SubCarouselCells({
   animes,
   isPopular,
   cellRef,
-  isSearch,
 }: {
   animes?: Anime[] | Time[];
   isPopular?: boolean;
@@ -40,7 +39,7 @@ export function SubCarouselCells({
             <S.Ranking>{index + 1}</S.Ranking>
           </S.RankingContainer>
         )}
-        <S.TitleContainer {...{ isSearch }}>
+        <S.TitleContainer {...{ isPopular }}>
           <S.CarouselTitle>
             <S.Title>
               {(anime as Time).item

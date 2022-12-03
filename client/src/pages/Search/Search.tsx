@@ -51,7 +51,7 @@ export function Search() {
           &nbsp;검색 결과
         </S.TitleWrapper>
         <S.AnimesContainer>
-          <SubCarouselCells animes={search?.data} isSearch />
+          <SubCarouselCells animes={search?.data} />
         </S.AnimesContainer>
       </S.Wrapper>
     </S.Container>

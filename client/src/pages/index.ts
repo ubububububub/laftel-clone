@@ -4,7 +4,7 @@ import { AuthLogin } from "@/pages/AuthLogin/AuthLogin";
 import { AuthRedirect } from "@/pages/AuthRedirect";
 import { AuthSelect } from "@/pages/AuthSelect/AuthSelect";
 import { Daily } from "@/pages/Daily/Daily";
-import { Finder } from "@/pages/Finder";
+import { Finder } from "@/pages/Finder/Finder";
 import { Home } from "@/pages/Home/Home";
 import { Join } from "@/pages/Join/Join";
 import { Login } from "@/pages/Login/Login";

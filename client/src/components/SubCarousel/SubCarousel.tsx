@@ -154,8 +154,8 @@ export function SubCarousel({ animes, isShow, isPopular }: SubCarouselProps) {
               <S.CarouselContainer ref={carouselRef}>
                 <SubCarouselCells
                   animes={animes}
-                  {...{ isPopular }}
                   cellRef={cellRef}
+                  {...{ isPopular }}
                 />
               </S.CarouselContainer>
             </S.Carousel>
