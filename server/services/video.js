@@ -9,22 +9,24 @@ class VideoService {
     await this.videoModel.create(videoInfo);
   }
   async getThreeImages(themes) {
-    await themes.map(async ({ items, ...theme }) => {
-      theme.images = [];
+    const withImages = [];
+    for (const { _id, items, title } of themes) {
+      const images = [];
       for (let i = 0; i < 3; i++) {
-        const { image } = await this.videoModel.findByItem(theme.items[i]);
-        theme.images.push(image);
+        const { image } = await this.videoModel.findByItem(items[i]);
+        images.push(image);
       }
-      return theme;
-    });
-    return themes;
+      withImages.push({ _id, images, title });
+    }
+    return withImages;
   }
   async getVideoInfo(theme) {
-    theme.items = await theme.items.map(async ({ _id, title, genre }) => {
-      const video = await this.videoModel.findByItem(_id);
-      return { title, genre, ...video };
-    });
-    return theme;
+    const withVideoInfo = { title: theme.title, items: [] };
+    for (const { _id, title, genre } of theme.items) {
+      const { image, story, stars } = await this.videoModel.findByItem(_id);
+      withVideoInfo.items.push({ _id, title, genre, image, story, stars });
+    }
+    return withVideoInfo;
   }
 }
 
