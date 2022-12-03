@@ -9,12 +9,11 @@ class ThemeService {
     await this.themeModel.create(themeInfo);
   }
   async getForMain() {
-    // 메인페이지 5개씩 최대 20개 무한스크롤...???
     const themes = await this.themeModel.findAll();
-    for (let i = 0; i < themes.length; i++) {
+    for (let i = 0; i < 5; i++) {
       await themes[i].populate("items");
     }
-    return themes;
+    return themes.slice(0, 5);
   }
   async findAll() {
     const themes = await this.themeModel.findAll();
