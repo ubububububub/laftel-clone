@@ -11,6 +11,10 @@ class VideoModel {
   async create(videoInfo) {
     await this.videoDB.create(videoInfo);
   }
+  async findByItem(item) {
+    const video = await this.videoDB.findOne({ item });
+    return video;
+  }
 }
 
 const videoModel = new VideoModel(videoDB);
