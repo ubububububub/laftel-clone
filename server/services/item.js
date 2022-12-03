@@ -13,7 +13,7 @@ class ItemService {
     const items = await this.itemModel.findSome({
       updateDay: { $exists: true },
     });
-    if (items.length === 0) return {};
+    if (items.length === 0) throw new Error("no content");
     const days = {
       mon: [],
       tue: [],
@@ -30,7 +30,7 @@ class ItemService {
     const items = await this.itemModel.findSome({
       title: new RegExp(`(${keyword})`),
     });
-    if (items.length === 0) throw new Error("could not find");
+    if (items.length === 0) throw new Error("no content");
     return items;
   }
   async findByTag({ _id, genre, xgenre, tags, xtags }) {
@@ -47,9 +47,11 @@ class ItemService {
         _id: { $lt: _id },
         ...condition,
       });
+      if (items.length === 0) throw new Error("no content");
       return items.slice(0, 19);
     } else {
       const items = await this.itemModel.findSome(condition);
+      if (items.length === 0) throw new Error("no content");
       return { count: items.length, items: items.slice(0, 19) };
     }
   }
