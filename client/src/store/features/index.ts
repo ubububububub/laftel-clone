@@ -1,5 +1,5 @@
-import footer, { show, hide } from "@/store/features/footerSlice";
-import scroll, { black, white, fix, flex } from "@/store/features/scrollSlice";
+import footer from "@/store/features/footerSlice";
+import scroll from "@/store/features/scrollSlice";
+import search from "@/store/features/searchSlice";
 
-export { footer, show, hide };
-export { scroll, black, white, fix, flex };
+export { footer, scroll, search };

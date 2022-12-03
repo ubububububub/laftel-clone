@@ -1,21 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { RootState } from "@/store";
+
 const initialState = {
-  isToggle: true,
+  isFooterToggle: true,
 };
 
 const footerSlice = createSlice({
   name: "footer",
   initialState,
   reducers: {
-    show(state) {
-      state.isToggle = true;
+    showFooter(state) {
+      state.isFooterToggle = true;
     },
-    hide(state) {
-      state.isToggle = false;
+    hideFooter(state) {
+      state.isFooterToggle = false;
     },
   },
 });
 
 export default footerSlice.reducer;
-export const { show, hide } = footerSlice.actions;
+export const { showFooter, hideFooter } = footerSlice.actions;
+export const getFooteSliceState = (state: RootState) => state.footer;

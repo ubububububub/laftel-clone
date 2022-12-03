@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { RootState } from "@/store";
+
 const initialState = {
   isScroll: false,
   isFix: false,
@@ -9,20 +11,22 @@ const scrollSlice = createSlice({
   name: "scroll",
   initialState,
   reducers: {
-    black(state) {
+    setBlack(state) {
       state.isScroll = true;
     },
-    white(state) {
+    setWhite(state) {
       state.isScroll = false;
     },
-    fix(state) {
+    fixScroll(state) {
       state.isFix = true;
     },
-    flex(state) {
+    flexScroll(state) {
       state.isFix = false;
     },
   },
 });
 
 export default scrollSlice.reducer;
-export const { black, white, fix, flex } = scrollSlice.actions;
+export const { setBlack, setWhite, fixScroll, flexScroll } =
+  scrollSlice.actions;
+export const getScrollSliceState = (state: RootState) => state.scroll;
