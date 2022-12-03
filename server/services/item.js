@@ -5,8 +5,8 @@ class ItemService {
     this.itemModel = itemModel;
   }
 
-  async create(body) {
-    const item = await this.itemModel.create(body);
+  async create(itemInfo) {
+    const item = await this.itemModel.create(itemInfo);
     return item;
   }
   async findByDays() {
@@ -14,16 +14,16 @@ class ItemService {
       updateDay: { $exists: true },
     });
     if (items.length === 0) return {};
-    const days = [[], [], [], [], [], [], []];
-    items.forEach((item) => {
-      if (item.updateDay === "mon") days[0].push(item);
-      else if (item.updateDay === "tue") days[1].push(item);
-      else if (item.updateDay === "wed") days[2].push(item);
-      else if (item.updateDay === "thu") days[3].push(item);
-      else if (item.updateDay === "fri") days[4].push(item);
-      else if (item.updateDay === "sat") days[5].push(item);
-      else if (item.updateDay === "sun") days[6].push(item);
-    });
+    const days = {
+      mon: [],
+      tue: [],
+      wed: [],
+      thu: [],
+      fri: [],
+      sat: [],
+      sun: [],
+    };
+    items.forEach((item) => days[item.updateDay].push(item));
     return days;
   }
   async findByTitle({ keyword }) {
