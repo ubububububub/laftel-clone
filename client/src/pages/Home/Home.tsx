@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 
 import { getMainAnimes } from "@/apis";
 import { Ad, MainCarousel, MainTheme, MainThemeToggle } from "@/components";
-import { useDailyAnimes, useHeaderWhite, useNewTitle } from "@/hooks";
+import {
+  useDailyAnimes,
+  useHeaderWhite,
+  useNewTitle,
+  useSearchBox,
+} from "@/hooks";
 import * as S from "@/pages/Home/styled";
+import { MainQuery } from "@/types/main";
 
 const days = ["월", "화", "수", "목", "금", "토", "일"];
 const tabs = ["실시간", "역대"];
@@ -11,7 +18,8 @@ const tabs = ["실시간", "역대"];
 export function Home() {
   useNewTitle("라프텔 - 애니 추천 · 애니 스트리밍 서비스");
   useHeaderWhite();
-  const { data: mainCarouselData } = useQuery({
+  useSearchBox();
+  const { data: mainCarouselData } = useQuery<MainQuery, AxiosError>({
     queryKey: ["main"],
     queryFn: getMainAnimes,
     staleTime: 60000 * 60,

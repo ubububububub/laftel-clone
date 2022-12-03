@@ -8,7 +8,7 @@ interface MainThemeToggleProps {
   title: string;
   tabTexts: string[];
   isPopular?: boolean;
-  data: DailyIndex | HotsIndex;
+  data?: DailyIndex | HotsIndex;
 }
 
 export function MainThemeToggle({
@@ -17,6 +17,10 @@ export function MainThemeToggle({
   isPopular = false,
   data,
 }: MainThemeToggleProps) {
+  if (!data) {
+    return null;
+  }
+
   const [isShowNum, setShowNum] = useState(0);
   const handleDayClick = (index: number) => {
     setShowNum(index);

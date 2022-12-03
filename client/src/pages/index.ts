@@ -11,7 +11,7 @@ import { Login } from "@/pages/Login/Login";
 import { Membership } from "@/pages/Membership/Membership";
 import { NotFound } from "@/pages/NotFound/NotFound";
 import { Process } from "@/pages/Process/Process";
-import { Search } from "@/pages/Search";
+import { Search } from "@/pages/Search/Search";
 import { Themes } from "@/pages/Themes";
 
 export {

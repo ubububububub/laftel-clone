@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
         element: <Membership />,
       },
       {
-        path: "search",
+        path: "search/:searchText",
         element: <Search />,
       },
       {

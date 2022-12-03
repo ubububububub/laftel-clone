@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+export const SearchAnime = css`
+  width: 18.625em;
+`;
 
 export const CarouselImgContainer = styled.div`
   flex: 0 0 18.625em;
@@ -22,8 +26,10 @@ export const CarouselDescContainer = styled.div`
   height: 5.1875em;
 `;
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled.div<{ isSearch?: boolean }>`
   flex: 1 1 0%;
+
+  ${({ isSearch }) => isSearch && SearchAnime}
 `;
 
 export const CarouselTitle = styled.div`

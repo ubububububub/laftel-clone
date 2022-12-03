@@ -7,7 +7,7 @@ export interface Anime {
   genre: string[];
   tags: string[];
   releaseType: string;
-  updateDay: string;
+  updateDay?: string;
   isOnly: boolean;
   isDubbing: boolean;
   isUncut: boolean;

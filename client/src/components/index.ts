@@ -16,6 +16,7 @@ import { MembershipInformation } from "@/components/MembershipInformation/Member
 import { NavLeftList } from "@/components/NavLeftList/NavLeftList";
 import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
+import { SearchInput } from "@/components/SearchInput/SearchInput";
 import { SubCarousel } from "@/components/SubCarousel/SubCarousel";
 import { SubCarouselCells } from "@/components/SubCarouselCells/SubCarouselCells";
 
@@ -38,6 +39,7 @@ export {
   NavLeftList,
   NavRightList,
   Products,
+  SearchInput,
   SubCarousel,
   SubCarouselCells,
 };
