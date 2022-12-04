@@ -55,6 +55,11 @@ class ItemService {
       return { count: items.length, items: items.slice(0, 19) };
     }
   }
+  async getForDetail({ _id }) {
+    const { title, genre, releaseType, isOnly, isAd, isAdult } =
+      await this.itemModel.findOne(_id);
+    return { _id, title, genre, releaseType, isOnly, isAd, isAdult };
+  }
 }
 
 const itemService = new ItemService(itemModel);

@@ -4,6 +4,7 @@ import themeModel from "./theme";
 import viewModel from "./view";
 import videoModel from "./video";
 import episodeModel from "./episode";
+import reviewModel from "./review";
 
 export {
   itemModel,
@@ -12,4 +13,5 @@ export {
   viewModel,
   videoModel,
   episodeModel,
+  reviewModel,
 };

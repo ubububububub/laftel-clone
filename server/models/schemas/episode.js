@@ -2,9 +2,9 @@ import { Schema } from "mongoose";
 
 const episodeSchema = new Schema(
   {
-    video: {
+    item: {
       type: Schema.Types.ObjectId,
-      ref: "videos",
+      ref: "items",
       required: true,
       index: true,
     },

@@ -8,6 +8,11 @@ class EpisodeService {
   async create(episodeInfo) {
     await this.episodeModel.create(episodeInfo);
   }
+  async findByItem({ _id }) {
+    const episodes = await this.episodeModel.findByItem(_id);
+    if (episodes.length === 0) throw new Error("no content");
+    return episodes;
+  }
 }
 
 const episodeService = new EpisodeService(episodeModel);

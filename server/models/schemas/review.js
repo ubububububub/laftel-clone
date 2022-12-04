@@ -1,10 +1,10 @@
 import { Schema } from "mongoose";
 
-const postSchema = new Schema(
+const reviewSchema = new Schema(
   {
-    video: {
+    item: {
       type: Schema.Types.ObjectId,
-      ref: "videos",
+      ref: "items",
       required: true,
       index: true,
     },
@@ -12,13 +12,14 @@ const postSchema = new Schema(
       type: { nickname: String, email: String, image: String },
       required: true,
     },
+    content: { type: String, required: true },
     star: { type: Number, required: true },
-    likes: { type: Number, required: true },
+    likes: { type: Number, required: true, default: 0 },
   },
   {
-    collection: "posts",
+    collection: "reviews",
     timestamps: true,
   }
 );
 
-export default postSchema;
+export default reviewSchema;

@@ -11,6 +11,10 @@ class EpisodeModel {
   async create(episodeInfo) {
     await this.episodeDB.create(episodeInfo);
   }
+  async findByItem(item) {
+    const episodes = await this.episodeDB.find({ item });
+    return episodes;
+  }
 }
 
 const episodeModel = new EpisodeModel(episodeDB);

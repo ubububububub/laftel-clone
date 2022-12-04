@@ -4,7 +4,7 @@ import themeSchema from "./theme";
 import viewSchema from "./view";
 import videoSchema from "./video";
 import episodeSchema from "./episode";
-import postSchema from "./post";
+import reviewSchema from "./review";
 
 export {
   itemSchema,
@@ -13,5 +13,5 @@ export {
   viewSchema,
   videoSchema,
   episodeSchema,
-  postSchema,
+  reviewSchema,
 };

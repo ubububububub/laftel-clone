@@ -4,6 +4,7 @@ import themeService from "./theme";
 import viewService from "./view";
 import videoService from "./video";
 import episodeService from "./episode";
+import reviewService from "./review";
 
 export {
   itemService,
@@ -12,4 +13,5 @@ export {
   viewService,
   videoService,
   episodeService,
+  reviewService,
 };
