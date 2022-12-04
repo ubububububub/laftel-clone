@@ -8,6 +8,11 @@ class VideoService {
   async create(videoInfo) {
     await this.videoModel.create(videoInfo);
   }
+  async thumbToImage(items) {
+    if (items.items) items.items = await modifyItems(items.items);
+    else items = await modifyItems(items);
+    return items;
+  }
   async getThreeImages(themes) {
     const withImages = [];
     for (const { _id, items, title } of themes) {
@@ -33,3 +38,12 @@ class VideoService {
 const videoService = new VideoService(videoModel);
 
 export default videoService;
+
+async function modifyItems(items) {
+  const result = [];
+  for (const { _id, title, isOnly, isAdult } of items) {
+    const { image } = await videoModel.findByItem(_id);
+    result.push({ _id, title, isOnly, isAdult, image });
+  }
+  return result;
+}
