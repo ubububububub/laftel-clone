@@ -2,14 +2,8 @@ import { Schema } from "mongoose";
 
 const itemSchema = new Schema(
   {
-    image: { type: String, required: "item has image:String" },
     thumbnail: { type: String, required: "item has thumnail:String" },
     title: { type: String, required: "item has title:String" },
-    story: {
-      type: String,
-      required: "item has story:String",
-      default: "줄거리 정보가 없는 작품이에요.",
-    },
     genre: { type: [String], required: "item has genre:[String]" },
     tags: { type: [String], required: "item has tags:[String]" },
     releaseType: {
@@ -27,7 +21,6 @@ const itemSchema = new Schema(
     isUncut: Boolean,
     isAd: Boolean,
     isAdult: Boolean,
-    stars: { type: Number, required: true, default: 0 },
   },
   {
     collection: "items",

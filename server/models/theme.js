@@ -15,6 +15,10 @@ class ThemeModel {
     const themes = await this.themeDB.find({});
     return themes;
   }
+  async findOne(_id) {
+    const theme = await this.themeDB.findOne({ _id });
+    return theme;
+  }
 }
 
 const themeModel = new ThemeModel(themeDB);

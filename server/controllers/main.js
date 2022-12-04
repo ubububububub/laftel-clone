@@ -4,6 +4,7 @@ import {
   posterService,
   themeService,
   viewService,
+  videoService,
 } from "../services";
 
 const mainController = Router();
@@ -11,7 +12,7 @@ const mainController = Router();
 mainController.get("/", async (req, res, next) => {
   try {
     const posters = await posterService.findAll();
-    const themes = await themeService.findAll();
+    const themes = await themeService.getForMain();
     const hots = await viewService.getHots();
     res.status(200).json({ posters, themes, hots });
   } catch (err) {
@@ -37,7 +38,26 @@ mainController.get("/search", async (req, res, next) => {
 mainController.get("/finder", async (req, res, next) => {
   try {
     const items = await itemService.findByTag(req.headers);
-    res.status(200).json(items);
+    const modifiedItems = await videoService.thumbToImage(items);
+    res.status(200).json(modifiedItems);
+  } catch (err) {
+    next(err);
+  }
+});
+mainController.get("/themes", async (req, res, next) => {
+  try {
+    const themes = await themeService.findAll();
+    const withImages = await videoService.getThreeImages(themes);
+    res.status(200).json(withImages);
+  } catch (err) {
+    next(err);
+  }
+});
+mainController.get("/themes/:_id", async (req, res, next) => {
+  try {
+    const theme = await themeService.findOne(req.params);
+    const withVideoInfo = await videoService.getVideoInfo(theme);
+    res.status(200).json(withVideoInfo);
   } catch (err) {
     next(err);
   }

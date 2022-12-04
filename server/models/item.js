@@ -16,6 +16,10 @@ class ItemModel {
     const items = await this.itemDB.find(condition).sort({ _id: -1 });
     return items;
   }
+  async findOne(_id) {
+    const item = await this.itemDB.findOne({ _id });
+    return item;
+  }
 }
 
 const itemModel = new ItemModel(itemDB);
