@@ -24,6 +24,7 @@ export const Bar = styled.div`
   width: 264px;
   max-height: calc(100vh - 80px);
   background-color: ${({ theme: { colors } }) => colors.white};
+  overflow-y: auto;
 `;
 
 export const Filter = styled.div`
@@ -89,11 +90,23 @@ export const FilterItem = styled.li`
   -webkit-box-align: center;
   align-items: center;
   cursor: pointer;
-  user-select: none;
   color: ${({ theme: { colors } }) => colors.gray};
 `;
 
 export const FilterImg = styled.img`
   margin-right: 0.8rem;
   width: 1.6rem;
+`;
+
+export const AnimesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  overflow: hidden;
+  flex: 1 1 0%;
+  padding: 3.2rem 0rem 4.8rem 4rem;
+  margin-left: 264px;
+  width: 963px;
+  overflow-y: auto;
+  height: 100%;
 `;

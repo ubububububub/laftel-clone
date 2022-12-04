@@ -5,21 +5,23 @@ export function SubCarouselCells({
   animes,
   isPopular,
   cellRef,
+  isFinder,
 }: {
   animes?: Anime[] | Time[];
   isPopular?: boolean;
   cellRef?: React.MutableRefObject<HTMLDivElement | null>;
-  isSearch?: boolean;
+  isFinder?: boolean;
 }) {
   if (!animes) {
     return null;
   }
 
   const mapedAnimes = animes.map((anime, index) => (
-    <div key={anime._id}>
-      <S.CarouselImgContainer>
-        <S.CarouselCell ref={cellRef}>
+    <S.Container key={anime._id} {...{ isFinder }}>
+      <S.CarouselImgContainer {...{ isFinder }}>
+        <S.CarouselCell ref={cellRef} {...{ isFinder }}>
           <S.CarouselImg
+            {...{ isFinder }}
             src={
               (anime as Time).item
                 ? (anime as Time).item.thumbnail
@@ -33,7 +35,7 @@ export function SubCarouselCells({
           />
         </S.CarouselCell>
       </S.CarouselImgContainer>
-      <S.CarouselDescContainer>
+      <S.CarouselDescContainer {...{ isFinder }}>
         {isPopular && (
           <S.RankingContainer>
             <S.Ranking>{index + 1}</S.Ranking>
@@ -41,7 +43,7 @@ export function SubCarouselCells({
         )}
         <S.TitleContainer {...{ isPopular }}>
           <S.CarouselTitle>
-            <S.Title>
+            <S.Title {...{ isFinder }}>
               {(anime as Time).item
                 ? (anime as Time).item.title
                 : (anime as Anime).title}
@@ -52,7 +54,7 @@ export function SubCarouselCells({
           </S.CarouselTitle>
         </S.TitleContainer>
       </S.CarouselDescContainer>
-    </div>
+    </S.Container>
   ));
 
   return <>{mapedAnimes}</>;

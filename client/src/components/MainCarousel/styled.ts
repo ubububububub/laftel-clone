@@ -35,9 +35,9 @@ export const DescContainer = styled.div`
 `;
 
 export const LogoImg = styled.img`
+  margin-top: 0.75em;
   height: 16.25em;
   object-fit: cover;
-  margin-top: 0.75em;
 `;
 
 export const CarosuselBackground = styled.div<{ src: string }>`
@@ -69,16 +69,16 @@ export const Desc = styled.strong`
 `;
 
 export const CarouselButton = styled.button`
+  margin-top: 1.5em;
+  padding: 0.75em 1.125em 0.75em;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  background: ${({ theme: { colors } }) => colors.white};
   border-radius: 0.25em;
-  padding: 0.75em 1.125em 0.75em 1.5em;
-  cursor: pointer;
-  margin-top: 1.5em;
+  font-size: 1.5em;
+  background: ${({ theme: { colors } }) => colors.white};
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.7);
@@ -87,7 +87,7 @@ export const CarouselButton = styled.button`
 
 export const ButtonText = styled.span`
   font-weight: bold;
-  font-size: 1.5em;
+
   line-height: 1.5em;
   letter-spacing: -0.0375em;
 `;

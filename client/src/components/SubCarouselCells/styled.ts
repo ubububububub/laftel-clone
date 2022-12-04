@@ -1,29 +1,66 @@
 import styled, { css } from "styled-components";
 
+interface IsFinder {
+  isFinder?: boolean;
+}
+
 export const SearchAnime = css`
   width: 18.625em;
 `;
 
-export const CarouselImgContainer = styled.div`
+export const FinderContainer = css`
+  width: calc((100% - 25.6rem) / 4);
+  height: 25.2rem;
+  margin: 1.25rem 2rem;
+`;
+
+export const FinderCarouselImgContainer = css`
+  width: 100%;
+  height: 22.3rem;
+`;
+
+export const FinderCarouselImgHeight = css`
+  height: 100%;
+`;
+
+export const FinderCarouselDescContainer = css`
+  margin-top: 0.4rem;
+`;
+
+export const Container = styled.div<IsFinder>`
+  ${({ isFinder }) => isFinder && FinderContainer}
+`;
+
+const FinderTitle = css`
+  -webkit-line-clamp: 1;
+`;
+
+export const CarouselImgContainer = styled.div<IsFinder>`
   flex: 0 0 18.625em;
   width: 18.625em;
   scroll-snap-align: start;
   cursor: pointer;
+
+  ${({ isFinder }) => isFinder && FinderCarouselImgContainer}
 `;
 
-export const CarouselCell = styled.div`
+export const CarouselCell = styled.div<IsFinder>`
   position: relative;
   width: 100%;
   height: 10.375em;
   border-radius: 0.25em;
   margin-bottom: 0.25em;
   overflow: hidden;
+
+  ${({ isFinder }) => isFinder && FinderCarouselImgHeight}
 `;
 
-export const CarouselDescContainer = styled.div`
+export const CarouselDescContainer = styled.div<IsFinder>`
   display: flex;
   overflow: hidden;
   height: 5.1875em;
+
+  ${({ isFinder }) => isFinder && FinderCarouselDescContainer}
 `;
 
 export const TitleContainer = styled.div<{ isPopular?: boolean }>`
@@ -39,11 +76,9 @@ export const CarouselTitle = styled.div`
   color: rgb(18, 18, 18);
   text-overflow: ellipsis;
   white-space: normal;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 `;
 
-export const Title = styled.span`
+export const Title = styled.span<IsFinder>`
   font-size: 1.125em;
   line-height: 1.5;
   letter-spacing: -0.045em;
@@ -53,6 +88,8 @@ export const Title = styled.span`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  ${({ isFinder }) => isFinder && FinderTitle}
 `;
 
 export const Genre = styled.span`
@@ -75,9 +112,11 @@ export const Ranking = styled.span`
   letter-spacing: -0.04em;
 `;
 
-export const CarouselImg = styled.img`
+export const CarouselImg = styled.img<IsFinder>`
   position: absolute;
   width: 100%;
   object-fit: cover;
   height: 10.375em;
+
+  ${({ isFinder }) => isFinder && FinderCarouselImgHeight}
 `;
