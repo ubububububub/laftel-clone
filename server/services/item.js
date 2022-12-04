@@ -72,7 +72,7 @@ function decode(str) {
   for (let i = 0; i < str.length; i++) {
     temp += str[i];
     if (str[i] === " " || i === str.length - 1) {
-      result.push(Buffer.from(temp, "base64").toString("utf8"));
+      result.push(decodeURIComponent(Buffer.from(temp, "base64")));
       temp = "";
     }
   }
