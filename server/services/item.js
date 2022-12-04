@@ -48,11 +48,11 @@ class ItemService {
         ...condition,
       });
       if (items.length === 0) throw new Error("no content");
-      return items.slice(0, 19);
+      return items.slice(0, 20);
     } else {
       const items = await this.itemModel.findSome(condition);
       if (items.length === 0) throw new Error("no content");
-      return { count: items.length, items: items.slice(0, 19) };
+      return { count: items.length, items: items.slice(0, 20) };
     }
   }
   async getForDetail({ _id }) {
