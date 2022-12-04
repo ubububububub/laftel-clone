@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { DailyQuery } from "@/types/daily";
+import { FinderQuery } from "@/types/finder";
 import { MainQuery } from "@/types/main";
 import { SearchQuery } from "@/types/search";
 
@@ -20,4 +21,25 @@ export const getSearchAnimes = async (query: string): Promise<SearchQuery> => {
   );
 
   return { data: res.data, status: res.status };
+};
+
+export const getFinderAnimes = async (
+  pageParam: string,
+  genre: string,
+  xGenre: string,
+  tag: string,
+  xTag: string,
+): Promise<FinderQuery> => {
+  const res = await axios.get(`${import.meta.env.VITE_BASE}/main/finder`, {
+    headers: {
+      "Content-Type": "application/json",
+      _id: pageParam,
+      genre,
+      xGenre,
+      tag,
+      xTag,
+    },
+  });
+
+  return res.data;
 };
