@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
-import * as S from "@/components/Themes/styled";
+import * as S from "@/components/ThemeCells/styled";
 import { ThemeQuery } from "@/types/themes";
 
 type ThemesProps = ThemeQuery;
 
 type Theme = ThemeQuery;
 
-export function Themes({ themes }: { themes: ThemesProps[] }) {
+export function ThemeCells({ themes }: { themes: ThemesProps[] }) {
   const navigate = useNavigate();
 
   const handleThemeClick = (id: string) => {
-    navigate(`/themes/${id}`);
+    navigate(`/theme/${id}`);
   };
 
   const mapedThemes = themes.map(({ _id, images, title }: Theme) => (

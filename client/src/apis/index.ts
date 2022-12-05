@@ -4,6 +4,7 @@ import { DailyQuery } from "@/types/daily";
 import { FinderQuery } from "@/types/finder";
 import { Anime, MainQuery } from "@/types/main";
 import { SearchQuery } from "@/types/search";
+import { ThemeQuery } from "@/types/themes";
 
 export const getDailyAnimes = async (): Promise<DailyQuery> => {
   const res = await axios.get(`${import.meta.env.VITE_BASE}/main/days`);
@@ -41,5 +42,10 @@ export const getFinderAnimes = async (
     },
   });
 
+  return res.data;
+};
+
+export const getTheme = async (): Promise<ThemeQuery[]> => {
+  const res = await axios.get(`${import.meta.env.VITE_BASE}/main/themes`);
   return res.data;
 };

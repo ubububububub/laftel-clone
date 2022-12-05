@@ -1,13 +1,18 @@
 import styled, { css } from "styled-components";
 
-const ThemeImg = css`
+const ThemeImg = css<{ image: string }>`
   position: absolute;
   width: 106px;
   height: 152px;
   box-shadow: rgb(0 0 0 / 23%) 0px 3px 12px, rgb(0 0 0 / 16%) 0px 3px 12px;
-  background: center center / cover no-repeat
-    ${({ theme: { colors } }) => colors.lightGray};
   box-sizing: content-box;
+
+  ${({ image }) =>
+    image &&
+    css`
+      background: url(${image}) center center / cover no-repeat
+        rgb(138, 138, 138);
+    `}
 `;
 
 export const ContainerLink = styled.a`
@@ -40,14 +45,12 @@ export const ThemeImgs = styled.div`
 `;
 
 export const ThemeFirstImg = styled.div`
-  background: url("https://image.laftel.net/items/thumbs/big/c816c224-5aa4-4ca6-80a9-e4de5a1e3a55.jpg");
   left: 0px;
   z-index: 3;
   ${ThemeImg};
 `;
 
 export const ThemeSecondImg = styled.div`
-  background: url("https://image.laftel.net/items/thumbs/big/24492fbe-50dc-47bb-942b-3d0f29c6230a.jpg");
   top: -8px;
   left: 29.133%;
   z-index: 2;
@@ -55,7 +58,6 @@ export const ThemeSecondImg = styled.div`
 `;
 
 export const ThemeThirdImg = styled.div`
-  background: url("	https://image.laftel.net/items/thumbs/big/d846ee46-ae80-4dea-a36d-ce03c55e4ed3.jpg");
   right: 0px;
   z-index: 1;
   ${ThemeImg};
