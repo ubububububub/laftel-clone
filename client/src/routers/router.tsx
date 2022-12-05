@@ -10,13 +10,14 @@ import {
   Membership,
   NotFound,
   Search,
-  Theme,
+  Themes,
   Auth,
   AuthSelect,
   Process,
   Agreement,
   Join,
   Login,
+  Theme,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "themes",
+        element: <Themes />,
+      },
+      {
+        path: "theme/:id",
         element: <Theme />,
       },
       {

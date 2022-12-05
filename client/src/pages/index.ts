@@ -13,6 +13,7 @@ import { NotFound } from "@/pages/NotFound/NotFound";
 import { Process } from "@/pages/Process/Process";
 import { Search } from "@/pages/Search/Search";
 import { Theme } from "@/pages/Theme/Theme";
+import { Themes } from "@/pages/Themes/Themes";
 
 export {
   Agreement,
@@ -29,5 +30,6 @@ export {
   NotFound,
   Process,
   Search,
+  Themes,
   Theme,
 };

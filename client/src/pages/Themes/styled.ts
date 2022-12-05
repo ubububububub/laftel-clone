@@ -8,10 +8,11 @@ export const Container = styled.section`
 `;
 
 export const Title = styled.h2`
+  margin-bottom: 19px;
+  padding-left: 49px;
   font-size: 20px;
   line-height: 22px;
   font-weight: 600;
-  margin-bottom: 19px;
 `;
 
 export const Themes = styled.div`
