@@ -1,4 +1,4 @@
-export interface ThemeQuery {
+export interface ThemesQuery {
   _id: string;
   images: string[];
   title: string;

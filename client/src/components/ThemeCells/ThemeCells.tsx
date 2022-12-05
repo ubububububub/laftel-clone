@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
 import * as S from "@/components/ThemeCells/styled";
-import { ThemeQuery } from "@/types/themes";
+import { ThemesQuery } from "@/types/themes";
 
-type ThemesProps = ThemeQuery;
+type ThemesProps = ThemesQuery;
 
-type Theme = ThemeQuery;
+type Theme = ThemesQuery;
 
 export function ThemeCells({ themes }: { themes: ThemesProps[] }) {
   const navigate = useNavigate();
@@ -26,6 +26,7 @@ export function ThemeCells({ themes }: { themes: ThemesProps[] }) {
             <S.ThemeSecondImg image={images[1]} />
             <S.ThemeThirdImg image={images[2]} />
           </S.ThemeImgs>
+          <S.Blur image={images[0]} />
         </S.Board>
         <S.DescContainer>
           <S.Desc>{title}</S.Desc>

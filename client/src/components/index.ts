@@ -19,6 +19,7 @@ import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
 import { SubCarousel } from "@/components/SubCarousel/SubCarousel";
+import { ThemeAnimes } from "@/components/ThemeAnimes/ThemeAnimes";
 import { ThemeCells } from "@/components/ThemeCells/ThemeCells";
 
 export {
@@ -43,5 +44,6 @@ export {
   SearchInput,
   SubCarousel,
   Animes,
+  ThemeAnimes,
   ThemeCells,
 };

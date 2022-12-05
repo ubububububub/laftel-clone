@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
-import { getTheme } from "@/apis";
+import { getThemes } from "@/apis";
 import { ThemeCells } from "@/components";
 import {
   useFixScroll,
@@ -10,7 +10,7 @@ import {
   useSearchBox,
 } from "@/hooks";
 import * as S from "@/pages/Themes/styled";
-import { ThemeQuery } from "@/types/themes";
+import { ThemesQuery } from "@/types/themes";
 
 export function Themes() {
   useNewTitle("테마별 애니, 만화, 웹툰 추천");
@@ -18,9 +18,9 @@ export function Themes() {
   useFixScroll();
   useSearchBox();
 
-  const { data } = useQuery<ThemeQuery[], AxiosError>({
-    queryKey: ["Theme"],
-    queryFn: getTheme,
+  const { data } = useQuery<ThemesQuery[], AxiosError>({
+    queryKey: ["Themes"],
+    queryFn: getThemes,
     staleTime: 60000 * 60,
     refetchOnWindowFocus: false,
   });
