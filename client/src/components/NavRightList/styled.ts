@@ -5,7 +5,7 @@ export const NavList = styled.ul`
   gap: 1rem;
   display: flex;
   align-items: center;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
 export const Login = styled.li`

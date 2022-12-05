@@ -80,3 +80,15 @@ export const DescContainer = styled.div`
 export const Desc = styled.div`
   width: 100%;
 `;
+
+export const Blur = styled.div<{ image: string }>`
+  position: absolute;
+  inset: 0px;
+  filter: brightness(0.9);
+
+  ${({ image }) =>
+    image &&
+    css`
+      background: url(${image}) center top/20000% no-repeat;
+    `}
+`;
