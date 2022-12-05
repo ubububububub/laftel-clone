@@ -15,6 +15,13 @@ class ViewModel {
     const views = await this.viewDB.find({}).sort(condition).limit(limit);
     return views;
   }
+  async updateOne(item, viewInfo) {
+    await this.viewDB.updateOne({ item }, viewInfo);
+  }
+  async findAll() {
+    const views = await this.viewDB.find({});
+    return views;
+  }
 }
 
 const viewModel = new ViewModel(viewDB);
