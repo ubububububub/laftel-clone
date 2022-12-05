@@ -10,15 +10,15 @@ type Theme = ThemeQuery;
 export function ThemeCells({ themes }: { themes: ThemesProps[] }) {
   const navigate = useNavigate();
 
-  const handleThemeClick = (id: string) => {
-    navigate(`/theme/${id}`);
+  const handleThemeClick = (id: string, title: string) => {
+    navigate(`/theme/${id}/${title}`);
   };
 
   const mapedThemes = themes.map(({ _id, images, title }: Theme) => (
     <S.ContainerLink key={_id}>
       <S.BoardContainer
         onClick={() => {
-          handleThemeClick(_id);
+          handleThemeClick(_id, title);
         }}>
         <S.Board>
           <S.ThemeImgs>

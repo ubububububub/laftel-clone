@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
         element: <Themes />,
       },
       {
-        path: "theme/:id",
+        path: "theme/:id/:title",
         element: <Theme />,
       },
       {
