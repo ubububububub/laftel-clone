@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { DailyQuery } from "@/types/daily";
 import { FinderQuery } from "@/types/finder";
-import { MainQuery } from "@/types/main";
+import { Anime, MainQuery } from "@/types/main";
 import { SearchQuery } from "@/types/search";
 
 export const getDailyAnimes = async (): Promise<DailyQuery> => {
@@ -29,7 +29,7 @@ export const getFinderAnimes = async (
   xGenre: string,
   tag: string,
   xTag: string,
-): Promise<FinderQuery> => {
+): Promise<FinderQuery | Anime[]> => {
   const res = await axios.get(`${import.meta.env.VITE_BASE}/main/finder`, {
     headers: {
       "Content-Type": "application/json",

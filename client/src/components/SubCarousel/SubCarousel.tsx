@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useLayoutEffect } from "react";
 
-import { SubCarouselCells } from "../SubCarouselCells/SubCarouselCells";
+import { Animes } from "../Animes/Animes";
 
 import * as S from "@/components/SubCarousel/styled";
 import { SubCarouselArrow } from "@/components/ui";
@@ -152,11 +152,7 @@ export function SubCarousel({ animes, isShow, isPopular }: SubCarouselProps) {
             )}
             <S.Carousel>
               <S.CarouselContainer ref={carouselRef}>
-                <SubCarouselCells
-                  animes={animes}
-                  cellRef={cellRef}
-                  {...{ isPopular }}
-                />
+                <Animes animes={animes} cellRef={cellRef} {...{ isPopular }} />
               </S.CarouselContainer>
             </S.Carousel>
           </S.CarouselArrowContainer>

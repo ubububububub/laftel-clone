@@ -1,6 +1,5 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { enterScope } from "immer/dist/internal";
 import { useState, useEffect } from "react";
 
 import checkbox from "@/../public/assets/svgs/checkbox.svg";
@@ -8,7 +7,7 @@ import checkboxreverse from "@/../public/assets/svgs/checkboxreverse.svg";
 import reset from "@/../public/assets/svgs/reset.svg";
 import uncheckbox from "@/../public/assets/svgs/uncheckbox.svg";
 import { getFinderAnimes } from "@/apis";
-import { SubCarouselCells } from "@/components";
+import { Animes } from "@/components";
 import {
   useFilter,
   useFixScroll,
@@ -19,6 +18,7 @@ import {
 import * as S from "@/pages/Finder/styled";
 import { filterStatus } from "@/store/features/filterSlice";
 import { FinderQuery } from "@/types/finder";
+import { Anime } from "@/types/main";
 
 const getFilterImg = (status: string): string => {
   if (status === filterStatus.READY) {
@@ -52,22 +52,12 @@ export function Finder() {
     tansfromFetchHeaders,
   } = useFilter();
 
-  // const { data } = useQuery<FinderQuery, AxiosError>({
-  //   queryKey: ["Finder", ...tansfromStrings()],
-  //   queryFn: async () => {
-  //     const { genre, xGenre, tag, xTag } = tansfromFetchHeaders();
-  //     const data = await getFinderAnimes(genre, xGenre, tag, xTag);
-  //     return data;
-  //   },
-  //   staleTime: 60000 * 60,
-  //   refetchOnWindowFocus: false,
-  // });
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery<
-    FinderQuery,
+    FinderQuery | Anime[],
     AxiosError
   >({
     queryKey: ["Finder", ...tansfromStrings()],
-    queryFn: async ({ pageParam = "" }) => {
+    queryFn: async ({ pageParam }) => {
       const { genre, xGenre, tag, xTag } = tansfromFetchHeaders();
       const data = await getFinderAnimes(pageParam, genre, xGenre, tag, xTag);
       return data;
@@ -76,17 +66,22 @@ export function Finder() {
     refetchOnWindowFocus: false,
     getNextPageParam: (lastPage, allPages) => {
       if (!lastPage) {
-        return false;
+        return undefined;
       }
 
-      if (lastPage.items) {
-        return lastPage.items[lastPage.items.length - 1]._id;
+      if ((lastPage as FinderQuery).items) {
+        return (lastPage as FinderQuery).items[
+          (lastPage as FinderQuery).items.length - 1
+        ]._id;
       }
 
-      return lastPage[lastPage.length - 1]._id;
+      if (!(lastPage as Anime[]).length) {
+        return undefined;
+      }
+
+      return (lastPage as Anime[])[(lastPage as Anime[]).length - 1]._id;
     },
   });
-  console.log(hasNextPage);
 
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
 
@@ -155,9 +150,8 @@ export function Finder() {
     const temp = data.pages[0].items;
 
     if (data.pages.length > 1) {
-      return temp.concat(data.pages[1]);
+      return [...temp, ...data.pages[1]];
     }
-
     return temp;
   };
 
@@ -174,7 +168,7 @@ export function Finder() {
     });
 
     return (
-      <S.FilterList key={index}>
+      <S.FilterList key={el.title}>
         <S.FilterTitle>
           <h4>{el.title}</h4>
         </S.FilterTitle>
@@ -199,9 +193,8 @@ export function Finder() {
           {mapedFilter}
         </S.Bar>
         <S.AnimesContainer>
-          {/* <SubCarouselCells animes={data?.pages[0].items} isFinder /> */}
-          <SubCarouselCells animes={transformAnimes(data)} isFinder />
-          <div ref={setTarget}>무한 스크롤</div>
+          <Animes animes={transformAnimes(data)} isFinder />
+          <div ref={setTarget} />
         </S.AnimesContainer>
       </S.Wrapper>
     </S.Container>

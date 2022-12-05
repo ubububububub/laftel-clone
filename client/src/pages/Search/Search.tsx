@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import notfound from "@/../public/assets/svgs/notfound.svg";
 import { getSearchAnimes } from "@/apis";
-import { SubCarouselCells } from "@/components";
+import { Animes } from "@/components";
 import { useFixScroll, useFooterToggle, useNewTitle } from "@/hooks";
 import * as S from "@/pages/Search/styled";
 import { SearchQuery } from "@/types/search";
@@ -51,7 +51,7 @@ export function Search() {
           &nbsp;검색 결과
         </S.TitleWrapper>
         <S.AnimesContainer>
-          <SubCarouselCells animes={search?.data} />
+          <Animes animes={search?.data} />
         </S.AnimesContainer>
       </S.Wrapper>
     </S.Container>

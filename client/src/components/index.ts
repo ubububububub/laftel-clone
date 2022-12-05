@@ -1,5 +1,6 @@
 import { Ad } from "@/components/Ad/Ad";
 import { AgreementCheckItem } from "@/components/AgreementCheckItem/AgreementCheckItem";
+import { Animes } from "@/components/Animes/Animes";
 import { AuthForm } from "@/components/AuthForm/AuthForm";
 import { AuthInput } from "@/components/AuthInput/AuthInput";
 import { Day } from "@/components/Day/Day";
@@ -18,7 +19,6 @@ import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
 import { SubCarousel } from "@/components/SubCarousel/SubCarousel";
-import { SubCarouselCells } from "@/components/SubCarouselCells/SubCarouselCells";
 
 export {
   Ad,
@@ -41,5 +41,5 @@ export {
   Products,
   SearchInput,
   SubCarousel,
-  SubCarouselCells,
+  Animes,
 };

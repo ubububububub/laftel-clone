@@ -1,13 +1,21 @@
-import * as S from "@/components/SubCarouselCells/styled";
+import * as S from "@/components/Animes/styled";
 import { Anime, Time } from "@/types/main";
 
-export function SubCarouselCells({
+interface Finder {
+  image: string;
+  isAdult: boolean;
+  isOnly: boolean;
+  title: string;
+  _id: string;
+}
+
+export function Animes({
   animes,
   isPopular,
   cellRef,
   isFinder,
 }: {
-  animes?: Anime[] | Time[];
+  animes?: Anime[] | Time[] | Finder[];
   isPopular?: boolean;
   cellRef?: React.MutableRefObject<HTMLDivElement | null>;
   isFinder?: boolean;
@@ -16,22 +24,37 @@ export function SubCarouselCells({
     return null;
   }
 
+  const getCarouselImg = (anime: Anime | Time | Finder, isFinder?: boolean) => {
+    if (!isFinder) {
+      return (anime as Time).item
+        ? (anime as Time).item.thumbnail
+        : (anime as Anime).thumbnail;
+    }
+
+    return (anime as Finder).image;
+  };
+
+  const getCarouselTitle = (
+    anime: Anime | Time | Finder,
+    isFinder?: boolean,
+  ) => {
+    if (!isFinder) {
+      return (anime as Time).item
+        ? (anime as Time).item.title
+        : (anime as Anime).title;
+    }
+
+    return (anime as Finder).title;
+  };
+
   const mapedAnimes = animes.map((anime, index) => (
     <S.Container key={anime._id} {...{ isFinder }}>
       <S.CarouselImgContainer {...{ isFinder }}>
         <S.CarouselCell ref={cellRef} {...{ isFinder }}>
           <S.CarouselImg
             {...{ isFinder }}
-            src={
-              (anime as Time).item
-                ? (anime as Time).item.thumbnail
-                : (anime as Anime).thumbnail
-            }
-            alt={
-              (anime as Time).item
-                ? (anime as Time).item.title
-                : (anime as Anime).title
-            }
+            src={getCarouselImg(anime, isFinder)}
+            alt={getCarouselTitle(anime, isFinder)}
           />
         </S.CarouselCell>
       </S.CarouselImgContainer>

@@ -92,7 +92,7 @@ export function useFilter() {
     const xGenre = notGenres.map(({ title }) => Base64.encode(title)).join(" ");
     const tag = tags.map(({ title }) => Base64.encode(title)).join(" ");
     const xTag = notTags.map(({ title }) => Base64.encode(title)).join(" ");
-    console.log(genre, xGenre, tag, xTag);
+
     return { genre, xGenre, tag, xTag };
   };
 
