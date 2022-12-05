@@ -26,6 +26,14 @@ detailController.get("/:_id/episodes", async (req, res, next) => {
     next(err);
   }
 });
+detailController.put("/:_id/episodes", async (req, res, next) => {
+  try {
+    await viewService.updateViews(req.params);
+    res.status(200).end();
+  } catch (err) {
+    next(err);
+  }
+});
 detailController.post("/:_id/reviews", async (req, res, next) => {
   try {
     // params 되나
