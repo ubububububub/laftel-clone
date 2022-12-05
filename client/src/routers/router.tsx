@@ -10,7 +10,7 @@ import {
   Membership,
   NotFound,
   Search,
-  Themes,
+  Theme,
   Auth,
   AuthSelect,
   Process,
@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "themes",
-        element: <Themes />,
+        element: <Theme />,
       },
       {
         path: "*",
