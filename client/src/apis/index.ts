@@ -27,8 +27,8 @@ export const getFinderAnimes = async (
   pageParam: string,
   genre: string,
   xGenre: string,
-  tag: string,
-  xTag: string,
+  tags: string,
+  xTags: string,
 ): Promise<FinderQuery | Anime[]> => {
   const res = await axios.get(`${import.meta.env.VITE_BASE}/main/finder`, {
     headers: {
@@ -36,8 +36,8 @@ export const getFinderAnimes = async (
       _id: pageParam,
       genre,
       xGenre,
-      tag,
-      xTag,
+      tags,
+      xTags,
     },
   });
 

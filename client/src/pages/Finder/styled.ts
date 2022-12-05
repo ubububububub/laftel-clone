@@ -108,5 +108,5 @@ export const AnimesContainer = styled.div`
   margin-left: 264px;
   width: 963px;
   overflow-y: auto;
-  height: 100%;
+  max-height: 100%;
 `;
