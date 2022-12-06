@@ -26,7 +26,11 @@ class VideoService {
     return withImages;
   }
   async getVideoInfo(theme) {
-    const withVideoInfo = { title: theme.title, items: [] };
+    const withVideoInfo = {
+      title: theme.title,
+      description: theme.description,
+      items: [],
+    };
     for (const { _id, title, genre } of theme.items) {
       const { image, story, stars } = await this.videoModel.findByItem(_id);
       withVideoInfo.items.push({ _id, title, genre, image, story, stars });
