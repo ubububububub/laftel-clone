@@ -33,7 +33,7 @@ class ItemService {
     if (items.length === 0) throw new Error("no content");
     return items;
   }
-  async findByTag({ _id, genre, xgenre, tags, xtags }) {
+  async findByTags({ _id, genre, xgenre, tags, xtags }) {
     const condition = {
       genre: genre || xgenre ? {} : { $exists: true },
       tags: tags || xtags ? {} : { $exists: true },
@@ -59,6 +59,15 @@ class ItemService {
     const { title, genre, releaseType, isOnly, isAd, isAdult } =
       await this.itemModel.findOne(_id);
     return { _id, title, genre, releaseType, isOnly, isAd, isAdult };
+  }
+  async findByGenre({ _id }) {
+    const { genre } = await this.itemModel.findOne(_id);
+    if (genre.length === 0) throw new Error("no content");
+    const items = await this.itemModel.findSome({
+      _id: { $ne: _id },
+      genre: genre[0],
+    });
+    return items.slice(0, 6);
   }
 }
 
