@@ -1,39 +1,26 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 import cancel from "@/../public/assets/svgs/cancel.svg";
 import * as S from "@/components/SearchInput/styled";
-import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
-import {
-  showSearch,
-  hideSearch,
-  writeSearchText,
-  clearSearchText,
-  showClear,
-  hideClear,
-  getSearchSliceState,
-} from "@/store/features/searchSlice";
+import { useSearchInput } from "@/hooks";
+import { useAppSelector } from "@/hooks/useApp";
+import { getSearchSliceState } from "@/store/features/searchSlice";
 
 export function SearchInput({ isScroll }: { isScroll: boolean }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { isSearchShowing, searchText, isClearShowing } =
     useAppSelector(getSearchSliceState);
-  const dispatch = useAppDispatch();
+  const {
+    onShowSearch,
+    onHideSearch,
+    onWriteSearchText,
+    onClearSearchText,
+    onShowClear,
+    onHideClear,
+  } = useSearchInput();
   const navigate = useNavigate();
-
-  const onShowSearch = useCallback(() => dispatch(showSearch()), []);
-  const onHideSearch = useCallback(() => dispatch(hideSearch()), []);
-  const onWriteSearchText = useCallback(
-    (value: string) => dispatch(writeSearchText(value)),
-    [dispatch],
-  );
-  const onClearSearchText = useCallback(
-    () => dispatch(clearSearchText()),
-    [dispatch],
-  );
-  const onShowClear = useCallback(() => dispatch(showClear()), []);
-  const onHideClear = useCallback(() => dispatch(hideClear()), []);
 
   useEffect(() => {
     if (!searchText) {

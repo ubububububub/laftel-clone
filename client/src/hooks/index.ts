@@ -6,6 +6,7 @@ import { useFooterToggle } from "@/hooks/useFooterToggle";
 import { useHeaderWhite } from "@/hooks/useHeaderWhite";
 import { useNewTitle } from "@/hooks/useNewTitle";
 import { useSearchBox } from "@/hooks/useSearchBox";
+import { useSearchInput } from "@/hooks/useSearchInput";
 import { useValitdate } from "@/hooks/useValitdate";
 
 export {
@@ -17,5 +18,6 @@ export {
   useFixScroll,
   useValitdate,
   useSearchBox,
+  useSearchInput,
   useHeaderWhite,
 };
