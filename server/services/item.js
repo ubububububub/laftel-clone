@@ -28,7 +28,7 @@ class ItemService {
   }
   async findByTitle({ keyword }) {
     const items = await this.itemModel.findSome({
-      title: new RegExp(`(${keyword})`),
+      title: new RegExp(`(${[...keyword].join(".*")})`),
     });
     if (items.length === 0) throw new Error("no content");
     return items;
