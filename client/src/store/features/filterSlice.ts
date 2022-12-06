@@ -224,6 +224,13 @@ const filterSlice = createSlice({
 
       state.notTags = tag;
     },
+    resetFilters(state) {
+      state.filters = initialState.filters;
+      state.genres = [];
+      state.tags = [];
+      state.notTags = [];
+      state.notGenres = [];
+    },
   },
 });
 
@@ -240,5 +247,6 @@ export const {
   subtractTag,
   addNotTag,
   subtractNotTag,
+  resetFilters,
 } = filterSlice.actions;
 export const getFilterSliceState = (state: RootState) => state.filter;

@@ -14,6 +14,7 @@ import {
   addNotTag,
   subtractNotTag,
   getFilterSliceState,
+  resetFilters,
 } from "@/store/features/filterSlice";
 import { Base64 } from "@/utils/base64";
 
@@ -78,6 +79,11 @@ export function useFilter() {
     [dispatch],
   );
 
+  const onResetFilters = useCallback(
+    () => dispatch(resetFilters()),
+    [dispatch],
+  );
+
   const tansfromStrings = () => {
     const genre = genres.map(({ title }) => title).join(" ");
     const xGenre = notGenres.map(({ title }) => title).join(" ");
@@ -98,7 +104,6 @@ export function useFilter() {
 
   return {
     filters,
-
     onUpdateReady,
     onUpdateCorrect,
     onUpdateInCorrect,
@@ -110,6 +115,7 @@ export function useFilter() {
     onSubtractTag,
     onAddNotTag,
     onSubtractNotTag,
+    onResetFilters,
     tansfromStrings,
     tansfromFetchHeaders,
   };
