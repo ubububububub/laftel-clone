@@ -4,8 +4,8 @@ const itemSchema = new Schema(
   {
     thumbnail: { type: String, required: "item has thumnail:String" },
     title: { type: String, required: "item has title:String" },
-    genre: { type: [String], required: "item has genre:[String]" },
-    tags: { type: [String], required: "item has tags:[String]" },
+    genre: { type: [String], required: true, default: [] },
+    tags: { type: [String], required: true, default: [] },
     releaseType: {
       type: String,
       required: false,

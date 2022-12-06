@@ -52,5 +52,13 @@ detailController.get("/:_id/reviews", async (req, res, next) => {
     next(err);
   }
 });
+detailController.get("/:_id/related", async (req, res, next) => {
+  try {
+    const items = await itemService.findByGenre(req.params);
+    res.status(200).json(items);
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default detailController;

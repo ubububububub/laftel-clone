@@ -37,7 +37,7 @@ mainController.get("/search", async (req, res, next) => {
 });
 mainController.get("/finder", async (req, res, next) => {
   try {
-    const items = await itemService.findByTag(req.headers);
+    const items = await itemService.findByTags(req.headers);
     const modifiedItems = await videoService.thumbToImage(items);
     res.status(200).json(modifiedItems);
   } catch (err) {
