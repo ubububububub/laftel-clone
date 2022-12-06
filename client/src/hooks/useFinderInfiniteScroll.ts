@@ -28,7 +28,7 @@ export function useFinderInfiniteScroll() {
     };
   }, [target]);
 
-  const { data, fetchNextPage } = useInfiniteQuery<
+  const { data, hasNextPage, fetchNextPage } = useInfiniteQuery<
     FinderQuery | Anime[],
     AxiosError
   >({
@@ -54,7 +54,6 @@ export function useFinderInfiniteScroll() {
       if (!(lastPage as Anime[]).length) {
         return undefined;
       }
-
       return (lastPage as Anime[])[(lastPage as Anime[]).length - 1]._id;
     },
   });
@@ -89,5 +88,11 @@ export function useFinderInfiniteScroll() {
     });
   };
 
-  return { data, setTarget, handleResetClick, transformAnimes };
+  return {
+    data,
+    setTarget,
+    hasNextPage,
+    handleResetClick,
+    transformAnimes,
+  };
 }

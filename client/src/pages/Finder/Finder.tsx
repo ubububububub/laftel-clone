@@ -3,6 +3,7 @@ import checkboxreverse from "@/../public/assets/svgs/checkboxreverse.svg";
 import reset from "@/../public/assets/svgs/reset.svg";
 import uncheckbox from "@/../public/assets/svgs/uncheckbox.svg";
 import { Animes } from "@/components";
+import { Spinner } from "@/components/ui";
 import {
   useFilter,
   useFinderInfiniteScroll,
@@ -43,7 +44,7 @@ export function Finder() {
     onAddNotTag,
     onSubtractNotTag,
   } = useFilter();
-  const { data, setTarget, handleResetClick, transformAnimes } =
+  const { data, hasNextPage, setTarget, handleResetClick, transformAnimes } =
     useFinderInfiniteScroll();
 
   const handleFilterClick = (id: number, status: string, type: string) => {
@@ -112,12 +113,25 @@ export function Finder() {
           </S.Filter>
           {mapedFilter}
         </S.Bar>
-        <S.AnimesContainer>
-          <Animes animes={transformAnimes(data)} isFinder />
-          <div ref={setTarget} style={{ width: "100%", height: "80px" }}>
-            Bar
-          </div>
-        </S.AnimesContainer>
+        <S.Content>
+          <S.SearchTitleContainer>
+            <S.SearchTitle>
+              총{" "}
+              <S.SearchTitleStrong>
+                {(data as any)?.pages[0].count || 0}
+              </S.SearchTitleStrong>
+              개의 작품이 검색되었어요!
+            </S.SearchTitle>
+          </S.SearchTitleContainer>
+          <S.AnimesContainer>
+            <Animes animes={transformAnimes(data)} isFinder />
+            {hasNextPage && (
+              <S.LoadingBar ref={setTarget}>
+                <Spinner />
+              </S.LoadingBar>
+            )}
+          </S.AnimesContainer>
+        </S.Content>
       </S.Wrapper>
     </S.Container>
   );

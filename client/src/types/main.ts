@@ -1,6 +1,6 @@
 export interface Anime {
   _id: string;
-  image: string;
+  image?: string;
   thumbnail: string;
   title: string;
   story: string;
@@ -44,12 +44,25 @@ export interface Time {
   _v: number;
 }
 
+interface ThemeAnime extends Anime {
+  isAd: string;
+}
+
+interface Theme {
+  createdAt: string;
+  items: ThemeAnime[];
+  title: string;
+  updatedAt: string;
+  __v: number;
+  _id: string;
+}
+
 export interface HotsIndex {
   [index: string]: Time[];
 }
 
 export interface MainQuery {
   posters: Poster[];
-  themes: [];
+  themes: Theme[];
   hots: HotsIndex;
 }

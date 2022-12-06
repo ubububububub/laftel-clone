@@ -11,7 +11,7 @@ export const SearchAnime = css`
 export const FinderContainer = css`
   width: calc((100% - 25.6rem) / 4);
   height: 25.2rem;
-  margin: 1.25rem 2rem;
+  margin: 2rem 3.2rem;
 `;
 
 export const FinderCarouselImgContainer = css`
@@ -21,6 +21,7 @@ export const FinderCarouselImgContainer = css`
 
 export const FinderCarouselImgHeight = css`
   height: 100%;
+  object-fit: fill;
 `;
 
 export const FinderCarouselDescContainer = css`
@@ -28,6 +29,7 @@ export const FinderCarouselDescContainer = css`
 `;
 
 export const Container = styled.div<IsFinder>`
+  cursor: pointer;
   ${({ isFinder }) => isFinder && FinderContainer}
 `;
 
@@ -39,7 +41,6 @@ export const CarouselImgContainer = styled.div<IsFinder>`
   flex: 0 0 18.625em;
   width: 18.625em;
   scroll-snap-align: start;
-  cursor: pointer;
 
   ${({ isFinder }) => isFinder && FinderCarouselImgContainer}
 `;
@@ -58,7 +59,6 @@ export const CarouselCell = styled.div<IsFinder>`
 export const CarouselDescContainer = styled.div<IsFinder>`
   display: flex;
   overflow: hidden;
-  height: 5.1875em;
 
   ${({ isFinder }) => isFinder && FinderCarouselDescContainer}
 `;

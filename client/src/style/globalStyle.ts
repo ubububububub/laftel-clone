@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
+import { ScrollBar } from "@/style/utils";
+
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
@@ -26,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme: { colors } }) => colors.body};
     color: ${({ theme: { colors } }) => colors.black};
     height: 100%;
+    ${ScrollBar}
   }
 
   a {

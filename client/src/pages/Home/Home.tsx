@@ -30,6 +30,10 @@ export function Home() {
     return null;
   }
 
+  const mapedMainTheme = mainCarouselData.themes.map(theme => (
+    <MainTheme key={theme._id} title={theme.title} animes={theme.items} />
+  ));
+
   return (
     <S.Container>
       <MainCarousel posters={mainCarouselData.posters} />
@@ -41,28 +45,7 @@ export function Home() {
           data={mainCarouselData.hots}
           isPopular
         />
-        <MainTheme
-          title='덕업일치! 라프텔 팀원들이 추천하는 작품'
-          animes={dailyData.mon}
-        />
-        <MainTheme
-          title='언제나 기대하게 만드는 제작사, 본즈에 어서오세요'
-          animes={dailyData.tue}
-        />
-        <MainTheme
-          title='보기만 해도 행복한 먹방 그 자체'
-          animes={dailyData.wed}
-        />
-        <MainTheme
-          title='2021년 2분기 완결 작품 베스트 10'
-          animes={dailyData.thu}
-        />
-        <MainTheme title='세상의 운명을 짊어진 아이들' animes={dailyData.fri} />
-        <MainTheme title='미지의 존재, 미지의 세계' animes={dailyData.sat} />
-        <MainTheme
-          title='안녕히 계세요~ 전 세상의 고통을 떠나 이세계로 갑니다'
-          animes={dailyData.sun}
-        />
+        {mapedMainTheme}
         <Ad />
       </S.Wrapper>
     </S.Container>

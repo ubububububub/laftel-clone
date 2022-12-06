@@ -18,3 +18,15 @@ export const ActiveButton = css`
     background-color: ${({ theme: { colors } }) => colors.hoverPurPle};
   }
 `;
+
+export const ScrollBar = css`
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 5%;
+    border-radius: 10px;
+    background-color: ${({ theme: { colors } }) => colors.inputCursor};
+  }
+`;

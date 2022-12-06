@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { ScrollBar } from "@/style/utils";
+
 export const Container = styled.section`
   width: 1200px;
   padding-top: 6.4rem;
@@ -25,6 +27,7 @@ export const Bar = styled.div`
   max-height: calc(100vh - 80px);
   background-color: ${({ theme: { colors } }) => colors.white};
   overflow-y: auto;
+  ${ScrollBar}
 `;
 
 export const Filter = styled.div`
@@ -35,7 +38,7 @@ export const Filter = styled.div`
   border-bottom: 1px solid ${({ theme: { colors } }) => colors.filterBorder};
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   font-size: 1.4rem;
   font-weight: 500;
   color: ${({ theme: { colors } }) => colors.filterTitle};
@@ -98,15 +101,45 @@ export const FilterImg = styled.img`
   width: 1.6rem;
 `;
 
-export const AnimesContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  position: fixed;
-  overflow: hidden;
-  flex: 1 1 0%;
-  padding: 3.2rem 0rem 4.8rem 4rem;
+export const Content = styled.div`
   margin-left: 264px;
-  width: 963px;
+  position: fixed;
   overflow-y: auto;
   max-height: 100%;
+  top: 64px;
+  padding: 3.2rem 0rem 4.8rem 4rem;
+  ${ScrollBar}
+`;
+
+export const AnimesContainer = styled.div`
+  margin-bottom: 3.2rem;
+  width: 963px;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+export const SearchTitleContainer = styled.div`
+  margin-left: 2rem;
+  margin-bottom: 3.2rem;
+`;
+
+export const SearchTitle = styled.h2`
+  font-size: 1.6rem;
+  color: ${({ theme: { colors } }) => colors.filterTitle};
+`;
+
+export const SearchTitleStrong = styled.strong`
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: ${({ theme: { colors } }) => colors.purple};
+`;
+
+export const LoadingBar = styled.div`
+  width: 100%;
+  height: 16rem;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
 `;
