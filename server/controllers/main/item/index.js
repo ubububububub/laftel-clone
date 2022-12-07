@@ -6,7 +6,7 @@ import relatedController from "./related";
 
 const itemController = Router();
 
-itemController.get("/", async (req, res, next) => {
+itemController.get("/:_id", async (req, res, next) => {
   try {
     const item = await itemService.getForDetail(req.params);
     const video = await videoService.getForDetail(item);
@@ -15,8 +15,10 @@ itemController.get("/", async (req, res, next) => {
     next(err);
   }
 });
-itemController.use("/episodes", episodesController);
-itemController.use("/reviews", reviewsController);
-itemController.use("/related", relatedController);
+itemController.get("/:_id/episodes", episodesController.get);
+itemController.put("/:_id/episodes", episodesController.put);
+itemController.post("/:_id/reviews", reviewsController.post);
+itemController.get("/:_id/reviews", reviewsController.get);
+itemController.get("/:_id/related", relatedController.get);
 
 export default itemController;

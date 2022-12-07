@@ -23,7 +23,7 @@ mainController.use("/days", daysController);
 mainController.use("/search", searchController);
 mainController.use("/finder", finderController);
 mainController.use("/themes", themesController);
-mainController.use("/item/:_id", itemController);
+mainController.use("/item", itemController);
 mainController.use("/auth", authController);
 
 export default mainController;
