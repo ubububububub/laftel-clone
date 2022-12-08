@@ -17,6 +17,7 @@ import {
   Agreement,
   Join,
   Login,
+  Theme,
 } from "@/pages";
 
 export const router = createBrowserRouter([
@@ -41,12 +42,16 @@ export const router = createBrowserRouter([
         element: <Membership />,
       },
       {
-        path: "search",
+        path: "search/:searchText",
         element: <Search />,
       },
       {
         path: "themes",
         element: <Themes />,
+      },
+      {
+        path: "theme/:id/:title",
+        element: <Theme />,
       },
       {
         path: "*",

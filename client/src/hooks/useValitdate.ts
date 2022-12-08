@@ -37,12 +37,10 @@ type LoginValidateIndex = {
 interface Auths {
   auth: JoinAuthIndex | LoginAuthIndex;
   validate: JoinValidateIndex | LoginValidateIndex;
-  setAuth:
-    | React.Dispatch<React.SetStateAction<JoinAuth>>
-    | React.Dispatch<React.SetStateAction<LoginAuth>>;
-  setValidate:
-    | React.Dispatch<React.SetStateAction<JoinValidate>>
-    | React.Dispatch<React.SetStateAction<LoginValidate>>;
+  setAuth: React.Dispatch<React.SetStateAction<JoinAuth | LoginAuth>>;
+  setValidate: React.Dispatch<
+    React.SetStateAction<JoinValidate | LoginValidate>
+  >;
 }
 
 const inputStatus = {
@@ -66,45 +64,48 @@ export function useValitdate({ regex, name, auths }: UseValidateArgs) {
 
   useEffect(() => {
     if (!auth[name].length) {
-      return setValidate((current: any) => ({
+      return setValidate(current => ({
         ...current,
         [name]: inputStatus.READY,
       }));
     }
 
     if (!regex && auth.password === auth[name]) {
-      return setValidate((current: any) => ({
+      return setValidate(current => ({
         ...current,
         [name]: inputStatus.CORRECT,
       }));
     } else {
-      setValidate((current: any) => ({
+      setValidate(current => ({
         ...current,
         [name]: inputStatus.INCORRECT,
       }));
     }
 
     if (regex && regex.test(auth[name])) {
-      return setValidate((current: any) => ({
+      return setValidate(current => ({
         ...current,
         [name]: inputStatus.CORRECT,
       }));
     }
 
-    return setValidate((current: any) => ({
+    return setValidate(current => ({
       ...current,
       [name]: inputStatus.INCORRECT,
     }));
   }, [auth]);
 
   const handleClearClick = () => {
-    setAuth((current: any) => ({ ...current, [name]: "" }));
+    setAuth(current => ({ ...current, [name]: "" }));
   };
 
   const handleInputChange = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>) => {
-    setAuth((current: any) => ({ ...current, [name]: target.value }));
+    setAuth(current => ({
+      ...current,
+      [name]: target.value,
+    }));
   };
 
   const inValidAuth = () => validate[name] === inputStatus.INCORRECT;

@@ -4,21 +4,20 @@ import styled from "styled-components";
 import { useAppSelector } from "./hooks/useApp";
 
 import { Footer, Header } from "@/components";
+import { getFooteSliceState } from "@/store/features/footerSlice";
 
 const Container = styled.div`
   height: 100%;
 `;
 
 function App() {
-  const footer = useAppSelector(({ footer }) => ({
-    isFooterToggle: footer.isToggle,
-  }));
+  const { isFooterToggle } = useAppSelector(getFooteSliceState);
 
   return (
     <Container>
       <Header />
       <Outlet />
-      {footer.isFooterToggle && <Footer />}
+      {isFooterToggle && <Footer />}
     </Container>
   );
 }

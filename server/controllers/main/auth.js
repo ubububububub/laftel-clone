@@ -8,7 +8,7 @@ const authController = Router();
 //     const result = await userService.checkEmail(req.query);
 //     res.status(result ? 100 : 409).end();
 //   } catch (err) {
-//     next(err);refreshtoken
+//     next(err);
 //   }
 // });
 authController.post("/join", async (req, res, next) => {

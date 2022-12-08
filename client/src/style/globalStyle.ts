@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
+import { ScrollBar } from "@/style/utils";
+
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
@@ -11,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   html {
     font-size: 62.5%;
     height: 100%;
+    overflow-x: hidden;
   }
   
   * {
@@ -18,12 +21,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    font-size: 62.5%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: auto;
     font-family: 'Noto Sans KR', sans-serif;
     background-color: ${({ theme: { colors } }) => colors.body};
     color: ${({ theme: { colors } }) => colors.black};
     height: 100%;
+    ${ScrollBar}
   }
 
   a {

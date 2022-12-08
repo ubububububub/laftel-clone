@@ -116,5 +116,7 @@ module.exports = {
     "react/jsx-no-useless-fragment": "off",
     "no-else-return": "off",
     "no-param-reassign": "off",
+    "array-callback-return": "off",
+    "no-unused-vars": "off",
   },
 };

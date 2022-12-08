@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const NavList = styled.ul`
-  padding-right: 3.125rem;
+  padding-right: 5rem;
   gap: 1rem;
   display: flex;
   align-items: center;
-  font-weight: 800;
+  font-weight: 700;
 `;
 
 export const Login = styled.li`

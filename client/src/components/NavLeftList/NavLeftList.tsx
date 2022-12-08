@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import * as S from "@/components/NavLeftList/styled";
 import { Logo } from "@/components/svgs";
@@ -12,15 +12,19 @@ const texts = [
 
 const mapedTexts = texts.map((text, index) => (
   <li key={index}>
-    <Link to={text.src}>{text.name}</Link>
+    <NavLink
+      to={text.src}
+      style={({ isActive }) => (isActive ? { color: "#816bff" } : undefined)}>
+      {text.name}
+    </NavLink>
   </li>
 ));
 
-export function NavLeftList({ isScrollToggle }: { isScrollToggle: boolean }) {
+export function NavLeftList({ isScroll }: { isScroll: boolean }) {
   return (
     <S.NavList>
       <li>
-        <h1>{isScrollToggle ? <Logo color='black' /> : <Logo />}</h1>
+        <h1>{isScroll ? <Logo color='black' /> : <Logo />}</h1>
       </li>
       {mapedTexts}
     </S.NavList>

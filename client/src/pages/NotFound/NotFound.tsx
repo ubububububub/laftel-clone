@@ -1,10 +1,11 @@
 import notFound from "@/../public/assets/imgs/notfound.webp";
-import { useFooterToggle, useNewTitle } from "@/hooks";
+import { useFixScroll, useFooterToggle, useNewTitle } from "@/hooks";
 import * as S from "@/pages/NotFound/styled";
 
 export function NotFound() {
   useNewTitle("라프텔 - 애니 추천 · 애니 스트리밍 서비스");
   useFooterToggle();
+  useFixScroll();
 
   return (
     <S.Container>
