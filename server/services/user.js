@@ -16,17 +16,21 @@ class UserService {
     await sendMail(user.email);
   }
   async login({ email, password }) {
-    const user = await this.userModel.findByEmail(email);
+    const user = await this.findByEmail(email);
     if (!user) throw new Error("login failed");
     const result = await hashPassword.compare(password, user.password);
     if (!result) throw new Error("login failed");
-    const accessToken = await jwt.create(
+    const accesstoken = await jwt.create(
       { email: user.email, role: user.role },
       "1h"
     );
-    const refreshToken = await jwt.create({}, "7d");
-    await this.userModel.updateOne(email, { refreshToken });
-    return { accessToken, refreshToken };
+    const refreshtoken = await jwt.create({}, "7d");
+    await this.userModel.updateOne(email, { refreshtoken });
+    return { accesstoken, refreshtoken };
+  }
+  async findByEmail(email) {
+    const user = await this.userModel.findByEmail(email);
+    return user;
   }
 }
 

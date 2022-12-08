@@ -3,6 +3,7 @@ import { itemService, videoService } from "../../../services";
 import episodesController from "./episodes";
 import reviewsController from "./reviews";
 import relatedController from "./related";
+import { loginCheck } from "../../../middlewares";
 
 const itemController = Router();
 

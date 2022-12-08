@@ -6,7 +6,7 @@ const userSchema = new Schema(
     password: { type: String, required: false },
     // nickname: { type: String, required: true, default: "" },
     // image: { type: String, required: true, default: "#" },
-    refreshToken: { type: String, default: "" },
+    refreshtoken: { type: String, default: "" },
     role: {
       type: String,
       required: true,

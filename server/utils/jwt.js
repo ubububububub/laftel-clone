@@ -21,6 +21,18 @@ class Jwt {
       );
     });
   }
+  verify(token) {
+    return new Promise((res, rej) => {
+      jsonwebtoken.verify(token, secretKey, (err, decoded) => {
+        if (err) rej(err);
+        else res(token);
+      });
+    });
+  }
+  decode(token) {
+    const { payload } = jsonwebtoken.decode(token, { complete: true });
+    return payload;
+  }
 }
 
 const jwt = new Jwt();

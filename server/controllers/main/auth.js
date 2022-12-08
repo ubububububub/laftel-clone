@@ -8,7 +8,7 @@ const authController = Router();
 //     const result = await userService.checkEmail(req.query);
 //     res.status(result ? 100 : 409).end();
 //   } catch (err) {
-//     next(err);
+//     next(err);refreshtoken
 //   }
 // });
 authController.post("/join", async (req, res, next) => {
@@ -21,11 +21,11 @@ authController.post("/join", async (req, res, next) => {
 });
 authController.post("/login", async (req, res, next) => {
   try {
-    const { accessToken, refreshToken } = await userService.login(req.body);
+    const { accesstoken, refreshtoken } = await userService.login(req.body);
     res
       .status(200)
-      .cookie("accessToken", accessToken, { httpOnly: true })
-      .json({ refreshToken });
+      .cookie("accesstoken", accesstoken, { httpOnly: true })
+      .json({ refreshtoken });
   } catch (err) {
     next(err);
   }
