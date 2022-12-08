@@ -3,10 +3,9 @@ import { reviewService, videoService } from "../../../services";
 const reviewsController = {
   post: async (req, res, next) => {
     try {
-      // params 되나
       const stars = await reviewService.create(
         req.params,
-        "userInfo",
+        req.cookies,
         req.body
       );
       await videoService.updateStars(req.params, stars);

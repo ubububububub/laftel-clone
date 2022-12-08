@@ -1,12 +1,14 @@
 import { reviewModel } from "../models";
+import { jwt } from "../utils";
 
 class ReviewService {
   constructor(reviewModel) {
     this.reviewModel = reviewModel;
   }
 
-  async create({ _id }, user, { content, star }) {
-    await this.reviewModel.create({ item: _id, user, content, star });
+  async create({ _id }, { accesstoken }, { content, star }) {
+    const { email } = jwt.decode(accesstoken);
+    await this.reviewModel.create({ item: _id, author: email, content, star });
     const reviews = await this.findByItem({ _id });
     return reviews.reduce((acc, { star }) => acc + star, 0) / reviews.length;
   }
