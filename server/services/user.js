@@ -10,9 +10,15 @@ class UserService {
   //     const user = await this.userModel.findByEmail(email);
   //     return user ? false : true;
   //   }
-  async join({ email, password }) {
+  async join({ email, password, isLaftel, isInfo, isEvent }) {
     const hashed = await hashPassword.hash(password);
-    const user = await this.userModel.create({ email, password: hashed });
+    const user = await this.userModel.create({
+      email,
+      password: hashed,
+      isLaftel,
+      isInfo,
+      isEvent,
+    });
     await sendMail(user.email);
   }
   async login({ email, password }) {

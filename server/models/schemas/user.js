@@ -13,6 +13,9 @@ const userSchema = new Schema(
       default: "user",
       enum: ["user", "admin"],
     },
+    isLaftel: { type: Boolean, required: true },
+    isInfo: { type: Boolean, required: true },
+    isEvent: { type: Boolean, required: true, default: false },
     isGmail: { type: Boolean, required: true, default: false },
   },
   {
