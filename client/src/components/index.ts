@@ -1,10 +1,12 @@
 import { Ad } from "@/components/Ad/Ad";
 import { AgreementCheckItem } from "@/components/AgreementCheckItem/AgreementCheckItem";
+import { AnimeDetail } from "@/components/AnimeDetail/AnimeDetail";
 import { Animes } from "@/components/Animes/Animes";
 import { AuthForm } from "@/components/AuthForm/AuthForm";
 import { AuthInput } from "@/components/AuthInput/AuthInput";
 import { Day } from "@/components/Day/Day";
 import { Days } from "@/components/Days/Days";
+import { Episode } from "@/components/Episode/Episode";
 import { Footer } from "@/components/Footer/Footer";
 import { FooterIconList } from "@/components/FooterIconList/FooterIconList";
 import { FooterInformation } from "@/components/FooterInformation/FooterInformation";
@@ -26,9 +28,11 @@ export {
   Ad,
   AgreementCheckItem,
   AuthForm,
+  AnimeDetail,
   AuthInput,
   Day,
   Days,
+  Episode,
   Footer,
   FooterIconList,
   FooterMenuList,

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 
 import { getTheme } from "@/apis";
 import { ThemeAnimes } from "@/components";
@@ -14,13 +14,13 @@ import * as S from "@/pages/Theme/styled";
 import { ThemeQuery } from "@/types/theme";
 
 export function Theme() {
-  const { id, title } = useParams();
+  const { id, themetitle } = useParams();
 
-  if (!id || !title) {
+  if (!id || !themetitle) {
     return null;
   }
 
-  useNewTitle(title);
+  useNewTitle(themetitle);
   useFooterToggle();
   useFixScroll();
   useSearchBox();
@@ -30,6 +30,7 @@ export function Theme() {
     queryFn: () => getTheme(id),
     staleTime: 60000 * 60,
     refetchOnWindowFocus: false,
+    refetchOnMount: false,
   });
 
   if (!data) {
@@ -39,7 +40,8 @@ export function Theme() {
   return (
     <S.Container>
       <S.Header>
-        <S.ThemesTitle>{title}</S.ThemesTitle>
+        <Outlet />
+        <S.ThemesTitle>{themetitle}</S.ThemesTitle>
         <S.ThemesDesc>asdasdasd</S.ThemesDesc>
         <ThemeAnimes themes={data.items} />
       </S.Header>

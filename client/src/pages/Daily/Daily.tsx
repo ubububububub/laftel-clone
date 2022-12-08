@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 import { Days } from "@/components";
 import {
   useFixScroll,
@@ -15,6 +17,7 @@ export function Daily() {
 
   return (
     <S.Wrapper>
+      <Outlet />
       <S.Container>
         <S.Title>요일별 신작</S.Title>
         <S.Schedule>

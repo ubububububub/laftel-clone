@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 import checkbox from "@/../public/assets/svgs/checkbox.svg";
 import checkboxreverse from "@/../public/assets/svgs/checkboxreverse.svg";
 import reset from "@/../public/assets/svgs/reset.svg";
@@ -100,6 +102,7 @@ export function Finder() {
 
   return (
     <S.Container>
+      <Outlet />
       <S.Wrapper>
         <S.Bar>
           <S.Filter>

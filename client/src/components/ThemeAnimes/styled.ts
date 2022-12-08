@@ -92,11 +92,6 @@ export const StarContainer = styled.div`
   border: 1px solid ${({ theme: { colors } }) => colors.cream};
 `;
 
-export const Star = styled.img`
-  width: 1.8rem;
-  height: 1.8rem;
-`;
-
 export const Tag = styled.div`
   ${Tags}
 `;

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { Outlet } from "react-router-dom";
 
 import { getMainAnimes } from "@/apis";
 import { Ad, MainCarousel, MainTheme, MainThemeToggle } from "@/components";
@@ -36,6 +37,7 @@ export function Home() {
 
   return (
     <S.Container>
+      <Outlet />
       <MainCarousel posters={mainCarouselData.posters} />
       <S.Wrapper>
         <MainThemeToggle title='요일별 신작' tabTexts={days} data={dailyData} />

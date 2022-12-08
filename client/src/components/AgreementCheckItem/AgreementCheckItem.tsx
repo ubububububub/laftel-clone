@@ -57,11 +57,10 @@ export function AgreementCheckItem({
               handleCheckChange(check.name);
             }}
           />
-          {check.isChecked ? (
-            <S.Checkbox src={checkbox} alt='체크 아이콘' />
-          ) : (
-            <S.Checkbox src={uncheckbox} alt='언체크 아이콘' />
-          )}
+          <S.Checkbox
+            src={check.isChecked ? checkbox : uncheckbox}
+            alt={check.isChecked ? "체크 아이콘" : "언체크 아이콘"}
+          />
         </S.Check>
       </S.CheckItem>
     );

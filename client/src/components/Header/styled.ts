@@ -21,7 +21,7 @@ export const Header = styled.header<{ isScroll: boolean }>`
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 999999999999999;
+  z-index: 10000;
   font-size: 1.4rem;
   transition: all 0.3s linear;
 

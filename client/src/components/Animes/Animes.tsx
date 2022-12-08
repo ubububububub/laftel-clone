@@ -1,3 +1,4 @@
+import { AnimeDetail } from "@/components";
 import * as S from "@/components/Animes/styled";
 import { Anime, Time } from "@/types/main";
 
@@ -49,34 +50,38 @@ export function Animes({
 
   const mapedAnimes = animes.map((anime, index) => (
     <S.Container key={anime._id} {...{ isFinder }}>
-      <S.CarouselImgContainer {...{ isFinder }}>
-        <S.CarouselCell ref={cellRef} {...{ isFinder }}>
-          <S.CarouselImg
-            {...{ isFinder }}
-            src={getCarouselImg(anime, isFinder)}
-            alt={getCarouselTitle(anime, isFinder)}
-          />
-        </S.CarouselCell>
-      </S.CarouselImgContainer>
-      <S.CarouselDescContainer {...{ isFinder }}>
-        {isPopular && (
-          <S.RankingContainer>
-            <S.Ranking>{index + 1}</S.Ranking>
-          </S.RankingContainer>
-        )}
-        <S.TitleContainer {...{ isPopular }}>
-          <S.CarouselTitle>
-            <S.Title {...{ isFinder }}>
-              {(anime as Time).item
-                ? (anime as Time).item.title
-                : (anime as Anime).title}
-            </S.Title>
+      <AnimeDetail id={anime._id}>
+        <>
+          <S.CarouselImgContainer {...{ isFinder }}>
+            <S.CarouselCell ref={cellRef} {...{ isFinder }}>
+              <S.CarouselImg
+                {...{ isFinder }}
+                src={getCarouselImg(anime, isFinder)}
+                alt={getCarouselTitle(anime, isFinder)}
+              />
+            </S.CarouselCell>
+          </S.CarouselImgContainer>
+          <S.CarouselDescContainer {...{ isFinder }}>
             {isPopular && (
-              <S.Genre>{(anime as Time).item.genre.join("/")}</S.Genre>
+              <S.RankingContainer>
+                <S.Ranking>{index + 1}</S.Ranking>
+              </S.RankingContainer>
             )}
-          </S.CarouselTitle>
-        </S.TitleContainer>
-      </S.CarouselDescContainer>
+            <S.TitleContainer {...{ isPopular }}>
+              <S.CarouselTitle>
+                <S.Title {...{ isFinder }}>
+                  {(anime as Time).item
+                    ? (anime as Time).item.title
+                    : (anime as Anime).title}
+                </S.Title>
+                {isPopular && (
+                  <S.Genre>{(anime as Time).item.genre.join("/")}</S.Genre>
+                )}
+              </S.CarouselTitle>
+            </S.TitleContainer>
+          </S.CarouselDescContainer>
+        </>
+      </AnimeDetail>
     </S.Container>
   ));
 

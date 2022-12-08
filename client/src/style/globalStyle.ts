@@ -28,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme: { colors } }) => colors.body};
     color: ${({ theme: { colors } }) => colors.black};
     height: 100%;
-    ${ScrollBar}
+    ${ScrollBar};
   }
 
   a {
@@ -40,5 +40,6 @@ export const GlobalStyle = createGlobalStyle`
   button {
     outline: none;
     border: none;
+    background-color: transparent;
   }
 `;

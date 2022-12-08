@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 
 import notfound from "@/../public/assets/svgs/notfound.svg";
 import { getSearchAnimes } from "@/apis";
@@ -10,7 +10,7 @@ import * as S from "@/pages/Search/styled";
 import { SearchQuery } from "@/types/search";
 
 export function Search() {
-  const { searchText } = useParams();
+  const { searchtext: searchText } = useParams();
   useNewTitle(`'${searchText}'에 대한 검색 결과 | 라프텔`);
   useFooterToggle();
   useFixScroll();
@@ -45,6 +45,7 @@ export function Search() {
 
   return (
     <S.Container>
+      <Outlet />
       <S.Wrapper>
         <S.TitleWrapper>
           <S.Title>{`‘${searchText}’`}</S.Title>
