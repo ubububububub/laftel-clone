@@ -18,8 +18,10 @@ itemController.get("/:_id", async (req, res, next) => {
 });
 itemController.get("/:_id/episodes", episodesController.get);
 itemController.put("/:_id/episodes", episodesController.put);
-itemController.post("/:_id/reviews", reviewsController.post);
+itemController.post("/:_id/reviews", loginCheck, reviewsController.post);
 itemController.get("/:_id/reviews", reviewsController.get);
+itemController.put("/:itemId/reviews/:reviewId", loginCheck, reviewsController.put);
+itemController.delete("/:itemId/reviews/:reviewId", loginCheck, reviewsController.delete);
 itemController.get("/:_id/related", relatedController.get);
 
 export default itemController;

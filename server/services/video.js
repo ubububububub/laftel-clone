@@ -38,11 +38,12 @@ class VideoService {
     return withVideoInfo;
   }
   async getForDetail(item) {
-    const { image, story, stars } = await this.videoModel.findByItem(item._id);
-    return { ...item, image, story, stars };
+    const { image, story, stars, reviewAmount } =
+      await this.videoModel.findByItem(item._id);
+    return { ...item, image, story, stars, reviewAmount };
   }
-  async updateStars({ _id }, stars) {
-    await this.videoModel.updateOne(_id, { stars });
+  async updateStars({ itemId }, stars) {
+    await this.videoModel.updateOne(itemId, stars);
   }
 }
 
