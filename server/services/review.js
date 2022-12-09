@@ -39,7 +39,11 @@ class ReviewService {
   async avgStars(itemId) {
     const reviews = await this.findByItem({ itemId });
     return {
-      stars: reviews.reduce((acc, { star }) => acc + star, 0) / reviews.length,
+      stars: Number(
+        (
+          reviews.reduce((acc, { star }) => acc + star, 0) / reviews.length
+        ).toFixed(2)
+      ),
       reviewAmount: reviews.length,
     };
   }
