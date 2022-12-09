@@ -37,7 +37,8 @@ class ReviewService {
     if (review.author !== email) throw new Error("forbidden");
   }
   async avgStars(itemId) {
-    const reviews = await this.findByItem({ itemId });
+    const reviews = await this.reviewModel.findByItem(itemId);
+    if (reviews.length === 0) return { stars: 0, reviewAmount: 0 };
     return {
       stars: Number(
         (
