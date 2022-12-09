@@ -20,8 +20,8 @@ class ThemeService {
     if (themes.length === 0) throw new Error("no content");
     return themes;
   }
-  async findOne({ _id }) {
-    const theme = await this.themeModel.findOne(_id);
+  async findOne({ themeId }) {
+    const theme = await this.themeModel.findOne(themeId);
     await theme.populate("items");
     return theme;
   }

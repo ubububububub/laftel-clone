@@ -7,7 +7,7 @@ import { loginCheck } from "../../../middlewares";
 
 const itemController = Router();
 
-itemController.get("/:_id", async (req, res, next) => {
+itemController.get("/:itemId", async (req, res, next) => {
   try {
     const item = await itemService.getForDetail(req.params);
     const video = await videoService.getForDetail(item);
@@ -17,12 +17,12 @@ itemController.get("/:_id", async (req, res, next) => {
     next(err);
   }
 });
-itemController.get("/:_id/episodes", episodesController.get);
-itemController.put("/:_id/episodes", episodesController.put);
-itemController.post("/:_id/reviews", loginCheck, reviewsController.post);
-itemController.get("/:_id/reviews", reviewsController.get);
+itemController.get("/:itemId/episodes", episodesController.get);
+itemController.put("/:itemId/episodes", episodesController.put);
+itemController.post("/:itemId/reviews", loginCheck, reviewsController.post);
+itemController.get("/:itemId/reviews", reviewsController.get);
 itemController.put("/:itemId/reviews/:reviewId", loginCheck, reviewsController.put);
 itemController.delete("/:itemId/reviews/:reviewId", loginCheck, reviewsController.delete);
-itemController.get("/:_id/related", relatedController.get);
+itemController.get("/:itemId/related", relatedController.get);
 
 export default itemController;
