@@ -6,14 +6,19 @@ class ReviewService {
     this.reviewModel = reviewModel;
   }
 
-  async create({ _id }, { accesstoken }, { content, star }) {
+  async create({ itemId }, { accesstoken }, { content, star }) {
     const { email } = jwt.decode(accesstoken);
-    await this.reviewModel.create({ item: _id, author: email, content, star });
-    const result = await this.avgStars(_id);
+    await this.reviewModel.create({
+      item: itemId,
+      author: email,
+      content,
+      star,
+    });
+    const result = await this.avgStars(itemId);
     return result;
   }
-  async findByItem({ _id }) {
-    const reviews = await this.reviewModel.findByItem(_id);
+  async findByItem({ itemId }) {
+    const reviews = await this.reviewModel.findByItem(itemId);
     if (reviews.length === 0) throw new Error("no content");
     return reviews;
   }
@@ -31,8 +36,8 @@ class ReviewService {
     const { email } = jwt.decode(accesstoken);
     if (review.author !== email) throw new Error("forbidden");
   }
-  async avgStars(_id) {
-    const reviews = await this.findByItem({ _id });
+  async avgStars(itemId) {
+    const reviews = await this.findByItem({ itemId });
     return {
       stars: reviews.reduce((acc, { star }) => acc + star, 0) / reviews.length,
       reviewAmount: reviews.length,

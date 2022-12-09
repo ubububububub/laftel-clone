@@ -20,9 +20,9 @@ class ViewService {
     }
     return { daily, total };
   }
-  async updateViews({ _id }) {
+  async updateViews({ itemId }) {
     await resetViews();
-    await this.viewModel.updateOne(_id, {
+    await this.viewModel.updateOne(itemId, {
       $inc: { dailyView: 1, totalView: 1 },
     });
   }

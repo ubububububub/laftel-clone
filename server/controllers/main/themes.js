@@ -12,7 +12,7 @@ themesController.get("/", async (req, res, next) => {
     next(err);
   }
 });
-themesController.get("/:_id", async (req, res, next) => {
+themesController.get("/:themeId", async (req, res, next) => {
   try {
     const theme = await themeService.findOne(req.params);
     const withVideoInfo = await videoService.getVideoInfo(theme);
