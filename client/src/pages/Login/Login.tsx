@@ -1,5 +1,8 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { postLogin } from "@/apis";
 import { AuthForm, AuthInput } from "@/components";
 import { useNewTitle } from "@/hooks";
 import * as S from "@/pages/Login/styled";
@@ -40,6 +43,14 @@ export function Login() {
   const [validate, setValidate] = useState({
     email: inputStatus.READY,
   });
+  const navigate = useNavigate();
+  const { mutate } = useMutation({
+    mutationFn: postLogin,
+    onSuccess: data => {
+      localStorage.setItem("refresh", data.refreshtoken);
+      return navigate("/", { replace: true });
+    },
+  });
 
   const auths = {
     auth,
@@ -52,8 +63,9 @@ export function Login() {
     return <AuthInput key={index} authInputArgs={input} {...{ auths }} />;
   });
 
-  const handleLoginSubmit = () => {
-    // auth.email, auth.password get 요청
+  const handleLoginSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    mutate({ email: auth.email, password: auth.password });
   };
 
   const activeLoginLink = () =>
@@ -63,8 +75,12 @@ export function Login() {
     <AuthForm>
       <S.Container>
         <S.Title>이메일로 로그인</S.Title>
-        <S.LoginForm onSubmit={handleLoginSubmit}>{mapedInputs}</S.LoginForm>
-        <S.LoginLink disabled={!activeLoginLink()}>로그인</S.LoginLink>
+        <S.LoginForm onSubmit={handleLoginSubmit}>
+          {mapedInputs}{" "}
+          <S.LoginLink disabled={!activeLoginLink()} type='submit'>
+            로그인
+          </S.LoginLink>
+        </S.LoginForm>
       </S.Container>
     </AuthForm>
   );

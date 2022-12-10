@@ -1,8 +1,8 @@
 import axios from "axios";
 
+import { PostJoin, PostLogin } from "@/types/auth";
 import { DailyQuery } from "@/types/daily";
 import { FinderQuery } from "@/types/finder";
-import { PostJoin } from "@/types/join";
 import { Anime, MainQuery } from "@/types/main";
 import { SearchQuery } from "@/types/search";
 import { ThemeQuery } from "@/types/theme";
@@ -71,4 +71,12 @@ export const postJoin = async ({
     isInfo,
     isEvent,
   });
+};
+
+export const postLogin = async ({ email, password }: PostLogin) => {
+  const res = await axios.post(`${import.meta.env.VITE_BASE}/main/auth/login`, {
+    email,
+    password,
+  });
+  return res.data;
 };

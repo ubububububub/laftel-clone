@@ -5,3 +5,8 @@ export interface PostJoin {
   isInfo: boolean;
   isEvent: boolean;
 }
+
+export interface PostLogin {
+  email: string;
+  password: string;
+}
