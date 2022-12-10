@@ -11,7 +11,7 @@ itemController.get("/:itemId", async (req, res, next) => {
   try {
     const item = await itemService.getForDetail(req.params);
     const video = await videoService.getForDetail(item);
-    res.status(200).json({ video });
+    res.status(200).json(video);
   } catch (err) {
     next(err);
   }
