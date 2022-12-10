@@ -30,6 +30,11 @@ itemController.delete(
   loginCheck,
   reviewsController.delete
 );
+itemController.patch(
+  "/:itemId/reviews/:reviewId",
+  loginCheck,
+  reviewsController.patch
+);
 itemController.get("/:itemId/related", relatedController.get);
 
 export default itemController;
