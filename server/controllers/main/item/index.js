@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { itemService, videoService, episodeService } from "../../../services";
+import { itemService, videoService } from "../../../services";
 import episodesController from "./episodes";
 import reviewsController from "./reviews";
 import relatedController from "./related";
@@ -11,7 +11,6 @@ itemController.get("/:itemId", async (req, res, next) => {
   try {
     const item = await itemService.getForDetail(req.params);
     const video = await videoService.getForDetail(item);
-    const episodes = await episodeService.findByItem(req.params);
     res.status(200).json({ video, episodes });
   } catch (err) {
     next(err);
