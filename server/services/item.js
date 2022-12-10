@@ -28,12 +28,12 @@ class ItemService {
   }
   async findByTitle({ keyword }) {
     const items = await this.itemModel.findSome({
-      title: new RegExp(`(${keyword})`),
+      title: new RegExp(`(${[...keyword].join(".*")})`),
     });
     if (items.length === 0) throw new Error("no content");
     return items;
   }
-  async findByTag({ _id, genre, xgenre, tags, xtags }) {
+  async findByTags({ itemId, genre, xgenre, tags, xtags }) {
     const condition = {
       genre: genre || xgenre ? {} : { $exists: true },
       tags: tags || xtags ? {} : { $exists: true },
@@ -42,23 +42,32 @@ class ItemService {
     if (xgenre) condition.genre.$nin = decode(xgenre);
     if (tags) condition.tags.$all = decode(tags);
     if (xtags) condition.tags.$nin = decode(xtags);
-    if (_id) {
+    if (itemId) {
       const items = await this.itemModel.findSome({
-        _id: { $lt: _id },
+        _id: { $lt: itemId },
         ...condition,
       });
       if (items.length === 0) throw new Error("no content");
-      return items.slice(0, 19);
+      return items.slice(0, 20);
     } else {
       const items = await this.itemModel.findSome(condition);
       if (items.length === 0) throw new Error("no content");
-      return { count: items.length, items: items.slice(0, 19) };
+      return { count: items.length, items: items.slice(0, 20) };
     }
   }
-  async getForDetail({ _id }) {
-    const { title, genre, releaseType, isOnly, isAd, isAdult } =
-      await this.itemModel.findOne(_id);
+  async getForDetail({ itemId }) {
+    const { _id, title, genre, releaseType, isOnly, isAd, isAdult } =
+      await this.itemModel.findOne(itemId);
     return { _id, title, genre, releaseType, isOnly, isAd, isAdult };
+  }
+  async findByGenre({ itemId }) {
+    const { genre } = await this.itemModel.findOne(itemId);
+    if (genre.length === 0) throw new Error("no content");
+    const items = await this.itemModel.findSome({
+      _id: { $ne: itemId },
+      genre: genre[0],
+    });
+    return items.slice(0, 6);
   }
 }
 

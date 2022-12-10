@@ -15,6 +15,16 @@ class ReviewModel {
     const reviews = await this.reviewDB.find({ item });
     return reviews;
   }
+  async findOne(_id) {
+    const review = await this.reviewDB.findOne({ _id });
+    return review;
+  }
+  async updateOne(_id, reviewInfo) {
+    await this.reviewDB.updateOne({ _id }, reviewInfo);
+  }
+  async deleteOne(_id) {
+    await this.reviewDB.deleteOne({ _id });
+  }
 }
 
 const reviewModel = new ReviewModel(reviewDB);

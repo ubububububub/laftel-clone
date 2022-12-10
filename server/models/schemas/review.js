@@ -8,10 +8,7 @@ const reviewSchema = new Schema(
       required: true,
       index: true,
     },
-    user: {
-      type: { nickname: String, email: String, image: String },
-      required: true,
-    },
+    author: { type: String, required: true },
     content: { type: String, required: true },
     star: { type: Number, required: true },
     likes: { type: Number, required: true, default: 0 },
