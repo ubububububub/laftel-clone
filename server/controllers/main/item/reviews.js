@@ -44,6 +44,14 @@ const reviewsController = {
       next(err);
     }
   },
+  patch: async (req, res, next) => {
+    try {
+      await reviewService.incLikes(req.params);
+      res.status(200).end();
+    } catch (err) {
+      next(err);
+    }
+  },
 };
 
 export default reviewsController;
