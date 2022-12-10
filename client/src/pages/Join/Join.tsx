@@ -1,6 +1,8 @@
+import { useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { postJoin } from "@/apis";
 import { AuthInput } from "@/components";
 import * as S from "@/pages/Join/styled";
 import { regexEmail, regexPassword } from "@/utils/regex";
@@ -51,6 +53,12 @@ export function Join() {
   });
   const navigate = useNavigate();
   const { state } = useLocation();
+  const { mutate } = useMutation({
+    mutationFn: postJoin,
+    onSuccess: () => {
+      return navigate("/auth/email", { replace: true });
+    },
+  });
 
   useEffect(() => {
     if (!state) {
@@ -69,11 +77,19 @@ export function Join() {
     return <AuthInput key={index} authInputArgs={input} {...{ auths }} />;
   });
 
-  // const { isLaftel, isInfo, isEvent } = state;
-  //  isLaftel && isInfo && isEvent 일 경우 useQuery API 요청
-
   const handleJoinSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { isLaftel, isInfo, isEvent } = state;
+
+    if ((isLaftel && isInfo) || isEvent) {
+      mutate({
+        email: auth.email,
+        password: auth.password,
+        isLaftel,
+        isInfo,
+        isEvent,
+      });
+    }
   };
 
   const activeJoinLink = () => {
@@ -87,8 +103,12 @@ export function Join() {
   return (
     <S.Container>
       <S.Title>회원가입</S.Title>
-      <S.JoinForm onSubmit={handleJoinSubmit}>{mapedInputs}</S.JoinForm>
-      <S.JoinLink disabled={!activeJoinLink()}>가입</S.JoinLink>
+      <S.JoinForm onSubmit={handleJoinSubmit}>
+        {mapedInputs}
+        <S.JoinLink disabled={!activeJoinLink()} type='submit'>
+          가입
+        </S.JoinLink>
+      </S.JoinForm>
     </S.Container>
   );
 }

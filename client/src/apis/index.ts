@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { DailyQuery } from "@/types/daily";
 import { FinderQuery } from "@/types/finder";
+import { PostJoin } from "@/types/join";
 import { Anime, MainQuery } from "@/types/main";
 import { SearchQuery } from "@/types/search";
 import { ThemeQuery } from "@/types/theme";
@@ -54,4 +55,20 @@ export const getThemes = async (): Promise<ThemesQuery[]> => {
 export const getTheme = async (id: string): Promise<ThemeQuery> => {
   const res = await axios.get(`${import.meta.env.VITE_BASE}/main/themes/${id}`);
   return res.data;
+};
+
+export const postJoin = async ({
+  email,
+  password,
+  isLaftel,
+  isInfo,
+  isEvent,
+}: PostJoin) => {
+  await axios.post(`${import.meta.env.VITE_BASE}/main/auth/join`, {
+    email,
+    password,
+    isLaftel,
+    isInfo,
+    isEvent,
+  });
 };
