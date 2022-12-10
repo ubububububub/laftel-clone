@@ -21,6 +21,7 @@ const theme: DefaultTheme = {
     ad: "#323232",
     filterBorder: "#e9eaef",
     filterTitle: "#40415d",
+    reviewDesc: "#ababab",
   },
 };
 

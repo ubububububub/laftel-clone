@@ -1,9 +1,9 @@
-export function RatingStar({ kind }: { kind: string }) {
+export function RatingStar({ kind, size }: { kind: string; size?: boolean }) {
   if (kind === "empty") {
     return (
       <svg
-        width='40'
-        height='40'
+        width={size ? "24" : "40"}
+        height={size ? "24" : "40"}
         viewBox='0 0 24 24'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -20,8 +20,8 @@ export function RatingStar({ kind }: { kind: string }) {
   } else if (kind === "half") {
     return (
       <svg
-        width='40'
-        height='40'
+        width={size ? "24" : "40"}
+        height={size ? "24" : "40"}
         viewBox='0 0 24 24'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -45,8 +45,8 @@ export function RatingStar({ kind }: { kind: string }) {
 
   return (
     <svg
-      width='40'
-      height='40'
+      width={size ? "24" : "40"}
+      height={size ? "24" : "40"}
       viewBox='0 0 24 24'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

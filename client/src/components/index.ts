@@ -4,6 +4,7 @@ import { AnimeDetail } from "@/components/AnimeDetail/AnimeDetail";
 import { Animes } from "@/components/Animes/Animes";
 import { AuthForm } from "@/components/AuthForm/AuthForm";
 import { AuthInput } from "@/components/AuthInput/AuthInput";
+import { AverageStars } from "@/components/AverageStars/AverageStars";
 import { Day } from "@/components/Day/Day";
 import { Days } from "@/components/Days/Days";
 import { Episode } from "@/components/Episode/Episode";
@@ -19,6 +20,9 @@ import { MembershipInformation } from "@/components/MembershipInformation/Member
 import { NavLeftList } from "@/components/NavLeftList/NavLeftList";
 import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
+import { RatingStars } from "@/components/RatingStars/RatingStars";
+import { ReviewItem } from "@/components/ReviewItem/ReviewItem";
+import { Reviews } from "@/components/Reviews/Reviews";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
 import { SubCarousel } from "@/components/SubCarousel/SubCarousel";
 import { ThemeAnimes } from "@/components/ThemeAnimes/ThemeAnimes";
@@ -30,6 +34,7 @@ export {
   AuthForm,
   AnimeDetail,
   AuthInput,
+  AverageStars,
   Day,
   Days,
   Episode,
@@ -45,6 +50,9 @@ export {
   NavLeftList,
   NavRightList,
   Products,
+  RatingStars,
+  ReviewItem,
+  Reviews,
   SearchInput,
   SubCarousel,
   Animes,

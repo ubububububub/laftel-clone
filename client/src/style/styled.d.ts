@@ -22,6 +22,7 @@ declare module "styled-components" {
       ad: "#323232";
       filterBorder: "#e9eaef";
       filterTitle: "#40415d";
+      reviewDesc: "#ababab";
     };
   }
 }

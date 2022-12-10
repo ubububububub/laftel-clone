@@ -3,6 +3,7 @@ import { MainCarouselArrow } from "@/components/ui/MainCarouselArrow/MainCarouse
 import { Product } from "@/components/ui/Product/Product";
 import { SocialLoginLink } from "@/components/ui/SocialLoginLink/SocialLoginLink";
 import { Spinner } from "@/components/ui/Spinner/Spinner";
+import { Star } from "@/components/ui/Star/Star";
 import { SubCarouselArrow } from "@/components/ui/SubCarouselArrow/SubCarouselArrow";
 
 export {
@@ -12,4 +13,5 @@ export {
   SocialLoginLink,
   Spinner,
   SubCarouselArrow,
+  Star,
 };
