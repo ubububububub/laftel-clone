@@ -8,6 +8,7 @@ import { AverageStars } from "@/components/AverageStars/AverageStars";
 import { Day } from "@/components/Day/Day";
 import { Days } from "@/components/Days/Days";
 import { Episode } from "@/components/Episode/Episode";
+import { EpisodeItem } from "@/components/EpisodeItem/EpisodeItem";
 import { Footer } from "@/components/Footer/Footer";
 import { FooterIconList } from "@/components/FooterIconList/FooterIconList";
 import { FooterInformation } from "@/components/FooterInformation/FooterInformation";
@@ -38,6 +39,7 @@ export {
   Day,
   Days,
   Episode,
+  EpisodeItem,
   Footer,
   FooterIconList,
   FooterMenuList,

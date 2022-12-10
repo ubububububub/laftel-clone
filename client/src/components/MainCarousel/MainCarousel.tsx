@@ -23,10 +23,9 @@ const settings = {
 export function MainCarousel({ posters }: { posters: Poster[] }) {
   // map에 poster.isLink가 true이면 AnimeDetail 뺴고 렌더
   // map에 poster.isLink가 false이면 AnimeDetail 포함하고 렌더
-
   const mapedPosters = posters.map(poster => (
     <S.CarouselContainer key={poster._id}>
-      <AnimeDetail id={poster._id}>
+      <AnimeDetail id={poster.item}>
         <>
           <S.DescContainer>
             <S.LogoImg src={poster.logo} alt='로고' />

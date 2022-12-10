@@ -50,7 +50,7 @@ export function Animes({
 
   const mapedAnimes = animes.map((anime, index) => (
     <S.Container key={anime._id} {...{ isFinder }}>
-      <AnimeDetail id={anime._id}>
+      <AnimeDetail id={isPopular ? (anime as Time).item._id : anime._id}>
         <>
           <S.CarouselImgContainer {...{ isFinder }}>
             <S.CarouselCell ref={cellRef} {...{ isFinder }}>

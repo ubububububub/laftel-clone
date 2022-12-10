@@ -1,24 +1,36 @@
-import { useState, useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import { useState, useEffect, useRef } from "react";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import freeplay from "@/../public/assets/svgs/freeplay.svg";
 import modalclose from "@/../public/assets/svgs/modalclose.svg";
 import morearrow from "@/../public/assets/svgs/morearrow.svg";
 import watch from "@/../public/assets/svgs/watch.svg";
 import watched from "@/../public/assets/svgs/watched.svg";
+import { getDetail } from "@/apis";
 import { Episode } from "@/components";
 import { Star } from "@/components/svgs";
 import { Review } from "@/pages";
 import * as S from "@/pages/Detail/styled";
+import { DetailQuery } from "@/types/detail";
 
 export function Detail() {
   const navigate = useNavigate();
   const location = useLocation();
   const [path] = location.pathname.split(/detail|episode|review/);
-
   const [isShowing, setIsShowing] = useState(false);
   const [isToggle, setIsToggle] = useState(false);
   const [isActive, setIsActive] = useState("episode");
+  const { id } = useParams();
+  const barRef = useRef<HTMLAnchorElement>(null);
+
+  const { data } = useQuery<DetailQuery, AxiosError>({
+    queryKey: ["detail", id as string],
+    queryFn: () => getDetail(id as string),
+    staleTime: 60000 * 60,
+    refetchOnWindowFocus: false,
+  });
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -44,6 +56,15 @@ export function Detail() {
     navigate(-1);
   };
 
+  if (typeof data === "undefined") {
+    return null;
+  }
+
+  const reducedGenre =
+    data.genre.reduce((curr, prev) => {
+      return curr + "·" + prev;
+    }, "") + `·${data.releaseType}`;
+
   return (
     <>
       <S.Container>
@@ -57,10 +78,7 @@ export function Detail() {
           <S.Modal>
             <S.HeaderContainer>
               <S.PosterContainer>
-                <S.Poster
-                  src='https://image.laftel.net/items/thumbs/big/0dfb2845-629f-4f19-bc42-8c19e922e702.jpg'
-                  alt='애니메이션'
-                />
+                <S.Poster src={data.image} alt='애니메이션' />
               </S.PosterContainer>
               <S.HeaderWrapper>
                 <S.Header>
@@ -76,17 +94,17 @@ export function Detail() {
                       <S.TagList>
                         <S.TagItem>
                           <Star color='#fff' />
-                          <S.Rating>4.7</S.Rating>
+                          <S.Rating>{data.stars.toFixed(1)}</S.Rating>
                         </S.TagItem>
                       </S.TagList>
-                      <S.Title>닌자 잇토키</S.Title>
+                      <S.Title>{data.title}</S.Title>
                       <div>
-                        <S.Character> TVA·12세·방영중</S.Character>
+                        <S.Character>{reducedGenre.substring(1)}</S.Character>
                       </div>
                     </S.TitleContainer>
                     <S.DescContainer>
                       <S.Menu>
-                        <S.FreePlay>
+                        <S.FreePlay href='#'>
                           <S.FreePlayImg src={freeplay} alt='1화 무료보기' />
                           <S.FreePlayText>1화 무료보기</S.FreePlayText>
                         </S.FreePlay>
@@ -105,14 +123,7 @@ export function Detail() {
                       </S.Menu>
                       <S.Desc>
                         <S.StoryContainer>
-                          <S.Story {...{ isToggle }}>
-                            새로운 기술이 상용되는 근미래. SNS에서는 “홀로그램
-                            고스트” 라고 불려지는 미스터리 현상에 관한 소문이
-                            돌고 있다.사람의 시간을 훔치는 “입 꿰맨 남자”,밤마다
-                            사람들을 납치하는 “미라”…홀로그램 고스트는 바로
-                            옆에서 우리들을 노리고 있다…여기부터는 아무도 모르는
-                            세계의 뒷 이야기..
-                          </S.Story>
+                          <S.Story {...{ isToggle }}>{data.story}</S.Story>
                         </S.StoryContainer>
                       </S.Desc>
                       <S.More onClick={handleMoreButtonClick}>
@@ -140,16 +151,20 @@ export function Detail() {
                     에피소드
                   </S.ContentTableLink>
                   <S.ContentTableLink
+                    ref={barRef}
                     to={`${path}review`}
                     $isActive={isActive === "review"}
                     onClick={() => setIsActive("review")}
                     replace>
-                    사용자 평
+                    사용자 평 {data.reviewAmount}
                   </S.ContentTableLink>
                 </S.ContentTableList>
-                <S.ContentTableBar $isActive={isActive} />
+                <S.ContentTableBar
+                  $isActive={isActive}
+                  width={barRef.current?.offsetWidth}
+                />
               </S.ContentTableContainer>
-              {isActive === "episode" && <Episode />}
+              {isActive === "episode" && <Episode {...{ data }} />}
               {isActive === "review" && <Review />}
             </S.ContentContainer>
           </S.Modal>

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-const getBarWidth = (isActive: string) => {
+const getBarWidth = (isActive: string, width?: number) => {
   switch (isActive) {
     case "episode":
       return "67px";
     case "review":
-      return "71px";
+      return `${width}px`;
     default:
       return "";
   }
@@ -396,12 +396,16 @@ export const ContentTableLink = styled(Link)<{ $isActive: boolean }>`
   ${({ $isActive }) => $isActive && Active}
 `;
 
-export const ContentTableBar = styled.div<{ $isActive: string }>`
+export const ContentTableBar = styled.div<{
+  $isActive: string;
+  width?: number;
+}>`
   left: ${({ $isActive }) => $isActive && getBarLeftPos($isActive)};
   position: absolute;
   bottom: 0px;
   height: 0.4rem;
   background-color: ${({ theme: { colors } }) => colors.purple};
   transition: left 300ms ease-in-out 0s, width 300ms ease-in-out 0s;
-  width: ${({ $isActive }) => $isActive && getBarWidth($isActive)};
+  width: ${({ $isActive, width }) =>
+    $isActive && getBarWidth($isActive, width)};
 `;

@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { PostJoin, PostLogin } from "@/types/auth";
 import { DailyQuery } from "@/types/daily";
+import { DetailQuery, EpisodeQuery } from "@/types/detail";
 import { FinderQuery } from "@/types/finder";
 import { Anime, MainQuery } from "@/types/main";
 import { SearchQuery } from "@/types/search";
@@ -79,4 +80,20 @@ export const postLogin = async ({ email, password }: PostLogin) => {
     password,
   });
   return res.data;
+};
+
+export const getDetail = async (id: string): Promise<DetailQuery> => {
+  const res = await axios.get(`${import.meta.env.VITE_BASE}/main/item/${id}`);
+  return res.data;
+};
+
+export const getEpisode = async (id: string): Promise<EpisodeQuery[]> => {
+  const res = await axios.get(
+    `${import.meta.env.VITE_BASE}/main/item/${id}/episodes`,
+  );
+  return res.data;
+};
+
+export const putEpisodeViews = async ({ id }: { id: string }) => {
+  await axios.put(`${import.meta.env.VITE_BASE}/main/item/${id}/episodes`);
 };

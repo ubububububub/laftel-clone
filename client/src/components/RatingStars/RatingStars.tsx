@@ -39,6 +39,7 @@ export function RatingStars() {
     const posX = event.nativeEvent.offsetX;
     const width = event.currentTarget.offsetWidth;
     const halfOfWidth = width / 2;
+
     if (ratingStar) {
       return;
     }

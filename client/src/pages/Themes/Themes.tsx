@@ -19,7 +19,7 @@ export function Themes() {
   useSearchBox();
 
   const { data } = useQuery<ThemesQuery[], AxiosError>({
-    queryKey: ["Themes"],
+    queryKey: ["themes"],
     queryFn: getThemes,
     staleTime: 60000 * 60,
     refetchOnWindowFocus: false,

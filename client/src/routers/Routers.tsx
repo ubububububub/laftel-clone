@@ -48,22 +48,10 @@ export function Routers() {
         </Route>
         <Route path='membership' element={<Membership />} />
         <Route path='search/:searchtext' element={<Search />}>
-          <Route
-            path='/search/:searchtext/:title/detail'
-            element={<Detail />}
-          />
-          <Route
-            path='/search/:searchtext/:title/episode'
-            element={<Detail />}
-          />
-          <Route
-            path='/search/:searchtext/:title/review'
-            element={<Detail />}
-          />
-          <Route
-            path='/search/:searchtext/:title/related'
-            element={<Detail />}
-          />
+          <Route path='/search/:searchtext/:id/detail' element={<Detail />} />
+          <Route path='/search/:searchtext/:id/episode' element={<Detail />} />
+          <Route path='/search/:searchtext/:id/review' element={<Detail />} />
+          <Route path='/search/:searchtext/:id/related' element={<Detail />} />
         </Route>
         <Route path='themes' element={<Themes />} />
         <Route path='theme/:id/:themetitle' element={<Theme />}>

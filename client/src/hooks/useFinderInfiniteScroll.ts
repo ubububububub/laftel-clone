@@ -32,7 +32,7 @@ export function useFinderInfiniteScroll() {
     FinderQuery | Anime[],
     AxiosError
   >({
-    queryKey: ["Finder", ...tansfromStrings()],
+    queryKey: ["finder", ...tansfromStrings()],
     queryFn: async ({ pageParam = "" }) => {
       const { genre, xGenre, tag, xTag } = tansfromFetchHeaders();
       const data = await getFinderAnimes(pageParam, genre, xGenre, tag, xTag);
@@ -71,7 +71,6 @@ export function useFinderInfiniteScroll() {
 
     if (data.pages.length > 1) {
       const [newPage] = data.pages.slice(1);
-
       return [...firstPage, ...newPage];
     }
     return firstPage;

@@ -26,7 +26,7 @@ export function Theme() {
   useSearchBox();
 
   const { data } = useQuery<ThemeQuery, AxiosError>({
-    queryKey: ["Theme", id],
+    queryKey: ["theme", id],
     queryFn: () => getTheme(id),
     staleTime: 60000 * 60,
     refetchOnWindowFocus: false,

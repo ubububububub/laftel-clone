@@ -78,6 +78,8 @@ export function Finder() {
     return onUpdateReady(id, type);
   };
 
+  console.log(data);
+
   const mapedFilter = filters.map(el => {
     const mapedTag = el.item.map((item, filterIndex) => {
       return (
