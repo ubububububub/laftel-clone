@@ -13,17 +13,9 @@ interface SubCarouselProps {
   isPopular?: boolean;
 }
 
-interface CarouselStatus {
-  xPos: number;
-  xPosStack: number[];
-}
-
 export function SubCarousel({ animes, isShow, isPopular }: SubCarouselProps) {
   const [_, setReRender] = useState(false);
-  const carouselStatus = useRef<CarouselStatus>({
-    xPos: 0,
-    xPosStack: [],
-  });
+  const carouselXPos = useRef(0);
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const cellRef = useRef<HTMLDivElement | null>(null);
   const [isShowArrow, setShowArrow] = useState(false);
@@ -62,23 +54,13 @@ export function SubCarousel({ animes, isShow, isPopular }: SubCarouselProps) {
   };
 
   const resetCarouselStatus = () => {
-    carouselStatus.current = { xPos: 0, xPosStack: [] };
+    carouselXPos.current = 0;
 
     setReRender(current => !current);
   };
 
   const resetCarouselPos = (carousel: HTMLDivElement) => {
-    carousel.style.transform = `translate3d(-${carouselStatus.current.xPos}px, 0px, 0px)`;
-  };
-
-  const setDestinationXPos = (carouselSize: number, browserSize: number) => {
-    if (carouselSize - carouselStatus.current.xPos < browserSize * 2) {
-      carouselStatus.current.xPos +=
-        carouselSize - browserSize * Math.floor(carouselSize / browserSize);
-      return;
-    }
-
-    carouselStatus.current.xPos += browserSize;
+    carousel.style.transform = `translate3d(-${carouselXPos.current}px, 0px, 0px)`;
   };
 
   const notExceedBrowserWidthSize = (cellWidth: number, cellGap: number) =>
@@ -87,14 +69,15 @@ export function SubCarousel({ animes, isShow, isPopular }: SubCarouselProps) {
   const handleLeftArrowClick = () => {
     const carousel = carouselRef.current as HTMLDivElement;
 
-    if (carouselStatus.current.xPosStack.length === 0) {
-      return;
+    const browserSize = window.innerWidth;
+
+    if (carouselXPos.current < browserSize) {
+      carouselXPos.current -= carouselXPos.current;
+    } else {
+      carouselXPos.current -= browserSize;
     }
 
-    const xPos = carouselStatus.current.xPosStack.pop() as number;
-    carouselStatus.current.xPos = xPos;
-
-    carousel.style.transform = `translate3d(-${xPos}px, 0px, 0px)`;
+    carousel.style.transform = `translate3d(-${carouselXPos.current}px, 0px, 0px)`;
   };
 
   const handleRightArrowClick = () => {
@@ -106,29 +89,17 @@ export function SubCarousel({ animes, isShow, isPopular }: SubCarouselProps) {
     const carouselPadding = getElementSizePx(carousel, "padding-left");
 
     const cellSize = cellGap + cellWidth;
-    const totalCellSize = cellSize * animes.length;
     const carouselSize = cellSize * animes.length + carouselPadding;
     const browserSize = window.innerWidth;
 
-    if (
-      carouselStatus.current.xPos + browserSize ===
-      totalCellSize + carouselPadding
-    ) {
-      return;
+    if (carouselXPos.current + browserSize + browserSize > carouselSize) {
+      carouselXPos.current +=
+        carouselSize - (carouselXPos.current + browserSize);
+    } else {
+      carouselXPos.current += browserSize;
     }
 
-    carouselStatus.current.xPosStack = [
-      ...Array.from(
-        new Set([
-          ...carouselStatus.current.xPosStack,
-          carouselStatus.current.xPos,
-        ]),
-      ),
-    ];
-
-    setDestinationXPos(carouselSize, browserSize);
-
-    carousel.style.transform = `translate3d(-${carouselStatus.current.xPos}px, 0px, 0px)`;
+    carousel.style.transform = `translate3d(-${carouselXPos.current}px, 0px, 0px)`;
   };
 
   if (!isShow) {
