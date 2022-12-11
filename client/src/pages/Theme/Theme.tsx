@@ -14,9 +14,9 @@ import * as S from "@/pages/Theme/styled";
 import { ThemeQuery } from "@/types/theme";
 
 export function Theme() {
-  const { id, themetitle } = useParams();
+  const { themeid, themetitle } = useParams();
 
-  if (!id || !themetitle) {
+  if (!themeid || !themetitle) {
     return null;
   }
 
@@ -26,8 +26,8 @@ export function Theme() {
   useSearchBox();
 
   const { data } = useQuery<ThemeQuery, AxiosError>({
-    queryKey: ["theme", id],
-    queryFn: () => getTheme(id),
+    queryKey: ["theme", themeid],
+    queryFn: () => getTheme(themeid),
     staleTime: 60000 * 60,
     refetchOnWindowFocus: false,
     refetchOnMount: false,

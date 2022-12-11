@@ -17,7 +17,7 @@ export function AnimeDetail({
   if (path.includes("/theme")) {
     return (
       <S.ThemeLink
-        to={`${location.pathname}/${title}/detail`}
+        to={`${location.pathname}/${title}/${id}/detail`}
         state={{ backgrond: location }}>
         {children}
       </S.ThemeLink>
