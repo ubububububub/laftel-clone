@@ -21,24 +21,45 @@ const settings = {
 };
 
 export function MainCarousel({ posters }: { posters: Poster[] }) {
-  // map에 poster.isLink가 true이면 AnimeDetail 뺴고 렌더
-  // map에 poster.isLink가 false이면 AnimeDetail 포함하고 렌더
-  const mapedPosters = posters.map(poster => (
-    <S.CarouselContainer key={poster._id}>
-      <AnimeDetail id={poster.item}>
-        <>
-          <S.DescContainer>
-            <S.LogoImg src={poster.logo} alt='로고' />
-            <S.Desc>{poster.content}</S.Desc>
-            <S.CarouselButton type='button'>
-              <S.ButtonText>{poster.buttonText}</S.ButtonText>
-            </S.CarouselButton>
-          </S.DescContainer>
-          <S.CarosuselBackground src={poster.image} />
-        </>
-      </AnimeDetail>
-    </S.CarouselContainer>
-  ));
+  const mapedPosters = posters.map(poster => {
+    if (poster.link) {
+      return (
+        <S.CarouselContainer key={poster._id}>
+          <S.AdLink href={poster.link} target='_blank'>
+            <S.DescContainer>
+              <S.LogoImg src={poster.logo} alt='로고' />
+              <S.Desc>{poster.content}</S.Desc>
+              <S.CarouselButton type='button'>
+                <S.ButtonText>{poster.buttonText}</S.ButtonText>
+              </S.CarouselButton>
+            </S.DescContainer>
+            <S.CarosuselBackground src={poster.image} />
+          </S.AdLink>
+        </S.CarouselContainer>
+      );
+    }
+
+    if (!poster.item) {
+      return null;
+    }
+
+    return (
+      <S.CarouselContainer key={poster._id}>
+        <AnimeDetail id={poster.item}>
+          <>
+            <S.DescContainer>
+              <S.LogoImg src={poster.logo} alt='로고' />
+              <S.Desc>{poster.content}</S.Desc>
+              <S.CarouselButton type='button'>
+                <S.ButtonText>{poster.buttonText}</S.ButtonText>
+              </S.CarouselButton>
+            </S.DescContainer>
+            <S.CarosuselBackground src={poster.image} />
+          </>
+        </AnimeDetail>
+      </S.CarouselContainer>
+    );
+  });
 
   return (
     <S.Container>

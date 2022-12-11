@@ -27,6 +27,10 @@ export const Container = styled.section`
 
 export const CarouselContainer = styled.div``;
 
+export const AdLink = styled.a`
+  display: block;
+`;
+
 export const DescContainer = styled.div`
   position: absolute;
   left: 3.125em;
