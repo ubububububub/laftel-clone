@@ -11,7 +11,7 @@ export function ThemeCells({ themes }: { themes: ThemesProps[] }) {
   const navigate = useNavigate();
 
   const handleThemeClick = (id: string, title: string) => {
-    navigate(`/theme/${id}/${title}`);
+    navigate(`/themes/${id}/${title}`);
   };
 
   const mapedThemes = themes.map(({ _id, images, title }: Theme) => {

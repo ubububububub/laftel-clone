@@ -54,21 +54,21 @@ export function Routers() {
           <Route path='/search/:searchtext/:id/related' element={<Detail />} />
         </Route>
         <Route path='themes' element={<Themes />} />
-        <Route path='theme/:themeid/:themetitle' element={<Theme />}>
+        <Route path='themes/:themeid/:themetitle' element={<Theme />}>
           <Route
-            path='/theme/:themeid/:themetitle/:animetitle/:id/detail'
+            path='/themes/:themeid/:themetitle/:animetitle/:id/detail'
             element={<Detail />}
           />
           <Route
-            path='/theme/:themeid/:themetitle/:animetitle/:id/episode'
+            path='/themes/:themeid/:themetitle/:animetitle/:id/episode'
             element={<Detail />}
           />
           <Route
-            path='/theme/:themeid/:themetitle/:animetitle/:id/review'
+            path='/themes/:themeid/:themetitle/:animetitle/:id/review'
             element={<Detail />}
           />
           <Route
-            path='/theme/:themeid/:themetitle/:animetitle/:id/related'
+            path='/themes/:themeid/:themetitle/:animetitle/:id/related'
             element={<Detail />}
           />
         </Route>
