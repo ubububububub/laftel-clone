@@ -3,7 +3,7 @@ import { itemService, videoService } from "../../../services";
 import episodesController from "./episodes";
 import reviewsController from "./reviews";
 import relatedController from "./related";
-import { loginCheck } from "../../../middlewares";
+import { checkAccess } from "../../../middlewares";
 
 const itemController = Router();
 
@@ -18,21 +18,21 @@ itemController.get("/:itemId", async (req, res, next) => {
 });
 itemController.get("/:itemId/episodes", episodesController.get);
 itemController.put("/:itemId/episodes", episodesController.put);
-itemController.post("/:itemId/reviews", loginCheck, reviewsController.post);
+itemController.post("/:itemId/reviews", checkAccess, reviewsController.post);
 itemController.get("/:itemId/reviews", reviewsController.get);
 itemController.put(
   "/:itemId/reviews/:reviewId",
-  loginCheck,
+  checkAccess,
   reviewsController.put
 );
 itemController.delete(
   "/:itemId/reviews/:reviewId",
-  loginCheck,
+  checkAccess,
   reviewsController.delete
 );
 itemController.patch(
   "/:itemId/reviews/:reviewId",
-  loginCheck,
+  checkAccess,
   reviewsController.patch
 );
 itemController.get("/:itemId/related", relatedController.get);
