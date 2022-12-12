@@ -44,7 +44,7 @@ class UserService {
     );
     const refreshtoken = await jwt.create({}, "7d");
     await this.userModel.updateOne(email, { refreshtoken });
-    return { accesstoken, refreshtoken };
+    return { accesstoken, refreshtoken, email };
   }
   async findByEmail(email) {
     const user = await this.userModel.findByEmail(email);
