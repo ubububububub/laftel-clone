@@ -46,10 +46,7 @@ export function Login() {
   const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationFn: postLogin,
-    onSuccess: data => {
-      localStorage.setItem("refresh", data.refreshtoken);
-      return navigate("/", { replace: true });
-    },
+    onSuccess: () => navigate("/", { replace: true }),
   });
 
   const auths = {

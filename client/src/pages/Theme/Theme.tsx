@@ -42,7 +42,7 @@ export function Theme() {
       <S.Header>
         <Outlet />
         <S.ThemesTitle>{themetitle}</S.ThemesTitle>
-        <S.ThemesDesc>asdasdasd</S.ThemesDesc>
+        <S.ThemesDesc>{data.description}</S.ThemesDesc>
         <ThemeAnimes themes={data.items} />
       </S.Header>
     </S.Container>

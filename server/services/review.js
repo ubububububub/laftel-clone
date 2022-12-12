@@ -54,6 +54,9 @@ class ReviewService {
     const result = await this.avgStars(itemId);
     return result;
   }
+  async incLikes({ reviewId }) {
+    await this.reviewModel.updateOne(reviewId, { $inc: { likes: 1 } });
+  }
 }
 
 const reviewService = new ReviewService(reviewModel);

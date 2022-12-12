@@ -43,12 +43,12 @@ export const StarAverageStars = styled.div`
   transform: translateZ(0px);
 `;
 
-export const AverageBar = styled.div`
+export const AverageBar = styled.div<{ rating: number }>`
   position: absolute;
   width: 100%;
   height: 100%;
   background: ${({ theme: { colors } }) => colors.purple};
   will-change: transform;
   transition: transform 350ms ease-in-out 0s;
-  transform: translateX(-12%);
+  transform: ${({ rating }) => `translateX(${rating}%)`};
 `;

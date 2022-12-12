@@ -9,5 +9,6 @@ export interface Theme {
 
 export interface ThemeQuery {
   title: string;
+  description: string;
   items: Theme[];
 }

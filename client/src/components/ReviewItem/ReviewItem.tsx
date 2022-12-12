@@ -4,8 +4,14 @@ import like from "@/../public/assets/svgs/like.svg";
 import reviewbutton from "@/../public/assets/svgs/reviewbutton.svg";
 import * as S from "@/components/ReviewItem/styled";
 import { Star } from "@/components/ui";
+import { ReviewItemProps } from "@/types/review";
+import { transformDate } from "@/utils";
 
-export function ReviewItem() {
+const transfromStarFixed = (star: number) => {
+  return String(star).length === 1 ? `${star}.0` : `${star}`;
+};
+
+export function ReviewItem({ review }: ReviewItemProps) {
   const [isSettingToggle, setIsSettingToggle] = useState(false);
 
   const handleSettingClick = () => {
@@ -17,18 +23,18 @@ export function ReviewItem() {
       <S.ReviewHeader>
         <S.ReviewInfo>
           <S.ReviewRatings>
-            <Star rating='5.0' />
-            <S.ReviewRating>5.0</S.ReviewRating>
+            <Star rating={transfromStarFixed(review.star)} />
+            {review.star && <S.ReviewRating>{review.star}</S.ReviewRating>}
           </S.ReviewRatings>
-          <S.ReviewDate>1개월 전</S.ReviewDate>
+          <S.ReviewDate>{transformDate(review.updatedAt)}</S.ReviewDate>
         </S.ReviewInfo>
-        <S.ReviewWriter>아아아아나(znf*******)</S.ReviewWriter>
+        <S.ReviewWriter>{review.author}</S.ReviewWriter>
       </S.ReviewHeader>
-      <S.ReviewText>이걸 위해 스토리 다 스킵했지 ㅋㅋㅋ</S.ReviewText>
+      <S.ReviewText>{review.content}</S.ReviewText>
       <S.ReviewFooter>
         <S.LikeButton type='button'>
           <S.LikeImg src={like} alt='좋아요' />
-          <S.LikeCount>144</S.LikeCount>
+          <S.LikeCount>{review.likes || "좋아요"}</S.LikeCount>
         </S.LikeButton>
         <S.SettingButton type='button' onClick={handleSettingClick}>
           <S.SettingButtonImg src={reviewbutton} alt='리뷰 설정' />

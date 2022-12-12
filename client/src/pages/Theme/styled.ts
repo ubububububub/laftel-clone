@@ -11,7 +11,7 @@ export const Header = styled.div`
 `;
 
 export const ThemesTitle = styled.h2`
-  margin: 0px;
+  margin-bottom: 2rem;
   font-size: 3.2rem;
   font-weight: 800;
 `;
@@ -19,6 +19,6 @@ export const ThemesTitle = styled.h2`
 export const ThemesDesc = styled.p`
   margin: 1.6rem 0;
   line-height: 2.4rem;
-  white-space: pre-line;
-  word-break: break-all;
+  font-size: 1.4rem;
+  white-space: pre-wrap;
 `;

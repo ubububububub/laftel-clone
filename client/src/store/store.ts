@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { footer, scroll, search, filter } from "@/store/features";
+import { footer, scroll, search, filter, star } from "@/store/features";
 
 export const store = configureStore({
   reducer: {
@@ -8,6 +8,7 @@ export const store = configureStore({
     scroll,
     search,
     filter,
+    star,
   },
 });
 

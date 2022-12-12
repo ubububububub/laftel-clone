@@ -165,7 +165,7 @@ export function Detail() {
                 />
               </S.ContentTableContainer>
               {isActive === "episode" && <Episode {...{ data }} />}
-              {isActive === "review" && <Review />}
+              {isActive === "review" && <Review {...{ data }} />}
             </S.ContentContainer>
           </S.Modal>
         </S.ModalContainer>

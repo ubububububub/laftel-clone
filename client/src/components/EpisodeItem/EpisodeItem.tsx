@@ -3,16 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { putEpisodeViews } from "@/apis";
 import * as S from "@/components/EpisodeItem/styled";
 import { EpisodeItemProps } from "@/types/detail";
-
-function transformDate(createdAt: string) {
-  const date = new Date(createdAt);
-
-  if (date.getDate().toString().length === 1) {
-    return `${date.getFullYear()}.${date.getMonth()}.0${date.getDate()}`;
-  }
-
-  return `${date.getFullYear()}.${date.getMonth()}.${date.getDate()}`;
-}
+import { transformDate } from "@/utils";
 
 export function EpisodeItem({ episode }: EpisodeItemProps) {
   const { mutate } = useMutation({
@@ -24,7 +15,10 @@ export function EpisodeItem({ episode }: EpisodeItemProps) {
   };
 
   return (
-    <S.EpisodeLink href={episode.link} onClick={handleEpisodeLinkClick}>
+    <S.EpisodeLink
+      href={episode.link}
+      target='_blank'
+      onClick={handleEpisodeLinkClick}>
       <S.EpisodeItem>
         <S.Episode>
           <S.EpisodeImgContainer>

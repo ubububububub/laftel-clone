@@ -1,15 +1,24 @@
 import * as S from "@/components/AverageStars/styled";
 import { AverageStar } from "@/components/svgs";
+import { AverageStarsProps } from "@/types/detail";
 
-export function AverageStars() {
+const MAX_STARS = 5;
+const PERSENT_UNIT = 100;
+const TRANSFORM_UNIT = -1;
+
+const transformRatingWidthByRating = (rating: number) => {
+  return ((MAX_STARS - rating) / MAX_STARS) * (PERSENT_UNIT * TRANSFORM_UNIT);
+};
+
+export function AverageStars({ stars, reviewAmount }: AverageStarsProps) {
   return (
     <S.StarAverageContainer>
       <S.StarAverageTitle>평균 별점</S.StarAverageTitle>
-      <S.StarAverage>4.4</S.StarAverage>
-      <S.StarAverageCount>553개의 별점</S.StarAverageCount>
+      <S.StarAverage>{stars.toFixed(1)}</S.StarAverage>
+      <S.StarAverageCount>{`${reviewAmount}개의 별점`}</S.StarAverageCount>
       <S.StarAverageStars>
         <AverageStar />
-        <S.AverageBar />
+        <S.AverageBar rating={transformRatingWidthByRating(stars)} />
       </S.StarAverageStars>
     </S.StarAverageContainer>
   );

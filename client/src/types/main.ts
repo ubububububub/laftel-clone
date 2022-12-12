@@ -24,7 +24,7 @@ export interface DailyIndex {
 
 export interface Poster {
   _id: string;
-  item: string;
+  item?: string;
   image: string;
   logo: string;
   content: string;
@@ -32,6 +32,7 @@ export interface Poster {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  link?: string;
 }
 
 export interface Time {

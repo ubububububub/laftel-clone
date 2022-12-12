@@ -83,6 +83,7 @@ export const CarouselButton = styled.button`
   border-radius: 0.25em;
   font-size: 1.5em;
   background: ${({ theme: { colors } }) => colors.white};
+  cursor: pointer;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.7);

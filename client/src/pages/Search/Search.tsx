@@ -25,8 +25,6 @@ export function Search() {
     refetchOnWindowFocus: false,
   });
 
-  console.log(search);
-
   if (isError) {
     // 스테이터스 202번
     return (
