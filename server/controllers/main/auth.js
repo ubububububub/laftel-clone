@@ -1,17 +1,27 @@
 import { Router } from "express";
 import { userService } from "../../services";
-import { jwt } from "../../utils";
+import { jwt, redisClient } from "../../utils";
 
 const authController = Router();
+const redis = redisClient.v4;
 
-// authController.get("/check", async (req, res, next) => {
-//   try {
-//     const result = await userService.checkEmail(req.query);
-//     res.status(result ? 100 : 409).end();
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+authController.get("/email", async (req, res, next) => {
+  try {
+    const result = await userService.checkEmail(req.query);
+    if (result === "OK") res.status(100).end();
+    else next(new Error("conflict"));
+  } catch (err) {
+    next(err);
+  }
+});
+authController.post("/email", async (req, res, next) => {
+  try {
+    await userService.checkNumber(req.body);
+    res.status(100).end();
+  } catch (err) {
+    next(err);
+  }
+});
 authController.post("/join", async (req, res, next) => {
   try {
     await userService.join(req.body);
