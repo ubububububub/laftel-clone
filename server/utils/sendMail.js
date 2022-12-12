@@ -9,11 +9,11 @@ const transport = nodemailer.createTransport({
   },
 });
 
-export default async function sendMail(email) {
+export default async function sendMail(email, text) {
   await transport.sendMail({
     from: "Laftel <laftel@elice.io>",
     to: email,
     subject: "Welcome to Laftel",
-    text: "라프텔에 가입되었습니다.",
+    text,
   });
 }
