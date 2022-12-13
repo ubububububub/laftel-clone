@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { episodeService } from "../../services";
+import { episodeService, videoService } from "../../services";
 
 const episodeController = Router();
 
 episodeController.post("/", async (req, res, next) => {
   try {
-    await episodeService.create(req.body);
+    const episode = await episodeService.create(req.body);
+    await videoService.updateFirst(episode);
     res.status(201).end();
   } catch (err) {
     next(err);

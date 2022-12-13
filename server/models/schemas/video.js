@@ -16,6 +16,7 @@ const videoSchema = new Schema(
     },
     stars: { type: Number, required: true, default: 0 },
     reviewAmount: { type: Number, required: true, default: 0 },
+    first: { type: String, required: false },
   },
   {
     collection: "videos",

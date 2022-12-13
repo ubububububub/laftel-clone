@@ -32,18 +32,33 @@ class VideoService {
       items: [],
     };
     for (const { _id, title, genre } of theme.items) {
-      const { image, story, stars } = await this.videoModel.findByItem(_id);
-      withVideoInfo.items.push({ _id, title, genre, image, story, stars });
+      const { image, story, stars, first } = await this.videoModel.findByItem(
+        _id
+      );
+      withVideoInfo.items.push({
+        _id,
+        title,
+        genre,
+        image,
+        story,
+        stars,
+        first,
+      });
     }
     return withVideoInfo;
   }
   async getForDetail(item) {
-    const { image, story, stars, reviewAmount } =
+    const { image, story, stars, reviewAmount, first } =
       await this.videoModel.findByItem(item._id);
-    return { ...item, image, story, stars, reviewAmount };
+    return { ...item, image, story, stars, reviewAmount, first };
   }
   async updateStars({ itemId }, stars) {
     await this.videoModel.updateOne(itemId, stars);
+  }
+  async updateFirst({ item, link }) {
+    const { first } = await this.videoModel.findByItem(item);
+    if (first === undefined)
+      await this.videoModel.updateOne(item, { first: link });
   }
 }
 
