@@ -6,7 +6,8 @@ class EpisodeService {
   }
 
   async create(episodeInfo) {
-    await this.episodeModel.create(episodeInfo);
+    const { item, link } = await this.episodeModel.create(episodeInfo);
+    return { item, link };
   }
   async findByItem({ itemId }) {
     const episodes = await this.episodeModel.findByItem(itemId);
