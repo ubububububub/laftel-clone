@@ -11,7 +11,7 @@ export function EpisodeItem({ episode }: EpisodeItemProps) {
   });
 
   const handleEpisodeLinkClick = () => {
-    mutate({ id: episode._id });
+    mutate({ id: episode.item });
   };
 
   return (
