@@ -6,13 +6,12 @@ class ReviewService {
     this.reviewModel = reviewModel;
   }
 
-  async create({ itemId }, { accesstoken }, { content, star }) {
+  async create({ itemId }, { accesstoken }, body) {
     const { email } = jwt.decode(accesstoken);
     await this.reviewModel.create({
       item: itemId,
       author: email,
-      content,
-      star,
+      ...body,
     });
     const result = await this.avgStars(itemId);
     return result;

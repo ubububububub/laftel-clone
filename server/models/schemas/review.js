@@ -9,7 +9,7 @@ const reviewSchema = new Schema(
       index: true,
     },
     author: { type: String, required: true },
-    content: { type: String, required: true },
+    content: { type: String, required: false },
     star: { type: Number, required: true },
     likes: { type: Number, required: true, default: 0 },
   },
