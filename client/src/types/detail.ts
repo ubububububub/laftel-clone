@@ -10,6 +10,7 @@ export interface DetailQuery {
   story: string;
   stars: number;
   reviewAmount: number;
+  first: string;
 }
 
 export interface EpisodeProps {

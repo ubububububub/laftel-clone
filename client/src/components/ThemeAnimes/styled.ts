@@ -98,7 +98,7 @@ export const Tag = styled.div`
 
 export const AnimeStory = styled.p`
   margin: 1.6rem 0 0;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   line-height: 1.5;
   white-space: pre-wrap;
 `;

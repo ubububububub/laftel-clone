@@ -5,6 +5,7 @@ export interface Theme {
   image: string;
   story: string;
   stars: number;
+  first: string;
 }
 
 export interface ThemeQuery {

@@ -104,7 +104,7 @@ export function Detail() {
                     </S.TitleContainer>
                     <S.DescContainer>
                       <S.Menu>
-                        <S.FreePlay href='#'>
+                        <S.FreePlay href={data.first} target='_blank'>
                           <S.FreePlayImg src={freeplay} alt='1화 무료보기' />
                           <S.FreePlayText>1화 무료보기</S.FreePlayText>
                         </S.FreePlay>
