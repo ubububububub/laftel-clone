@@ -132,7 +132,7 @@ const star = createSlice({
       state[3].status = "full";
       state[4].status = "full";
     },
-    everyEmpty(state) {
+    allEmpty(state) {
       state[0].status = "empty";
       state[1].status = "empty";
       state[2].status = "empty";
@@ -159,5 +159,5 @@ export const {
   fifthEmpty,
   fifthHalf,
   fifthFull,
-  everyEmpty,
+  allEmpty,
 } = star.actions;

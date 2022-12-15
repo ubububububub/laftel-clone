@@ -1,42 +1,63 @@
-import { QueryClient, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { getReview, postReview } from "@/apis";
+import { deleteReview, getReview, postReview, putReview } from "@/apis";
 import { ReviewQuery } from "@/types/review";
 
-// export getReviewRatingByStar = (star:number) {
-//   switch(star) {
-//     case 1:
-//       return {}
-//   }
-// }
-
-export function useReview(itemId: string) {
-  const [review, setReview] = useState("");
-  const [rating, setRating] = useState("0");
-  const [ratingText, setRatingText] = useState("별점을 남겨주세요");
-  const [ratingStar, setRatingStar] = useState(false);
+export function useReview(id: string) {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const queryClient = new QueryClient();
+  const [isTextAreaShowing, setIsTextAreaShowing] = useState(false);
 
-  const { data } = useQuery<ReviewQuery[], AxiosError>({
-    queryKey: ["review", itemId],
-    queryFn: () => getReview(itemId),
+  const { data } = useQuery<ReviewQuery | undefined, AxiosError>({
+    queryKey: ["review", id],
+    queryFn: () => getReview(id),
   });
-  // onSuccess: (data: ReviewQuery) => {
-  //   setReview(data.content);
-  //   setRating(data.star)
-  //   setRatingStar(true);
-  // },
 
   const createReview = useMutation({
     mutationFn: async ({ content, star }: { content: string; star: number }) =>
-      postReview(itemId, content, star),
-    onSuccess: () => queryClient.invalidateQueries(["review", itemId]),
+      postReview(id, content, star),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["review", id]);
+      queryClient.invalidateQueries(["detail", id]);
+    },
     onError: () => navigate("/auth/email"),
   });
 
-  return { data, createReview };
+  const updateReview = useMutation({
+    mutationFn: async ({
+      reviewId,
+      content,
+      star,
+    }: {
+      reviewId: string;
+      content?: string;
+      star?: number;
+    }) => putReview(id, reviewId, content, star),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["review", id]);
+      queryClient.invalidateQueries(["detail", id]);
+      setIsTextAreaShowing(false);
+    },
+  });
+
+  const removeReview = useMutation({
+    mutationFn: async ({ reviewId }: { reviewId: string }) =>
+      deleteReview(id, reviewId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["review", id]);
+      queryClient.invalidateQueries(["detail", id]);
+    },
+  });
+
+  return {
+    data,
+    isTextAreaShowing,
+    setIsTextAreaShowing,
+    createReview,
+    updateReview,
+    removeReview,
+  };
 }

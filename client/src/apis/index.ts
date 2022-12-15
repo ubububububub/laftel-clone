@@ -11,24 +11,31 @@ import { ThemeQuery } from "@/types/theme";
 import { ThemesQuery } from "@/types/themes";
 import { AuthToken } from "@/utils/authtoken";
 
-const getRefreshTokenAuth = async (api: string) => {
-  await axios.get(api, {
-    headers: {
-      "Content-Type": "application/json",
-      accesstoken: AuthToken.getToken("access"),
-      refreshtoken: AuthToken.getToken("refresh"),
+const getRefreshTokenAuth = async () => {
+  const res = await axios.get(
+    `${import.meta.env.VITE_BASE}/main/auth/refresh`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        accesstoken: AuthToken.getToken("access"),
+        refreshtoken: AuthToken.getToken("refresh"),
+      },
     },
-  });
+  );
+
+  AuthToken.setToken("access", res.data.accesstoken);
 };
 
-const checkAuthToken = async (api: string, status: number) => {
+const checkAuthToken = async () => {
   try {
-    console.log(api, status);
-    if (status === 401) {
-      await getRefreshTokenAuth(api);
-    }
-  } catch (e) {
-    throw new Error("Token Error");
+    await getRefreshTokenAuth();
+  } catch (error: any) {
+    AuthToken.deleteUserInfo();
+    console.error("로그인 페이지로 이동");
+    throw new Error(error);
+
+    // if (error.response.status === 401) {
+    // }
   }
 };
 
@@ -104,7 +111,9 @@ export const postLogin = async ({ email, password }: PostLogin) => {
   });
   AuthToken.setToken("refresh", res.data.refreshtoken);
   AuthToken.setToken("access", res.data.accesstoken);
-  AuthToken.setToken("email", res.data.email);
+
+  const [id] = res.data.email.split("@");
+  AuthToken.setToken("id", id);
 };
 
 export const getDetail = async (id: string): Promise<DetailQuery> => {
@@ -123,28 +132,53 @@ export const putEpisodeViews = async ({ id }: { id: string }) => {
   await axios.put(`${import.meta.env.VITE_BASE}/main/item/${id}/episodes`);
 };
 
-export const getReview = async (itemId: string): Promise<ReviewQuery[]> => {
+export const getReview = async (
+  itemId: string,
+): Promise<ReviewQuery | undefined> => {
   const api = `${import.meta.env.VITE_BASE}/main/item/${itemId}/reviews`;
 
-  const res = await axios.get(api);
-  await checkAuthToken(api, res.status);
+  try {
+    const res = await axios.get(api, {
+      headers: {
+        "Contet-Type": "application/json",
+        accesstoken: AuthToken.getToken("access"),
+      },
+    });
 
-  return res.data;
+    return res.data;
+  } catch (error: any) {
+    if (error.response.status === 401) {
+      await checkAuthToken();
+    }
+  }
 };
 
 export const postReview = async (id: string, content: string, star: number) => {
   const api = `${import.meta.env.VITE_BASE}/main/item/${id}/reviews`;
 
-  const res = await axios.post(api, {
-    headers: {
-      "Contet-Type": "application/json",
-      accesstoken: AuthToken.getToken("access"),
+  const res = await axios.post(
+    api,
+    {
+      content,
+      star,
     },
-    content,
-    star,
-  });
+    {
+      headers: {
+        "Contet-Type": "application/json",
+        accesstoken: AuthToken.getToken("access"),
+      },
+    },
+  );
 
-  await checkAuthToken(api, res.status);
+  try {
+    if (res.status === 401) {
+      await getRefreshTokenAuth();
+    }
+  } catch (error: any) {
+    if (error.response.status === 401) {
+      await checkAuthToken();
+    }
+  }
 };
 
 export const putReview = async (
@@ -157,28 +191,23 @@ export const putReview = async (
     import.meta.env.VITE_BASE
   }/main/item/${itemId}/reviews/${reviewId}`;
 
-  let body: { content?: string; star?: number } = {};
-
-  if (content && star) {
-    body = { content, star };
-  } else if (content) {
-    body = { content };
-  } else if (star) {
-    body = { star };
-  }
+  const body = { content, star };
 
   const res = await axios.put(api, body, {
     headers: {
-      "Content-Type": `application/json`,
+      "Contet-Type": "application/json",
+      accesstoken: AuthToken.getToken("access"),
     },
   });
 
   try {
     if (res.status === 401) {
-      await getRefreshTokenAuth(api);
+      await getRefreshTokenAuth();
     }
-  } catch (e) {
-    throw new Error("리프레쉬 토큰이 없습니다.");
+  } catch (error: any) {
+    if (error.response.status === 401) {
+      await checkAuthToken();
+    }
   }
 };
 
@@ -187,13 +216,20 @@ export const deleteReview = async (itemId: string, reviewId: string) => {
     import.meta.env.VITE_BASE
   }/main/item/${itemId}/reviews/${reviewId}`;
 
-  const res = await axios.delete(api);
+  const res = await axios.delete(api, {
+    headers: {
+      "Contet-Type": "application/json",
+      accesstoken: AuthToken.getToken("access"),
+    },
+  });
 
   try {
     if (res.status === 401) {
-      await getRefreshTokenAuth(api);
+      await getRefreshTokenAuth();
     }
-  } catch (e) {
-    throw new Error("리프레쉬 토큰이 없습니다.");
+  } catch (error: any) {
+    if (error.response.status === 401) {
+      await checkAuthToken();
+    }
   }
 };

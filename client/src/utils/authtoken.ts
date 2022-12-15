@@ -10,6 +10,6 @@ export class AuthToken {
   static deleteUserInfo() {
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
-    localStorage.removeItem("email");
+    localStorage.removeItem("id");
   }
 }

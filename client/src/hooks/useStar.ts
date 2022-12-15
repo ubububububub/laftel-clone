@@ -17,7 +17,7 @@ import {
   fifthEmpty,
   fifthHalf,
   fifthFull,
-  everyEmpty,
+  allEmpty,
 } from "@/store/features/starSlice";
 
 export function useStar() {
@@ -43,7 +43,7 @@ export function useStar() {
   const onFifthHalf = useCallback(() => dispatch(fifthHalf()), [dispatch]);
   const onFifthFull = useCallback(() => dispatch(fifthFull()), [dispatch]);
 
-  const onEveryEmpty = useCallback(() => dispatch(everyEmpty()), [dispatch]);
+  const onAllEmpty = useCallback(() => dispatch(allEmpty()), [dispatch]);
 
   return {
     onFirstEmpty,
@@ -61,6 +61,6 @@ export function useStar() {
     onFifthEmpty,
     onFifthHalf,
     onFifthFull,
-    onEveryEmpty,
+    onAllEmpty,
   };
 }

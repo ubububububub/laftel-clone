@@ -1,6 +1,7 @@
 import * as S from "@/components/AverageStars/styled";
 import { AverageStar } from "@/components/svgs";
 import { AverageStarsProps } from "@/types/detail";
+import { transfromStarFixed } from "@/utils/review";
 
 const MAX_STARS = 5;
 const PERSENT_UNIT = 100;
@@ -14,7 +15,7 @@ export function AverageStars({ stars, reviewAmount }: AverageStarsProps) {
   return (
     <S.StarAverageContainer>
       <S.StarAverageTitle>평균 별점</S.StarAverageTitle>
-      <S.StarAverage>{stars.toFixed(1)}</S.StarAverage>
+      <S.StarAverage>{transfromStarFixed(stars)}</S.StarAverage>
       <S.StarAverageCount>{`${reviewAmount}개의 별점`}</S.StarAverageCount>
       <S.StarAverageStars>
         <AverageStar />

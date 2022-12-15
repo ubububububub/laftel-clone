@@ -139,7 +139,6 @@ export function Detail() {
                 </S.Header>
               </S.HeaderWrapper>
             </S.HeaderContainer>
-
             <S.ContentContainer>
               <S.ContentTableContainer>
                 <S.ContentTableList>

@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const ReviewDateContainerMargin = css`
+  margin-top: 0;
+`;
 
 export const ReviewItem = styled.li`
   list-style: none;
@@ -33,8 +37,33 @@ export const ReviewRating = styled.span`
   color: ${({ theme: { colors } }) => colors.black};
 `;
 
-export const ReviewDate = styled.span`
+export const ReviewDateContainer = styled.div<{ isStar: boolean }>`
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
   margin-top: 0.8rem;
+
+  ${({ isStar }) => !isStar && ReviewDateContainerMargin};
+`;
+
+export const MyReview = styled.label`
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 2rem;
+  padding: 0px 0.4rem;
+  background-color: ${({ theme: { colors } }) => colors.lightPurple};
+  border-radius: 0.4rem;
+  margin-right: 0.8rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  color: ${({ theme: { colors } }) => colors.purple};
+`;
+
+export const ReviewDate = styled.span`
   font-size: 1.4rem;
   color: ${({ theme: { colors } }) => colors.lightGray};
 `;

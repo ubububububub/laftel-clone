@@ -11,10 +11,6 @@ const Rating = css`
   color: ${({ theme: { colors } }) => colors.black};
 `;
 
-const RatingText = css`
-  color: ${({ theme: { colors } }) => colors.black};
-`;
-
 export const MyStarContainer = styled.div`
   flex: 1 1 0%;
   display: flex;
@@ -46,12 +42,12 @@ export const MyStarRating = styled.div<{ rating: string }>`
   ${({ rating }) => rating !== "0" && Rating}
 `;
 
-export const MyStarDesc = styled.div<{ ratingText: string }>`
+export const MyStarDesc = styled.div<{ rating?: string }>`
   font-size: 1.4rem;
   transition: color 350ms ease-in-out 0s;
   color: ${({ theme: { colors } }) => colors.reviewDesc};
 
-  ${({ ratingText }) => ratingText !== "별점을 남겨주세요" && RatingText}
+  ${({ rating }) => rating !== "0" && Rating}
 `;
 
 export const MyStars = styled.div`
@@ -61,10 +57,10 @@ export const MyStars = styled.div`
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const MyStar = styled.span`
-  cursor: pointer;
   margin-left: -0.25rem;
   margin-right: -0.25rem;
 `;
