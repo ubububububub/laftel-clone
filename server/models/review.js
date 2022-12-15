@@ -25,6 +25,10 @@ class ReviewModel {
   async deleteOne(_id) {
     await this.reviewDB.deleteOne({ _id });
   }
+  async findByItemAuthor(item, author) {
+    const review = await this.reviewDB.findOne({ item, author });
+    return review;
+  }
 }
 
 const reviewModel = new ReviewModel(reviewDB);

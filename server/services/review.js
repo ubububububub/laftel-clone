@@ -6,21 +6,30 @@ class ReviewService {
     this.reviewModel = reviewModel;
   }
 
-  async create({ itemId }, { accesstoken }, { content, star }) {
+  async create({ itemId }, { accesstoken }, body) {
     const { email } = jwt.decode(accesstoken);
+    const review = await this.reviewModel.findByItemAuthor(itemId, email);
+    if (review) throw new Error("conflict");
     await this.reviewModel.create({
       item: itemId,
       author: email,
-      content,
-      star,
+      ...body,
     });
     const result = await this.avgStars(itemId);
     return result;
   }
-  async findByItem({ itemId }) {
+  async findByItem({ itemId }, { accesstoken }) {
     const reviews = await this.reviewModel.findByItem(itemId);
     if (reviews.length === 0) throw new Error("no content");
-    return reviews;
+    if (accesstoken) {
+      const { email } = jwt.decode(accesstoken);
+      const { _id, star } = await this.reviewModel.findByItemAuthor(
+        itemId,
+        email
+      );
+      return { user: { _id, star }, reviews };
+    }
+    return { reviews };
   }
   async modify({ itemId, reviewId }, { accesstoken }, { content, star }) {
     await this.checkAuthor(reviewId, accesstoken);

@@ -16,7 +16,7 @@ const reviewsController = {
   },
   get: async (req, res, next) => {
     try {
-      const reviews = await reviewService.findByItem(req.params);
+      const reviews = await reviewService.findByItem(req.params, req.headers);
       res.status(200).json(reviews);
     } catch (err) {
       next(err);
