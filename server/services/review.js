@@ -23,13 +23,15 @@ class ReviewService {
     if (reviews.length === 0) throw new Error("no content");
     if (accesstoken) {
       const { email } = jwt.decode(accesstoken);
-      const { _id, star } = await this.reviewModel.findByItemAuthor(
-        itemId,
-        email
-      );
-      return { user: { _id, star }, reviews };
+      const review = await this.reviewModel.findByItemAuthor(itemId, email);
+      return {
+        user: review ? review : {},
+        reviews: review
+          ? reviews.filter(({ _id }) => String(review._id) !== String(_id))
+          : reviews,
+      };
     }
-    return { reviews };
+    return { user: {}, reviews };
   }
   async modify({ itemId, reviewId }, { accesstoken }, { content, star }) {
     await this.checkAuthor(reviewId, accesstoken);
