@@ -33,11 +33,11 @@ class ReviewService {
     }
     return { user: {}, reviews };
   }
-  async modify({ itemId, reviewId }, { accesstoken }, { content, star }) {
+  async modify({ itemId, reviewId }, { accesstoken }, body) {
     await this.checkAuthor(reviewId, accesstoken);
     const reviewInfo = {};
-    if (content !== undefined) reviewInfo.content = content;
-    if (star !== undefined) reviewInfo.star = star;
+    if ("content" in body) reviewInfo.content = body.content;
+    if ("star" in body) reviewInfo.star = body.star;
     await this.reviewModel.updateOne(reviewId, reviewInfo);
     const result = await this.avgStars(itemId);
     return result;
