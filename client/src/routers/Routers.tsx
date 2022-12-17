@@ -9,6 +9,7 @@ import {
   AuthSelect,
   Daily,
   Detail,
+  Email,
   Finder,
   Home,
   Join,
@@ -86,6 +87,7 @@ export function Routers() {
         <Route index element={<AuthRedirect />} />
         <Route path='agreement' element={<Agreement />} />
         <Route path='join' element={<Join />} />
+        <Route path='email' element={<Email />} />
         <Route path='*' element={<AuthRedirect />} />
       </Route>
     </Routes>

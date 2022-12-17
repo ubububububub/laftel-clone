@@ -5,6 +5,7 @@ import { AuthRedirect } from "@/pages/AuthRedirect";
 import { AuthSelect } from "@/pages/AuthSelect/AuthSelect";
 import { Daily } from "@/pages/Daily/Daily";
 import { Detail } from "@/pages/Detail/Detail";
+import { Email } from "@/pages/Email/Email";
 import { Finder } from "@/pages/Finder/Finder";
 import { Home } from "@/pages/Home/Home";
 import { Join } from "@/pages/Join/Join";
@@ -25,6 +26,7 @@ export {
   AuthSelect,
   Daily,
   Detail,
+  Email,
   Finder,
   Home,
   Join,

@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { postJoin } from "@/apis";
+import { postEmail } from "@/apis";
 import { AuthInput } from "@/components";
 import * as S from "@/pages/Join/styled";
 import { regexEmail, regexPassword } from "@/utils/regex";
@@ -53,10 +53,20 @@ export function Join() {
   });
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { mutate } = useMutation({
-    mutationFn: postJoin,
+
+  const emailAuthMutation = useMutation({
+    mutationFn: postEmail,
     onSuccess: () => {
-      return navigate("/auth/email", { replace: true });
+      const { isLaftel, isInfo, isEvent } = state;
+      return navigate("/auth/process/email", {
+        state: {
+          email: auth.email,
+          password: auth.password,
+          isLaftel,
+          isInfo,
+          isEvent,
+        },
+      });
     },
   });
 
@@ -82,13 +92,7 @@ export function Join() {
     const { isLaftel, isInfo, isEvent } = state;
 
     if ((isLaftel && isInfo) || isEvent) {
-      mutate({
-        email: auth.email,
-        password: auth.password,
-        isLaftel,
-        isInfo,
-        isEvent,
-      });
+      emailAuthMutation.mutate({ email: auth.email });
     }
   };
 
@@ -106,7 +110,7 @@ export function Join() {
       <S.JoinForm onSubmit={handleJoinSubmit}>
         {mapedInputs}
         <S.JoinLink disabled={!activeJoinLink()} type='submit'>
-          가입
+          다음
         </S.JoinLink>
       </S.JoinForm>
     </S.Container>
