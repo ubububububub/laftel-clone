@@ -14,3 +14,5 @@ export interface PostLogin {
 export interface DecodedAccessToken {
   email: string;
 }
+
+export type useEmailArgs = PostJoin;
