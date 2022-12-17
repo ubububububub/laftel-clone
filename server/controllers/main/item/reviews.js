@@ -1,14 +1,22 @@
-import { reviewService, videoService } from "../../../services";
+import { reviewService, videoService, starService } from "../../../services";
 
 const reviewsController = {
   post: async (req, res, next) => {
+    const { content, star } = req.body;
+    let reviewAmount = 0,
+      stars = 0;
     try {
-      const result = await reviewService.create(
-        req.params,
-        req.headers,
-        req.body
-      );
-      await videoService.updateStars(req.params, result);
+      if (content) {
+        reviewAmount = await reviewService.create(
+          req.params,
+          req.headers,
+          content
+        );
+      }
+      if (star) {
+        stars = await starService.create(req.params, req.headers, star);
+      }
+      await videoService.updateStars(req.params, { reviewAmount, stars });
       res.status(201).end();
     } catch (err) {
       next(err);
@@ -17,28 +25,38 @@ const reviewsController = {
   get: async (req, res, next) => {
     try {
       const reviews = await reviewService.findByItem(req.params, req.headers);
-      res.status(200).json(reviews);
+      const stars = await starService.findByItem(req.params, req.headers);
+      res.status(200).json({ reviews, stars });
     } catch (err) {
       next(err);
     }
   },
   put: async (req, res, next) => {
+    const { content, star } = req.body;
     try {
-      const result = await reviewService.modify(
-        req.params,
-        req.headers,
-        req.body
-      );
-      await videoService.updateStars(req.params, result);
+      if (content) await reviewService.modify(req.params, req.headers, content);
+      if (star) {
+        const result = await starService.modify(req.params, req.headers, star);
+        await videoService.updateStars(req.params, { star });
+      }
       res.status(200).end();
     } catch (err) {
       next(err);
     }
   },
-  delete: async (req, res, next) => {
+  deleteReview: async (req, res, next) => {
     try {
-      const result = await reviewService.delete(req.params, req.headers);
-      await videoService.updateStars(req.params, result);
+      const reviewAmount = await reviewService.delete(req.params, req.headers);
+      await videoService.updateStars(req.params, { reviewAmount });
+      res.status(200).end();
+    } catch (err) {
+      next(err);
+    }
+  },
+  deleteStar: async (req, res, next) => {
+    try {
+      const stars = await starService.delete(req.params, req.headers);
+      await videoService.updateStars(req.params, { stars });
       res.status(200).end();
     } catch (err) {
       next(err);

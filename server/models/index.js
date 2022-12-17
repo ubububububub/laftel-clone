@@ -6,6 +6,7 @@ import videoModel from "./video";
 import episodeModel from "./episode";
 import reviewModel from "./review";
 import userModel from "./user";
+import starModel from "./star";
 
 export {
   itemModel,
@@ -16,4 +17,5 @@ export {
   episodeModel,
   reviewModel,
   userModel,
+  starModel,
 };

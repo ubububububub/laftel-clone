@@ -26,9 +26,14 @@ itemController.put(
   reviewsController.put
 );
 itemController.delete(
-  "/:itemId/reviews/:reviewId",
+  "/:itemId/reviews/:reviewId/review",
   checkAccess,
-  reviewsController.delete
+  reviewsController.deleteReview
+);
+itemController.delete(
+  "/:itemId/reviews/:reviewId/star",
+  checkAccess,
+  reviewsController.deleteStar
 );
 itemController.patch(
   "/:itemId/reviews/:reviewId",

@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 
-const reviewSchema = new Schema(
+const starSchema = new Schema(
   {
     item: {
       type: Schema.Types.ObjectId,
@@ -9,13 +9,12 @@ const reviewSchema = new Schema(
       index: true,
     },
     author: { type: String, required: true },
-    content: { type: String, required: false },
-    likes: { type: Number, required: true, default: 0 },
+    star: { type: Number, required: false },
   },
   {
-    collection: "reviews",
+    collection: "stars",
     timestamps: true,
   }
 );
 
-export default reviewSchema;
+export default starSchema;
