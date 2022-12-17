@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { deleteReview, getReview, postReview, putReview } from "@/apis";
 import { ReviewQuery } from "@/types/review";
+import { AuthToken } from "@/utils/authtoken";
 
 export function useReview(id: string) {
   const queryClient = useQueryClient();
@@ -23,7 +24,10 @@ export function useReview(id: string) {
       queryClient.invalidateQueries(["review", id]);
       queryClient.invalidateQueries(["detail", id]);
     },
-    onError: () => navigate("/auth/email"),
+    onError: () => {
+      AuthToken.deleteUserInfo();
+      navigate("/auth/email");
+    },
   });
 
   const updateReview = useMutation({
@@ -41,6 +45,9 @@ export function useReview(id: string) {
       queryClient.invalidateQueries(["detail", id]);
       setIsTextAreaShowing(false);
     },
+    onError: () => {
+      AuthToken.deleteUserInfo();
+    },
   });
 
   const removeReview = useMutation({
@@ -49,6 +56,9 @@ export function useReview(id: string) {
     onSuccess: () => {
       queryClient.invalidateQueries(["review", id]);
       queryClient.invalidateQueries(["detail", id]);
+    },
+    onError: () => {
+      AuthToken.deleteUserInfo();
     },
   });
 

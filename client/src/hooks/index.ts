@@ -1,4 +1,5 @@
 import { useDailyAnimes } from "@/hooks/useDailyAnimes";
+import { useEmail } from "@/hooks/useEmail";
 import { useFilter } from "@/hooks/useFilter";
 import { useFinderInfiniteScroll } from "@/hooks/useFinderInfiniteScroll";
 import { useFixScroll } from "@/hooks/useFixScroll";
@@ -12,6 +13,7 @@ import { useValitdate } from "@/hooks/useValitdate";
 
 export {
   useDailyAnimes,
+  useEmail,
   useFilter,
   useFinderInfiniteScroll,
   useFooterToggle,

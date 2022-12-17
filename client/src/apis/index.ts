@@ -233,3 +233,23 @@ export const deleteReview = async (itemId: string, reviewId: string) => {
     }
   }
 };
+
+export const postEmail = async ({ email }: { email: string }) => {
+  const api = `${import.meta.env.VITE_BASE}/main/auth/email`;
+
+  await axios.post(api, {
+    email,
+  });
+};
+
+export const postEmailAuthNumber = async (
+  email: string,
+  authNumber: number,
+) => {
+  const api = `${import.meta.env.VITE_BASE}/main/auth/certify`;
+
+  await axios.post(api, {
+    email,
+    number: authNumber,
+  });
+};
