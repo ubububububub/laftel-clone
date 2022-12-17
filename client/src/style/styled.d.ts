@@ -24,6 +24,7 @@ declare module "styled-components" {
       filterTitle: "#40415d";
       reviewDesc: "#ababab";
       email: "#636363";
+      nowPlayHover: "#7963ff";
     };
   }
 }

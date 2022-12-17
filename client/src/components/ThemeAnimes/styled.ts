@@ -21,6 +21,7 @@ const Tags = css`
 `;
 
 export const ThemeItem = styled.div`
+  position: relative;
   width: 100%;
   border-radius: 4px;
   display: flex;
@@ -103,7 +104,10 @@ export const AnimeStory = styled.p`
   white-space: pre-wrap;
 `;
 
-export const PlayContainer = styled.div`
+export const PlayContainer = styled.a`
+  position: absolute;
+  right: 2.4rem;
+  bottom: 2.4rem;
   flex: 1 1 0%;
   display: flex;
   align-items: flex-end;
@@ -125,6 +129,10 @@ export const PlayButton = styled.button`
   font-weight: 500;
   cursor: pointer;
   background: ${({ theme: { colors } }) => colors.purple};
+
+  &:hover {
+    background: ${({ theme: { colors } }) => colors.nowPlayHover};
+  }
 `;
 
 export const PlayIcon = styled.img`

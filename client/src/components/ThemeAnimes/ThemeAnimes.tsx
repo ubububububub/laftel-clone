@@ -7,7 +7,7 @@ import { Theme } from "@/types/theme";
 
 export function ThemeAnimes({ themes }: { themes: Theme[] }) {
   const mapedThems = themes.map(
-    ({ _id, title, genre, image, story, stars }) => {
+    ({ _id, title, genre, image, story, stars, first }) => {
       const mapedGenre = genre.map((tag, index) => (
         <S.Tag key={index}>{tag}</S.Tag>
       ));
@@ -29,15 +29,15 @@ export function ThemeAnimes({ themes }: { themes: Theme[] }) {
                   {mapedGenre}
                 </S.Boxes>
                 <S.AnimeStory>{story}</S.AnimeStory>
-                <S.PlayContainer>
-                  <S.PlayButton type='button'>
-                    <S.PlayIcon src={play} alt='지금 재생' />
-                    지금 재생
-                  </S.PlayButton>
-                </S.PlayContainer>
               </S.DescConatiner>
             </S.ThemeContainer>
           </AnimeDetail>
+          <S.PlayContainer target='_blank' href={first}>
+            <S.PlayButton type='button'>
+              <S.PlayIcon src={play} alt='지금 재생' />
+              지금 재생
+            </S.PlayButton>
+          </S.PlayContainer>
         </S.ThemeItem>
       );
     },

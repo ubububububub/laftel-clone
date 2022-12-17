@@ -18,4 +18,8 @@ export const ReviewTitle = styled.h4`
 export const ReviewList = styled.ul`
   padding: 0px;
   margin: 1.6rem 0px 0px;
+
+  li + li {
+    border-top: 1px solid ${({ theme: { colors } }) => colors.cream};
+  }
 `;
