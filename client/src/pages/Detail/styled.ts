@@ -127,7 +127,6 @@ export const HeaderWrapper = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  border-radius: 0.4rem 0.4rem 0 0;
 `;
 
 export const Header = styled.header`

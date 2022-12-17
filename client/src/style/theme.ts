@@ -22,6 +22,7 @@ const theme: DefaultTheme = {
     filterBorder: "#e9eaef",
     filterTitle: "#40415d",
     reviewDesc: "#ababab",
+    email: "#636363",
   },
 };
 
