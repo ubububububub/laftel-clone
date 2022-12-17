@@ -23,6 +23,7 @@ const theme: DefaultTheme = {
     filterTitle: "#40415d",
     reviewDesc: "#ababab",
     email: "#636363",
+    nowPlayHover: "#7963ff",
   },
 };
 
