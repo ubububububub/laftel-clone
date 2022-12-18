@@ -45,7 +45,7 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
   const handleUpdateClick = () => {
     if (!reviewData) return;
 
-    if (reviewText === reviewData.user.content) return;
+    if (reviewText === reviewData.user.content || !reviewText) return;
 
     updateReview.mutate({
       reviewId: reviewData.user._id,
