@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import { AverageStars, RatingStars, Reviews } from "@/components";
+import { ReviewInput, Reviews, StarRating } from "@/components";
 import * as S from "@/components/Review/styled";
 import { useReview } from "@/hooks";
 import { ReviewProps } from "@/types/detail";
@@ -20,9 +20,7 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
     removeReview,
   } = useReview(_id);
 
-  const handleReviewFocus = () => {
-    setIsFocus(true);
-  };
+  const handleReviewFocus = () => setIsFocus(true);
 
   const handleReviewBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
     if (isHover) {
@@ -37,9 +35,7 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
 
   const handleTextAreaChange = ({
     target,
-  }: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewText(target.value);
-  };
+  }: React.ChangeEvent<HTMLTextAreaElement>) => setReviewText(target.value);
 
   const handleCancelClick = () => {
     setReviewText("");
@@ -47,13 +43,9 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
   };
 
   const handleUpdateClick = () => {
-    if (!reviewData) {
-      return;
-    }
+    if (!reviewData) return;
 
-    if (reviewText === reviewData.user.content) {
-      return;
-    }
+    if (reviewText === reviewData.user.content) return;
 
     updateReview.mutate({
       reviewId: reviewData.user._id,
@@ -62,126 +54,63 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
   };
 
   const handleRegisterClick = () => {
-    if (!reviewText) {
-      return;
-    }
+    if (!reviewText) return;
 
     createReview.mutate({ content: reviewText, star: Number(rating) });
     setReviewText("");
   };
 
+  const starRatingProps = {
+    _id,
+    rating,
+    setRating,
+    stars,
+    reviewAmount,
+  };
+
+  const reviewInputProps = {
+    isFocus,
+    setIsHover,
+    inputRef,
+    reviewText,
+    handleReviewFocus,
+    handleReviewBlur,
+    handleTextAreaChange,
+    isTextAreaShowing,
+    handleCancelClick,
+    reviewData,
+    handleUpdateClick,
+    handleRegisterClick,
+  };
+
   if (!reviewData) {
     return (
       <S.Container>
-        {/* 리뷰가 아예 없을때 */}
-        <S.StarContainer>
-          <RatingStars
-            {...{ rating }}
-            onSetRating={setRating}
-            onCreateReview={createReview}
-            onUpdateReview={updateReview}
-          />
-          <AverageStars {...{ stars }} {...{ reviewAmount }} />
-        </S.StarContainer>
+        <StarRating {...starRatingProps} />
         <S.ReviewContainer>
-          <S.TextAreaContainer
-            {...{ isFocus }}
-            onMouseOver={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}>
-            <S.TextArea
-              ref={inputRef}
-              value={reviewText}
-              placeholder='이 작품에 대한 내 평가를 남겨보세요!'
-              onFocus={handleReviewFocus}
-              onBlur={handleReviewBlur}
-              onChange={handleTextAreaChange}
-            />
-            <S.TextAreaFooter {...{ isFocus }}>
-              <S.TextLength>{reviewText.length}/300</S.TextLength>
-              <div>
-                {!isTextAreaShowing && (
-                  <S.RegisterButton
-                    type='button'
-                    {...{ reviewText }}
-                    onClick={handleRegisterClick}>
-                    등록
-                  </S.RegisterButton>
-                )}
-              </div>
-            </S.TextAreaFooter>
-          </S.TextAreaContainer>
+          <ReviewInput {...reviewInputProps} />
         </S.ReviewContainer>
       </S.Container>
     );
   }
 
+  const reviewsProps = {
+    inputRef,
+    reviewAmount,
+    data: reviewData,
+    onSetReviewText: setReviewText,
+    onRemoveReview: removeReview,
+    onSetIsTextAreaShowing,
+  };
+
   if (!reviewData.user.star) {
     return (
       <S.Container>
-        {/* 리뷰 별점 있을때 */}
-        <S.StarContainer>
-          <RatingStars
-            {...{ rating }}
-            onSetRating={setRating}
-            onCreateReview={createReview}
-            onUpdateReview={updateReview}
-          />
-          <AverageStars {...{ stars }} {...{ reviewAmount }} />
-        </S.StarContainer>
+        <StarRating {...starRatingProps} />
         <S.ReviewContainer>
           {!reviewData.user.content ||
-            (isTextAreaShowing && (
-              <S.TextAreaContainer
-                {...{ isFocus }}
-                onMouseOver={() => setIsHover(true)}
-                onMouseLeave={() => setIsHover(false)}>
-                <S.TextArea
-                  ref={inputRef}
-                  value={reviewText}
-                  placeholder='이 작품에 대한 내 평가를 남겨보세요!'
-                  onFocus={handleReviewFocus}
-                  onBlur={handleReviewBlur}
-                  onChange={handleTextAreaChange}
-                />
-                <S.TextAreaFooter {...{ isFocus }}>
-                  <S.TextLength>{reviewText.length}/300</S.TextLength>
-                  <div>
-                    {isTextAreaShowing ? (
-                      <>
-                        <S.CancelButton
-                          type='button'
-                          onClick={handleCancelClick}>
-                          취소
-                        </S.CancelButton>
-                        <S.SaveButton
-                          type='button'
-                          isChangedReview={
-                            reviewText === reviewData.user.content
-                          }
-                          onClick={handleUpdateClick}>
-                          저장
-                        </S.SaveButton>
-                      </>
-                    ) : (
-                      <S.RegisterButton
-                        type='button'
-                        {...{ reviewText }}
-                        onClick={handleRegisterClick}>
-                        등록
-                      </S.RegisterButton>
-                    )}
-                  </div>
-                </S.TextAreaFooter>
-              </S.TextAreaContainer>
-            ))}
-          <Reviews
-            {...{ inputRef }}
-            {...{ reviewAmount }}
-            data={reviewData}
-            onSetReviewText={setReviewText}
-            onRemoveReview={removeReview}
-            {...{ onSetIsTextAreaShowing }}
-          />
+            (isTextAreaShowing && <ReviewInput {...reviewInputProps} />)}
+          <Reviews {...reviewsProps} />
         </S.ReviewContainer>
       </S.Container>
     );
@@ -189,67 +118,11 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
 
   return (
     <S.Container>
-      {/* 리뷰 별점 없을때 */}
-      <S.StarContainer>
-        <RatingStars
-          myReview={reviewData.user}
-          {...{ rating }}
-          onSetRating={setRating}
-          onCreateReview={createReview}
-          onUpdateReview={updateReview}
-        />
-        <AverageStars {...{ stars }} {...{ reviewAmount }} />
-      </S.StarContainer>
+      <StarRating {...starRatingProps} />
       <S.ReviewContainer>
         {!reviewData.user.content ||
-          (isTextAreaShowing && (
-            <S.TextAreaContainer
-              {...{ isFocus }}
-              onMouseOver={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)}>
-              <S.TextArea
-                ref={inputRef}
-                value={reviewText}
-                placeholder='이 작품에 대한 내 평가를 남겨보세요!'
-                onFocus={handleReviewFocus}
-                onBlur={handleReviewBlur}
-                onChange={handleTextAreaChange}
-              />
-              <S.TextAreaFooter {...{ isFocus }}>
-                <S.TextLength>{reviewText.length}/300</S.TextLength>
-                <div>
-                  {isTextAreaShowing ? (
-                    <>
-                      <S.CancelButton type='button' onClick={handleCancelClick}>
-                        취소
-                      </S.CancelButton>
-                      <S.SaveButton
-                        type='button'
-                        isChangedReview={reviewText === reviewData.user.content}
-                        onClick={handleUpdateClick}>
-                        저장
-                      </S.SaveButton>
-                    </>
-                  ) : (
-                    <S.RegisterButton
-                      type='button'
-                      {...{ reviewText }}
-                      onClick={handleRegisterClick}>
-                      등록
-                    </S.RegisterButton>
-                  )}
-                </div>
-              </S.TextAreaFooter>
-            </S.TextAreaContainer>
-          ))}
-        <Reviews
-          {...{ inputRef }}
-          {...{ reviewAmount }}
-          data={reviewData}
-          onSetReviewText={setReviewText}
-          onRemoveReview={removeReview}
-          {...{ onSetIsTextAreaShowing }}
-        />
+          (isTextAreaShowing && <ReviewInput {...reviewInputProps} />)}
+        <Reviews {...reviewsProps} />
       </S.ReviewContainer>
     </S.Container>
   );

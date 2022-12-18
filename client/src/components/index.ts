@@ -24,9 +24,11 @@ import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
 import { RatingStars } from "@/components/RatingStars/RatingStars";
 import { Review } from "@/components/Review/Review";
+import { ReviewInput } from "@/components/ReviewInput/ReviewInput";
 import { ReviewItem } from "@/components/ReviewItem/ReviewItem";
 import { Reviews } from "@/components/Reviews/Reviews";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
+import { StarRating } from "@/components/StarRating/StarRating";
 import { SubCarousel } from "@/components/SubCarousel/SubCarousel";
 import { ThemeAnimes } from "@/components/ThemeAnimes/ThemeAnimes";
 import { ThemeCells } from "@/components/ThemeCells/ThemeCells";
@@ -57,9 +59,11 @@ export {
   Products,
   RatingStars,
   Review,
+  ReviewInput,
   ReviewItem,
   Reviews,
   SearchInput,
+  StarRating,
   SubCarousel,
   Animes,
   ThemeAnimes,
