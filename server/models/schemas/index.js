@@ -6,6 +6,7 @@ import videoSchema from "./video";
 import episodeSchema from "./episode";
 import reviewSchema from "./review";
 import userSchema from "./user";
+import starSchema from "./star";
 
 export {
   itemSchema,
@@ -16,4 +17,5 @@ export {
   episodeSchema,
   reviewSchema,
   userSchema,
+  starSchema,
 };
