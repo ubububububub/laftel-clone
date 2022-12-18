@@ -1,1 +1,1 @@
-export * from "@/Routers/Routers";
+export * from "@/routers/Routers";
