@@ -72,3 +72,28 @@ export type ReviewItemProps = {
   >;
   onSetIsTextAreaShowing?: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+export interface ReviewInputProps {
+  isFocus: boolean;
+  setIsHover: React.Dispatch<React.SetStateAction<boolean>>;
+  inputRef: React.RefObject<HTMLTextAreaElement>;
+  reviewText: string;
+  handleReviewFocus: () => void;
+  handleReviewBlur: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+  handleTextAreaChange: ({
+    target,
+  }: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  isTextAreaShowing: boolean;
+  handleCancelClick: () => void;
+  reviewData?: ReviewQuery;
+  handleUpdateClick: () => void;
+  handleRegisterClick: () => void;
+}
+
+export interface StarRatingProps {
+  _id: string;
+  rating: string;
+  setRating: React.Dispatch<React.SetStateAction<string>>;
+  stars: number;
+  reviewAmount: number;
+}

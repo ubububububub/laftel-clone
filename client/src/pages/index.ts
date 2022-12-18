@@ -1,7 +1,7 @@
 import { Agreement } from "@/pages/Agreement/Agreement";
 import { Auth } from "@/pages/Auth/Auth";
 import { AuthLogin } from "@/pages/AuthLogin/AuthLogin";
-import { AuthRedirect } from "@/pages/AuthRedirect";
+import { AuthRedirect } from "@/pages/AuthRedirect/AuthRedirect";
 import { AuthSelect } from "@/pages/AuthSelect/AuthSelect";
 import { Daily } from "@/pages/Daily/Daily";
 import { Detail } from "@/pages/Detail/Detail";

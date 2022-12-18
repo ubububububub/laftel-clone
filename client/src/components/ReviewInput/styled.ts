@@ -18,19 +18,6 @@ const ReviewInput = css`
   color: ${({ theme: { colors } }) => colors.purple};
 `;
 
-export const Container = styled.div`
-  margin-top: 2.4rem;
-  font-family: inherit;
-  line-height: 1.5;
-  letter-spacing: normal;
-`;
-
-export const ReviewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.6rem;
-`;
-
 export const TextAreaContainer = styled.div<{ isFocus: boolean }>`
   opacity: 1;
   height: calc(11.2rem);
