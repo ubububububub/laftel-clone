@@ -7,6 +7,7 @@ import { AuthInput } from "@/components/AuthInput/AuthInput";
 import { AverageStars } from "@/components/AverageStars/AverageStars";
 import { Day } from "@/components/Day/Day";
 import { Days } from "@/components/Days/Days";
+import { DetailHeader } from "@/components/DetailHeader/DetailHeader";
 import { Episode } from "@/components/Episode/Episode";
 import { EpisodeItem } from "@/components/EpisodeItem/EpisodeItem";
 import { Footer } from "@/components/Footer/Footer";
@@ -22,6 +23,7 @@ import { NavLeftList } from "@/components/NavLeftList/NavLeftList";
 import { NavRightList } from "@/components/NavRightList/NavRightList";
 import { Products } from "@/components/Products/Products";
 import { RatingStars } from "@/components/RatingStars/RatingStars";
+import { Review } from "@/components/Review/Review";
 import { ReviewItem } from "@/components/ReviewItem/ReviewItem";
 import { Reviews } from "@/components/Reviews/Reviews";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
@@ -38,6 +40,7 @@ export {
   AverageStars,
   Day,
   Days,
+  DetailHeader,
   Episode,
   EpisodeItem,
   Footer,
@@ -53,6 +56,7 @@ export {
   NavRightList,
   Products,
   RatingStars,
+  Review,
   ReviewItem,
   Reviews,
   SearchInput,

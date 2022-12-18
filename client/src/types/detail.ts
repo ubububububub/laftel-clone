@@ -17,6 +17,8 @@ export interface EpisodeProps {
   data: DetailQuery;
 }
 
+export type DetailHeaderProps = EpisodeProps;
+
 export type ReviewProps = EpisodeProps;
 
 export interface AverageStarsProps {
