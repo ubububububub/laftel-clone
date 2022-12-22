@@ -21,9 +21,9 @@ class StarService {
   async findByItem({ itemId }, { accesstoken }, reviews) {
     const stars = await this.starModel.findByItem(itemId);
     if (stars.length === 0) return reviews;
-    const reviewsWithStar = { user: {}, reviews: [] };
+    const reviewsWithStar = { user: {}, reviews: [], starsCount: stars.length };
     const findStar = (author) => stars.find((star) => star.author === author);
-    if (reviews.user) {
+    if (Object.keys(reviews.user).length) {
       reviewsWithStar.user = {
         _id: reviews.user._id,
         author: reviews.user.author,
