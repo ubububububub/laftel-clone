@@ -20,7 +20,7 @@ class ReviewService {
   }
   async findByItem({ itemId }, { accesstoken }) {
     const reviews = await this.reviewModel.findByItem(itemId);
-    if (reviews.length === 0) return {};
+    if (reviews.length === 0) return { user: {}, reviews: [] };
     if (accesstoken) {
       const { email } = jwt.decode(accesstoken);
       const review = await this.reviewModel.findByItemAuthor(itemId, email);
