@@ -3,7 +3,6 @@ import * as S from "@/components/Reviews/styled";
 import { ReviewsProps } from "@/types/review";
 
 export function Reviews({
-  inputRef,
   reviewAmount,
   data,
   onSetReviewText,
@@ -13,6 +12,7 @@ export function Reviews({
   const mapedData = data.reviews.map(review => (
     <ReviewItem key={review._id} {...{ review }} />
   ));
+
   return (
     <>
       <S.ReviewsHeader>
@@ -22,7 +22,6 @@ export function Reviews({
         {data.user.content && (
           <ReviewItem
             myReview={data.user}
-            {...{ inputRef }}
             {...{ onSetReviewText }}
             {...{ onRemoveReview }}
             {...{ onSetIsTextAreaShowing }}

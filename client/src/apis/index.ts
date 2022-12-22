@@ -153,9 +153,12 @@ export const getReview = async (
   }
 };
 
-export const postReview = async (id: string, content: string, star: number) => {
+export const postReview = async (
+  id: string,
+  content?: string,
+  star?: number,
+) => {
   const api = `${import.meta.env.VITE_BASE}/main/item/${id}/reviews`;
-
   const res = await axios.post(
     api,
     {
@@ -214,7 +217,30 @@ export const putReview = async (
 export const deleteReview = async (itemId: string, reviewId: string) => {
   const api = `${
     import.meta.env.VITE_BASE
-  }/main/item/${itemId}/reviews/${reviewId}`;
+  }/main/item/${itemId}/reviews/${reviewId}/review`;
+
+  const res = await axios.delete(api, {
+    headers: {
+      "Contet-Type": "application/json",
+      accesstoken: AuthToken.getToken("access"),
+    },
+  });
+
+  try {
+    if (res.status === 401) {
+      await getRefreshTokenAuth();
+    }
+  } catch (error: any) {
+    if (error.response.status === 401) {
+      await checkAuthToken();
+    }
+  }
+};
+
+export const deleteRatingStar = async (itemId: string, reviewId: string) => {
+  const api = `${
+    import.meta.env.VITE_BASE
+  }/main/item/${itemId}/reviews/${reviewId}/star`;
 
   const res = await axios.delete(api, {
     headers: {

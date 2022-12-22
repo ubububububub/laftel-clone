@@ -8,7 +8,6 @@ import { ReviewItemProps } from "@/types/review";
 import { transformDate } from "@/utils";
 
 export function ReviewItem({
-  inputRef,
   review,
   myReview,
   onSetReviewText,
@@ -22,13 +21,17 @@ export function ReviewItem({
   };
 
   const handleUpdateClick = () => {
-    if (!onSetIsTextAreaShowing || !onSetReviewText || !myReview) {
+    if (
+      !onSetIsTextAreaShowing ||
+      !onSetReviewText ||
+      !myReview ||
+      !myReview.content
+    ) {
       return;
     }
 
     onSetReviewText(myReview.content);
     onSetIsTextAreaShowing(true);
-    // inputRef.current?.focus();
   };
 
   const handleRemoveClick = () => {
@@ -38,7 +41,6 @@ export function ReviewItem({
 
     onSetReviewText("");
     onRemoveReview.mutate({ reviewId: myReview._id });
-    // inputRef.current?.blur();
   };
 
   return (
@@ -46,23 +48,23 @@ export function ReviewItem({
       <S.ReviewHeader>
         <S.ReviewInfo>
           <S.ReviewRatings>
-            {review && review.star !== 0 && (
+            {review && review.star && (
               <>
                 <Star rating={String(review.star)} />
                 <S.ReviewRating>{review.star}</S.ReviewRating>
               </>
             )}
-            {myReview && myReview.star !== 0 && (
+            {myReview && myReview.star && (
               <>
                 <Star rating={String(myReview.star)} />
                 <S.ReviewRating>{myReview.star}</S.ReviewRating>
               </>
             )}
           </S.ReviewRatings>
-          {review && (
+          {review && review.updatedAt && (
             <S.ReviewDate>{transformDate(review.updatedAt)}</S.ReviewDate>
           )}
-          {myReview && (
+          {myReview && myReview.updatedAt && (
             <S.ReviewDateContainer isStar={!!myReview.star}>
               <S.MyReview>내 평가</S.MyReview>
               <S.ReviewDate>{transformDate(myReview.updatedAt)}</S.ReviewDate>
@@ -75,10 +77,10 @@ export function ReviewItem({
       {review && <S.ReviewText>{review.content}</S.ReviewText>}
       {myReview && <S.ReviewText>{myReview.content}</S.ReviewText>}
       <S.ReviewFooter>
-        <S.LikeButton type='button'>
+        {/* <S.LikeButton type='button'>
           <S.LikeImg src={like} alt='좋아요' />
           <S.LikeCount>{review?.likes || "좋아요"}</S.LikeCount>
-        </S.LikeButton>
+        </S.LikeButton> */}
         {myReview && (
           <S.SettingButton type='button' onClick={handleSettingClick}>
             <S.SettingButtonImg src={reviewbutton} alt='리뷰 설정' />

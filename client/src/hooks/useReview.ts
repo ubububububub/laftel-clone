@@ -3,7 +3,13 @@ import { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { deleteReview, getReview, postReview, putReview } from "@/apis";
+import {
+  deleteRatingStar,
+  deleteReview,
+  getReview,
+  postReview,
+  putReview,
+} from "@/apis";
 import { ReviewQuery } from "@/types/review";
 import { AuthToken } from "@/utils/authtoken";
 
@@ -62,6 +68,18 @@ export function useReview(id: string) {
     },
   });
 
+  const removeRatingStar = useMutation({
+    mutationFn: async ({ reviewId }: { reviewId: string }) =>
+      deleteRatingStar(id, reviewId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["review", id]);
+      queryClient.invalidateQueries(["detail", id]);
+    },
+    onError: () => {
+      AuthToken.deleteUserInfo();
+    },
+  });
+
   return {
     data,
     isTextAreaShowing,
@@ -69,5 +87,6 @@ export function useReview(id: string) {
     createReview,
     updateReview,
     removeReview,
+    removeRatingStar,
   };
 }

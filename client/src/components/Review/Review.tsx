@@ -20,6 +20,10 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
     removeReview,
   } = useReview(_id);
 
+  if (!reviewData) {
+    return null;
+  }
+
   const handleReviewFocus = () => setIsFocus(true);
 
   const handleReviewBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -56,7 +60,7 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
   const handleRegisterClick = () => {
     if (!reviewText) return;
 
-    createReview.mutate({ content: reviewText, star: Number(rating) });
+    createReview.mutate({ content: reviewText, star: 0 });
     setReviewText("");
   };
 
@@ -65,7 +69,7 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
     rating,
     setRating,
     stars,
-    reviewAmount,
+    starsCount: reviewData.starsCount,
   };
 
   const reviewInputProps = {
@@ -83,7 +87,10 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
     handleRegisterClick,
   };
 
-  if (!reviewData) {
+  if (
+    !Object.keys(reviewData.user).length &&
+    !Object.keys(reviewData.reviews).length
+  ) {
     return (
       <S.Container>
         <StarRating {...starRatingProps} />
@@ -95,7 +102,6 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
   }
 
   const reviewsProps = {
-    inputRef,
     reviewAmount,
     data: reviewData,
     onSetReviewText: setReviewText,
@@ -103,26 +109,15 @@ export function Review({ data: { stars, reviewAmount, _id } }: ReviewProps) {
     onSetIsTextAreaShowing,
   };
 
-  if (!reviewData.user.star) {
-    return (
-      <S.Container>
-        <StarRating {...starRatingProps} />
-        <S.ReviewContainer>
-          {!reviewData.user.content ||
-            (isTextAreaShowing && <ReviewInput {...reviewInputProps} />)}
-          <Reviews {...reviewsProps} />
-        </S.ReviewContainer>
-      </S.Container>
-    );
-  }
-
   return (
     <S.Container>
       <StarRating {...starRatingProps} />
       <S.ReviewContainer>
-        {!reviewData.user.content ||
-          (isTextAreaShowing && <ReviewInput {...reviewInputProps} />)}
-        <Reviews {...reviewsProps} />
+        {(!reviewData.user.content || isTextAreaShowing) && (
+          <ReviewInput {...reviewInputProps} />
+        )}
+        {(Object.keys(reviewData.reviews).length !== 0 ||
+          reviewData.user.content) && <Reviews {...reviewsProps} />}
       </S.ReviewContainer>
     </S.Container>
   );

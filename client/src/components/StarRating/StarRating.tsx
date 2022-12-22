@@ -8,20 +8,24 @@ export function StarRating({
   rating,
   setRating,
   stars,
-  reviewAmount,
+  starsCount,
 }: StarRatingProps) {
-  const { data: reviewData, createReview, updateReview } = useReview(_id);
+  const { data: reviewData, createReview, removeRatingStar } = useReview(_id);
+
+  if (!reviewData) {
+    return null;
+  }
 
   return (
     <S.StarContainer>
       <RatingStars
-        myReview={reviewData?.user}
+        myReview={reviewData.user}
         {...{ rating }}
         onSetRating={setRating}
         onCreateReview={createReview}
-        onUpdateReview={updateReview}
+        onDeleteRatingStar={removeRatingStar}
       />
-      <AverageStars {...{ stars }} {...{ reviewAmount }} />
+      <AverageStars {...{ stars }} {...{ starsCount }} />
     </S.StarContainer>
   );
 }

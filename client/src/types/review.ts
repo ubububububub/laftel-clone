@@ -1,21 +1,20 @@
 import { UseMutationResult } from "@tanstack/react-query";
-interface Review {
+
+export interface Review {
   _id: string;
   author: string;
-  content: string;
-  star: number;
-  likes: number;
-  createdAt: string;
-  updatedAt: string;
-  item: string;
-  __v: string;
+  content?: string;
+  likes?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  star?: number;
 }
 
 export interface RatingStarsProps {
   rating: string;
-  myReview?: Review;
+  myReview: Review;
   onSetRating: React.Dispatch<React.SetStateAction<string>>;
-  onCreateReview?: UseMutationResult<
+  onCreateReview: UseMutationResult<
     void,
     unknown,
     {
@@ -24,25 +23,23 @@ export interface RatingStarsProps {
     },
     unknown
   >;
-  onUpdateReview?: UseMutationResult<
+  onDeleteRatingStar: UseMutationResult<
     void,
     unknown,
     {
       reviewId: string;
-      content?: string | undefined;
-      star?: number | undefined;
     },
     unknown
   >;
 }
 
 export interface ReviewQuery {
-  user: Review;
   reviews: Review[];
+  user: Review;
+  starsCount?: number;
 }
 
 export interface ReviewsProps {
-  inputRef: React.RefObject<HTMLTextAreaElement>;
   reviewAmount: number;
   data: ReviewQuery;
   onSetReviewText: React.Dispatch<React.SetStateAction<string>>;
@@ -58,7 +55,6 @@ export interface ReviewsProps {
 }
 
 export type ReviewItemProps = {
-  inputRef?: React.RefObject<HTMLTextAreaElement>;
   review?: Review;
   myReview?: Review;
   onSetReviewText?: React.Dispatch<React.SetStateAction<string>>;
@@ -95,5 +91,5 @@ export interface StarRatingProps {
   rating: string;
   setRating: React.Dispatch<React.SetStateAction<string>>;
   stars: number;
-  reviewAmount: number;
+  starsCount: number | undefined;
 }

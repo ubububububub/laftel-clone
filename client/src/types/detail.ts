@@ -23,7 +23,7 @@ export type ReviewProps = EpisodeProps;
 
 export interface AverageStarsProps {
   stars: number;
-  reviewAmount: number;
+  starsCount: number | undefined;
 }
 
 export interface EpisodeQuery {

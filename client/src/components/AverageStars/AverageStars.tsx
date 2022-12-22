@@ -11,12 +11,12 @@ const transformRatingWidthByRating = (rating: number) => {
   return ((MAX_STARS - rating) / MAX_STARS) * (PERSENT_UNIT * TRANSFORM_UNIT);
 };
 
-export function AverageStars({ stars, reviewAmount }: AverageStarsProps) {
+export function AverageStars({ stars, starsCount }: AverageStarsProps) {
   return (
     <S.StarAverageContainer>
       <S.StarAverageTitle>평균 별점</S.StarAverageTitle>
       <S.StarAverage>{transfromStarFixed(stars)}</S.StarAverage>
-      <S.StarAverageCount>{`${reviewAmount}개의 별점`}</S.StarAverageCount>
+      <S.StarAverageCount>{`${starsCount ?? 0}개의 별점`}</S.StarAverageCount>
       <S.StarAverageStars>
         <AverageStar />
         <S.AverageBar rating={transformRatingWidthByRating(stars)} />

@@ -86,7 +86,7 @@ export const ReviewText = styled.article`
 export const ReviewFooter = styled.div`
   display: flex;
   -webkit-box-pack: justify;
-  justify-content: space-between;
+  justify-content: flex-end;
   -webkit-box-align: center;
   align-items: center;
 `;

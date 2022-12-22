@@ -11,7 +11,7 @@ export function RatingStars({
   rating,
   onSetRating,
   onCreateReview,
-  onUpdateReview,
+  onDeleteRatingStar,
 }: RatingStarsProps) {
   const ratingStars = useAppSelector(state => state.star);
   const starStatus = useStar();
@@ -20,10 +20,9 @@ export function RatingStars({
     event: React.MouseEvent<HTMLSpanElement>,
     name: string,
   ) => {
-    if (myReview) {
+    if (myReview.star) {
       return;
     }
-
     const posX = event.nativeEvent.offsetX;
     const width = event.currentTarget.offsetWidth;
     const halfOfWidth = width / 2;
@@ -87,7 +86,7 @@ export function RatingStars({
   };
 
   const handleStarsMouseLeave = () => {
-    if (myReview) {
+    if (myReview.star) {
       return;
     }
 
@@ -96,12 +95,7 @@ export function RatingStars({
   };
 
   const handleStarsClick = () => {
-    if (!onCreateReview || !onUpdateReview) {
-      return;
-    }
-
-    // 리뷰도 없고 평점도 없는 상황 // 작성
-    if (!myReview) {
+    if (!myReview.star) {
       starStatus.onAllEmpty();
       return onCreateReview.mutate({
         content: "",
@@ -109,26 +103,13 @@ export function RatingStars({
       });
     }
 
-    // 리뷰가 있고 평점이 있는 상황 // 수정
-    if (myReview.star && myReview.content) {
-      starStatus.onAllEmpty();
-      return onUpdateReview.mutate({
-        reviewId: myReview._id,
-        star: 0,
-      });
-    }
-
-    // 리뷰가 없고 평점만 있는 상황 // 수정
-    if (myReview.star && !myReview.content) {
-      starStatus.onAllEmpty();
-      return onUpdateReview.mutate({
-        reviewId: myReview._id,
-        star: 0,
-      });
-    }
+    starStatus.onAllEmpty();
+    onDeleteRatingStar.mutate({
+      reviewId: myReview._id,
+    });
   };
 
-  if (!myReview) {
+  if (!myReview.star) {
     const mapedRatingStars = ratingStars.map(ratingStar => (
       <S.MyStar
         key={ratingStar.name}
