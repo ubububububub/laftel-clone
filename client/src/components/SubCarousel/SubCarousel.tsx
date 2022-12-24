@@ -4,14 +4,8 @@ import { Animes } from "../Animes/Animes";
 
 import * as S from "@/components/SubCarousel/styled";
 import { SubCarouselArrow } from "@/components/ui";
-import { Anime, Time } from "@/types/main";
+import { SubCarouselProps } from "@/types/main";
 import { getElementSizePx } from "@/utils";
-
-interface SubCarouselProps {
-  animes: Anime[] | Time[];
-  isShow: boolean;
-  isPopular?: boolean;
-}
 
 export function SubCarousel({ animes, isShow, isPopular }: SubCarouselProps) {
   const [_, setReRender] = useState(false);

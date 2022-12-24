@@ -1,26 +1,9 @@
 import { AnimeDetail } from "@/components";
 import * as S from "@/components/Animes/styled";
+import { AnimesProps, Finder } from "@/types/animes";
 import { Anime, Time } from "@/types/main";
 
-interface Finder {
-  image: string;
-  isAdult: boolean;
-  isOnly: boolean;
-  title: string;
-  _id: string;
-}
-
-export function Animes({
-  animes,
-  isPopular,
-  cellRef,
-  isFinder,
-}: {
-  animes?: Anime[] | Time[] | Finder[];
-  isPopular?: boolean;
-  cellRef?: React.MutableRefObject<HTMLDivElement | null>;
-  isFinder?: boolean;
-}) {
+export function Animes({ animes, isPopular, cellRef, isFinder }: AnimesProps) {
   if (!animes) {
     return null;
   }

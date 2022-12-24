@@ -26,6 +26,12 @@ export interface AverageStarsProps {
   starsCount: number | undefined;
 }
 
+export interface AnimeDetailProps {
+  children: JSX.Element;
+  id: string;
+  title?: string;
+}
+
 export interface EpisodeQuery {
   number: number;
   title: string;

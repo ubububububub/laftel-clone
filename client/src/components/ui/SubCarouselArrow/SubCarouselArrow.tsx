@@ -1,12 +1,7 @@
 import nextarrow from "@/../public/assets/svgs/nextarrow.svg";
 import prevarrow from "@/../public/assets/svgs/prevarrow.svg";
 import * as S from "@/components/ui/SubCarouselArrow/styled";
-
-interface SubCarouselArrowProps {
-  onLeftArrowClick?: React.MouseEventHandler<HTMLDivElement>;
-  onRightArrowClick?: React.MouseEventHandler<HTMLDivElement>;
-  prev?: boolean;
-}
+import { SubCarouselArrowProps } from "@/types/main";
 
 export function SubCarouselArrow({
   onLeftArrowClick,

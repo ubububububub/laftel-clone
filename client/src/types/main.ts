@@ -67,3 +67,27 @@ export interface MainQuery {
   themes: Theme[];
   hots: HotsIndex;
 }
+
+export interface MainThemeToggleProps {
+  title: string;
+  tabTexts: string[];
+  isPopular?: boolean;
+  data?: DailyIndex | HotsIndex;
+}
+
+export interface SubCarouselProps {
+  animes: Anime[] | Time[];
+  isShow: boolean;
+  isPopular?: boolean;
+}
+
+export interface MainCarouselArrowProps {
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  prev?: boolean;
+}
+
+export interface SubCarouselArrowProps {
+  onLeftArrowClick?: React.MouseEventHandler<HTMLDivElement>;
+  onRightArrowClick?: React.MouseEventHandler<HTMLDivElement>;
+  prev?: boolean;
+}

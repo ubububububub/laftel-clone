@@ -1,11 +1,6 @@
 import check from "@/../public/assets/svgs/check.svg";
 import * as S from "@/components/ui/Product/styled";
-
-interface ProductProps {
-  title: string;
-  price: number;
-  memberships: string[];
-}
+import { ProductProps } from "@/types/membership";
 
 export function Product({ title, price, memberships }: ProductProps) {
   const mapedMembership = memberships.map((membership, index) => {

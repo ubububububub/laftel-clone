@@ -1,11 +1,7 @@
 import nextarrow from "@/../public/assets/svgs/nextarrow.svg";
 import prevarrow from "@/../public/assets/svgs/prevarrow.svg";
 import * as S from "@/components/ui/MainCarouselArrow/styled";
-
-interface MainCarouselArrowProps {
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
-  prev?: boolean;
-}
+import { MainCarouselArrowProps } from "@/types/main";
 
 export function MainCarouselArrow({ onClick, prev }: MainCarouselArrowProps) {
   return (

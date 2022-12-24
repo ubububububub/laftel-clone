@@ -1,32 +1,6 @@
 import cancel from "@/../public/assets/svgs/cancel.svg";
 import * as S from "@/components/ui/Input/styled";
-
-interface JoinAuth {
-  [index: string]: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-}
-
-interface LoginAuth {
-  [index: string]: string;
-  email: string;
-  password: string;
-}
-
-interface InputProps {
-  inputArgs: {
-    title: string;
-    type: string;
-    name: string;
-    authInfo: JoinAuth | LoginAuth;
-    onClearClick: () => void;
-    onInputChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => void;
-    placeholder?: string;
-    text?: string;
-    inValidAuth?: () => boolean;
-  };
-}
+import { InputProps } from "@/types/input";
 
 export function Input({ inputArgs }: InputProps) {
   const {

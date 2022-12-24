@@ -33,9 +33,6 @@ const checkAuthToken = async () => {
     AuthToken.deleteUserInfo();
     console.error("로그인 페이지로 이동");
     throw new Error(error);
-
-    // if (error.response.status === 401) {
-    // }
   }
 };
 

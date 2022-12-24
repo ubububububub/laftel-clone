@@ -26,7 +26,6 @@ export function Search() {
   });
 
   if (isError) {
-    // 스테이터스 202번
     return (
       <S.Container>
         <S.Wrapper>

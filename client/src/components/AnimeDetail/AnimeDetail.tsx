@@ -1,16 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 
 import * as S from "@/components/AnimeDetail/styled";
+import { AnimeDetailProps } from "@/types/detail";
 
-export function AnimeDetail({
-  children,
-  id,
-  title,
-}: {
-  children: JSX.Element;
-  id: string;
-  title?: string;
-}) {
+export function AnimeDetail({ children, id, title }: AnimeDetailProps) {
   const location = useLocation();
   const path = location.pathname;
 

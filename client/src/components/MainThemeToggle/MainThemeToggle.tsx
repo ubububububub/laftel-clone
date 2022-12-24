@@ -2,14 +2,7 @@ import { useState } from "react";
 
 import { SubCarousel } from "@/components";
 import * as S from "@/components/MainThemeToggle/styled";
-import { DailyIndex, HotsIndex } from "@/types/main";
-
-interface MainThemeToggleProps {
-  title: string;
-  tabTexts: string[];
-  isPopular?: boolean;
-  data?: DailyIndex | HotsIndex;
-}
+import { MainThemeToggleProps } from "@/types/main";
 
 export function MainThemeToggle({
   title,

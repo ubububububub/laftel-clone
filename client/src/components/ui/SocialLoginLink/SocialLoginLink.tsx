@@ -1,14 +1,11 @@
 import * as S from "@/components/ui/SocialLoginLink/styled";
+import { SocialLoginLinkProps } from "@/types/auth";
 
 export function SocialLoginLink({
   icon,
   name,
   href = "#",
-}: {
-  icon: string;
-  name: string;
-  href?: string;
-}) {
+}: SocialLoginLinkProps) {
   return (
     <S.Container>
       <S.SocialIcon src={icon} alt={`${name} 아이콘`} />
