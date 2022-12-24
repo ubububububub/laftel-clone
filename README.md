@@ -7,10 +7,14 @@
 [링크](https://fastidious-sopapillas-89e18f.netlify.app/)
 
 ## 2. 서비스 주요 기능 설명
-
+https://user-images.githubusercontent.com/116259958/209417683-f97e004e-eaa3-42b3-b7a4-4ec6c3bceee5.mp4
 - 약관동의, 회원가입, 이메일 인증, 로그인 구현
-- 애니메이션 상세 정보 조회 구현
+
+https://user-images.githubusercontent.com/116259958/209417953-c845abf0-11d6-4557-af2b-0ff451f5b03c.mp4
 - 필터에 따른 애니메이션 목록 조회(무한스크롤) 구현
+
+https://user-images.githubusercontent.com/116259958/209417662-90d07fee-a9be-40e0-a6d7-80baf4e9f915.mp4
+- 애니메이션 상세 정보 조회 구현
 - 애니메이션 별점 CRD 구현
 - 애니메이션 리뷰 CRUD 구현
 
