@@ -1,10 +1,10 @@
 # 라프텔 클론 코딩
 
-- 대한민국 최고의 애니메이션 OTT 플랫폼 라프텔을 클론 코딩한 프로젝트입니다.
+- 애니메이션 OTT 플랫폼 라프텔을 클론 코딩한 프로젝트입니다.
 
 ## 1. 배포
 
-[링크](https://fastidious-sopapillas-89e18f.netlify.app/)
+[링크](https://web-laftel-client-fao2flc1yasyv.gksl2.cloudtype.app/)
 
 ## 2. 서비스 주요 기능 설명
 
