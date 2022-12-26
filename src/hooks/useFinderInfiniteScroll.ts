@@ -71,8 +71,10 @@ export function useFinderInfiniteScroll() {
 
     if (data.pages.length > 1) {
       const [newPage] = data.pages.slice(1);
+
       return [...firstPage, ...newPage];
     }
+
     return firstPage;
   };
 

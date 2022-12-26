@@ -64,7 +64,7 @@ export const getFinderAnimes = async (
   const res = await axios.get(`${import.meta.env.VITE_BASE}/main/finder`, {
     headers: {
       "Content-Type": "application/json",
-      _id: pageParam,
+      itemid: pageParam,
       genre,
       xGenre,
       tags,
