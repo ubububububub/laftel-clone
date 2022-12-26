@@ -1,10 +1,18 @@
 # 라프텔 클론 코딩
 
 - 애니메이션 OTT 플랫폼 라프텔을 클론 코딩한 프로젝트입니다.
+- 해당 프로젝트는 PC 플랫폼을 지원합니다.
 
 ## 1. 배포
 
-[링크](https://web-laftel-client-fao2flc1yasyv.gksl2.cloudtype.app/)
+계정
+
+```
+email: user@naver.com
+password: abcd1234
+```
+
+[링크](https://web-laftel-clone-20z52flc4ct8jz.gksl2.cloudtype.app)
 
 ## 2. 서비스 주요 기능 설명
 
